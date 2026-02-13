@@ -9,71 +9,77 @@ export default function Home() {
     <main className="bg-[#0B1120] text-white overflow-hidden">
 
       {/* ================= HERO ================= */}
-      <section className="relative min-h-screen flex items-center px-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-transparent blur-3xl"></div>
 
-        <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+<section className="relative min-h-screen pt-24 md:pt-28 flex items-center px-6 md:px-12">
+  {/* Gradient background */}
+  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-transparent blur-3xl"></div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Retail & Wholesale <br />
-              <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
-                Excellence Across Markets
-              </span>
-            </h1>
+  <div className="relative max-w-7xl py-7 mx-auto flex flex-col md:flex-row gap-12 items-center">
+    {/* Left: Text */}
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="w-full md:w-1/2"
+    >
+      <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
+        Retail & Wholesale <br />
+        <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+          Excellence Across Markets
+        </span>
+      </h1>
 
-            <p className="mt-6 text-gray-400 text-lg">
-{`              Main Group operates multiple brands across retail,
-              wholesale, sourcing and distribution.
-              Delivering quality, reliability and growth worldwide.`}
-            </p>
+      <p className="mt-6 text-gray-400 text-base sm:text-lg">
+        Main Group operates multiple brands across retail, wholesale, sourcing, and distribution.
+        Delivering quality, reliability and growth worldwide.
+      </p>
 
-            <div className="mt-8 flex gap-4 flex-wrap">
-              <Link
-                href="#brands"
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 font-semibold hover:scale-105 transition"
-              >
-                Explore Brands
-              </Link>
+      <div className="mt-8 flex gap-4 flex-wrap">
+        <Link
+          href="#brands"
+          className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 font-semibold hover:scale-105 transition w-full sm:w-auto text-center"
+        >
+          Explore Brands
+        </Link>
 
-              <Link
-                href="#contact"
-                className="px-6 py-3 rounded-full border border-gray-600 hover:bg-white/10 transition"
-              >
-                Wholesale Inquiry
-              </Link>
-            </div>
-          </motion.div>
+        <Link
+          href="#contact"
+          className="px-6 py-3 rounded-full border border-gray-600 hover:bg-white/10 transition w-full sm:w-auto text-center"
+        >
+          Wholesale Inquiry
+        </Link>
+      </div>
+    </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-            className="bg-white/5 backdrop-blur-xl p-10 rounded-3xl border border-white/10"
-          >
-            <div className="space-y-8">
-              <div>
-                <span className="text-gray-400 text-sm">Head Office</span>
-                <h3 className="text-xl font-semibold">United Kingdom</h3>
-              </div>
-              <div>
-                <span className="text-gray-400 text-sm">Operating Markets</span>
-                <h3 className="text-xl font-semibold">UK + GCC + Europe</h3>
-              </div>
-              <div>
-                <span className="text-gray-400 text-sm">Contact</span>
-                <h3 className="text-xl font-semibold">
-                  hello@maingroup.co.uk
-                </h3>
-              </div>
-            </div>
-          </motion.div>
+    {/* Right: Info Box */}
+    <motion.div
+      initial={{ opacity: 0, x: 60 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1 }}
+      className="w-full md:w-1/2 bg-white/5 backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-white/10 flex flex-col justify-center"
+    >
+      <div className="space-y-6">
+        <div>
+          <span className="text-gray-400 text-sm">Head Office</span>
+          <h3 className="text-lg sm:text-xl font-semibold">United Kingdom</h3>
         </div>
-      </section>
+        <div>
+          <span className="text-gray-400 text-sm">Operating Markets</span>
+          <h3 className="text-lg sm:text-xl font-semibold">UK + GCC + Europe</h3>
+        </div>
+        <div>
+          <span className="text-gray-400 text-sm">Contact</span>
+          <h3 className="text-lg sm:text-xl font-semibold">
+            hello@maingroup.co.uk
+          </h3>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+
+
 
       {/* ================= ABOUT ================= */}
       <section className="py-28 px-6 bg-[#0F172A]">
