@@ -28,10 +28,12 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2">
             <li><Link href="#home" className="hover:text-blue-400 transition">Home</Link></li>
-            <li><Link href="#about" className="hover:text-blue-400 transition">About Us</Link></li>
+             <li><Link href="#brands" className="hover:text-blue-400 transition">Brands</Link></li>
+         
             <li><Link href="#divisions" className="hover:text-blue-400 transition">Businesses</Link></li>
-            <li><Link href="#brands" className="hover:text-blue-400 transition">Brands</Link></li>
-            <li><Link href="#cooperative" className="hover:text-blue-400 transition">Cooperative</Link></li>
+               <li><Link href="#about" className="hover:text-blue-400 transition">About Us</Link></li>
+           
+          
             <li><Link href="#careers" className="hover:text-blue-400 transition">Careers</Link></li>
             <li><Link href="#contact" className="hover:text-blue-400 transition">Get in Touch</Link></li>
           </ul>
@@ -41,7 +43,7 @@ export default function Footer() {
         <div className="space-y-4">
           <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
           <p>Saudi Office: Riyadh, Saudi Arabia</p>
-          <p>Email: info@company.com</p>
+          <p>Contact: info@hoorabgroup.com</p>
           <p>Phone: +966 5XXXXXXXX</p>
           <iframe
             className="w-full h-40 rounded mt-2"

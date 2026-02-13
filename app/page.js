@@ -70,7 +70,7 @@ export default function Home() {
         <div>
           <span className="text-gray-400 text-sm">Contact</span>
           <h3 className="text-lg sm:text-xl font-semibold">
-            hello@maingroup.co.uk
+    info@hoorabgroup.com
           </h3>
         </div>
       </div>
@@ -140,7 +140,7 @@ export default function Home() {
 <section className="py-28 px-6">
   <div className="max-w-6xl mx-auto text-center">
     <h2 className="text-3xl md:text-4xl font-bold mb-12">
-      Why Choose Main Group
+      Why Choose HOORAB GROUP
     </h2>
 
     {/* Horizontal scrolling container */}
@@ -192,10 +192,10 @@ export default function Home() {
 
           <div className="grid md:grid-cols-4 gap-8 mt-16">
             {[
-              "Hoorab Brand One",
-              "Hoorab Brand Two",
+              "ZYLLIQ ",
+              "HOORAB",
               "Hoorab Brand Three",
-              "Hoorab Brand Four",
+              "HDS",
             ].map((brand, i) => (
               <div
                 key={i}

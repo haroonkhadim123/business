@@ -8,7 +8,7 @@ import {
   AiOutlineTeam,
   AiOutlineShop,
   AiOutlineTag,
-  AiOutlineUsergroupAdd,
+
   AiOutlineSolution,
   AiOutlineMail,
 } from "react-icons/ai";
@@ -25,10 +25,11 @@ export default function Navbar() {
 
   const links = [
     { name: "Home", href: "/", icon: <AiFillHome className="inline mr-2" /> },
+      { name: "Brands", href: "#brands", icon: <AiOutlineTag className="inline mr-2" /> },
     { name: "About Us", href: "#about", icon: <AiOutlineTeam className="inline mr-2" /> },
     { name: "Businesses", href: "#divisions", icon: <AiOutlineShop className="inline mr-2" /> },
-    { name: "Brands", href: "#brands", icon: <AiOutlineTag className="inline mr-2" /> },
-    { name: "Cooperative", href: "#cooperative", icon: <AiOutlineUsergroupAdd className="inline mr-2" /> },
+  
+ 
     { name: "Careers", href: "#careers", icon: <AiOutlineSolution className="inline mr-2" /> },
   ];
 
@@ -41,7 +42,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-white hover:text-blue-400 transition">
-          Main Group
+          HOORAB GROUP
         </Link>
 
         {/* Desktop Links */}
@@ -84,7 +85,7 @@ export default function Navbar() {
       >
         <div className="flex justify-between items-center px-6 py-6 border-b border-gray-700">
           <Link href="/" className="text-2xl font-bold text-white hover:text-blue-400 transition">
-            Main Group
+            HOORAB GROUP
           </Link>
         
         </div>
