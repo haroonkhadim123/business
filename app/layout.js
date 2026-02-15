@@ -42,7 +42,7 @@ export const metadata = {
   publisher: "Main Group",
 
   openGraph: {
-    title: "Main Group | Retail & Wholesale Excellence",
+    title: "HOORAB GROUP | Retail & Wholesale Excellence",
     description:
       "Strategic retail and wholesale operations across international markets.",
     url: "https://maingroup.co.uk",

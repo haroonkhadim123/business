@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { AiFillFacebook, AiFillInstagram, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { motion } from "framer-motion";
-import Image from "next/image";
+
 
 export default function Footer() {
   const socialIcons = [
@@ -34,16 +34,43 @@ export default function Footer() {
   className="space-y-4 max-w-sm text-gray-800"
 >
   {/* Logo */}
-  <div className="flex items-center">
-    <Image
-      src="/logo.jpg"           // Ensure correct file name
-      alt="HOORAB Logo"
-      width={160}
-      height={48}
-      className="object-contain"
-      priority
+<Link
+  href="/"
+  className="flex items-center flex-shrink-0 gap-2 md:gap-4"
+>
+  {/* SVG Icon */}
+  <svg
+    width="36"             // smaller default for mobile
+    height="36"
+    viewBox="0 0 128 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="flex-shrink-0 md:w-12 md:h-12" // responsive sizing
+  >
+    <path
+      d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
+      fill="#000000"
+      stroke="#000000"
+      strokeWidth="4"
     />
+    <path
+      d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
+      fill="#111111"
+      opacity="0.12"
+    />
+  </svg>
+
+  {/* Text */}
+  <div className="flex flex-col leading-tight">
+    <span className="text-2xl md:text-3xl font-black tracking-[-1px] text-black">
+      HOORAB
+    </span>
+    <span className="text-xs md:text-sm font-semibold text-gray-700 tracking-wide mt-1">
+      Business Cooperative Solutions
+    </span>
   </div>
+</Link>
+
 
   {/* Description */}
   <p className="text-gray-600 leading-relaxed text-sm md:text-base">
@@ -73,8 +100,8 @@ export default function Footer() {
         <motion.div variants={fadeUp} className="space-y-2">
           <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            <li><Link href="#home" className="hover:text-blue-500 transition">Home</Link></li>
-            <li><Link href="#brands" className="hover:text-blue-500 transition">Brands</Link></li>
+            <li><Link href="/" className="hover:text-blue-500 transition">Home</Link></li>
+            <li><Link href="/brand" className="hover:text-blue-500 transition">Brands</Link></li>
             <li><Link href="#divisions" className="hover:text-blue-500 transition">Businesses</Link></li>
             <li><Link href="#about" className="hover:text-blue-500 transition">About Us</Link></li>
             <li><Link href="#careers" className="hover:text-blue-500 transition">Careers</Link></li>
