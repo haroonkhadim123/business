@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function BrandHero() {
   return (
@@ -59,6 +60,18 @@ export default function BrandHero() {
           Discover the powerful brands we have built and nurtured —
           each crafted with innovation, strategy, and a commitment to excellence.
         </motion.p>
+             <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
+          className="mt-6 text-gray-300 text-sm flex items-center justify-center gap-2"
+        >
+          <Link href="/" className="hover:text-white transition">
+            Home
+          </Link>
+          <span>/</span>
+          <span className="text-white font-semibold">About Us</span>
+        </motion.div>
 
       </div>
     </section>
