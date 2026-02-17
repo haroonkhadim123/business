@@ -21,12 +21,12 @@ export const metadata = {
   metadataBase: new URL("https://maingroup.co.uk"),
 
   title: {
-    default: "Main Group | Retail & Wholesale Excellence",
+    default: "HOORAB Group | Retail & Wholesale Excellence",
     template: "%s | Main Group",
   },
 
   description:
-    "Main Group operates multiple retail and wholesale brands across UK, GCC and Europe. Delivering sourcing excellence, global distribution and long-term partnerships.",
+    "HOORAB Group operates multiple retail and wholesale brands across UK, GCC and Europe. Delivering sourcing excellence, global distribution and long-term partnerships.",
 
   keywords: [
     "Retail Company UK",
@@ -38,8 +38,8 @@ export const metadata = {
   ],
 
   authors: [{ name: "Main Group" }],
-  creator: "Main Group",
-  publisher: "Main Group",
+  creator: "HOORAB Group",
+  publisher: "HOORAB Group",
 
   openGraph: {
     title: "HOORAB GROUP | Retail & Wholesale Excellence",
@@ -53,7 +53,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Main Group",
+    title: "HOORAB Group",
     description:
       "Retail & Wholesale Excellence Across Markets",
   },

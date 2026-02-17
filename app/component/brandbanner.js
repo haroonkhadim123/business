@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function BrandHero() {
   return (
-    <section className="relative h-[85vh] w-full flex items-center justify-center text-center overflow-hidden">
+    <section className="relative h-[60vh] md:h-[90vh] w-full flex items-center justify-center text-center overflow-hidden">
       
       {/* Background Image with Smooth Zoom */}
       <motion.div
@@ -24,7 +24,7 @@ export default function BrandHero() {
       </motion.div>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/80"></div>
+             <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6">

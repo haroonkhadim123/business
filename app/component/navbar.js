@@ -26,7 +26,7 @@ export default function Navbar() {
   const links = [
     { name: "Home", href: "/", icon: <AiFillHome className="inline mr-2" /> },
     { name: "Brands", href: "/brand", icon: <AiOutlineTag className="inline mr-2" /> },
-    { name: "About Us", href: "#about", icon: <AiOutlineTeam className="inline mr-2" /> },
+    { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
     { name: "Businesses", href: "#divisions", icon: <AiOutlineShop className="inline mr-2" /> },
     { name: "Careers", href: "#careers", icon: <AiOutlineSolution className="inline mr-2" /> },
   ];
