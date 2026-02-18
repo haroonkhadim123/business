@@ -6,7 +6,8 @@ import Link from "next/link";
 
 export default function BrandHero() {
   return (
-    <section className="relative h-[60vh] md:h-[90vh] w-full flex items-center justify-center text-center overflow-hidden">
+   <section className="relative min-h-[75vh] md:h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
+
       
       {/* Background Image with Smooth Zoom */}
       <motion.div

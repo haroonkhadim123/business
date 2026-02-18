@@ -44,7 +44,7 @@ export default function Banner() {
       fadeEffect={{ crossFade: true }}
       autoplay={{ delay: 5000, disableOnInteraction: false }}
       loop={true}
-      className="h-[60vh] md:h-[90vh]"
+      className="h-[75vh] md:h-[90vh]"
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className="relative overflow-hidden">

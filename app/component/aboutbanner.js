@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 
 export default function Aboutbanner() {
   return (
-    <section className="relative h-[60vh] md:h-[90vh] w-full flex items-center justify-center text-center overflow-hidden">
+  <section className="relative min-h-[75vh] md:h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
+
       
       {/* Background Image with Smooth Zoom */}
       <motion.div
@@ -35,7 +36,7 @@ export default function Aboutbanner() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="uppercase tracking-[6px] text-blue-400 font-semibold"
+          className="uppercase  tracking-[6px] text-blue-400 font-semibold"
         >
           Who We Are
         </motion.p>

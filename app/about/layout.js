@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "About Us | HOORAB GROUP",
+  title: "HOORAB GROUP | About Us ",
   description:
     "Learn about our corporate consultancy firm, our mission, vision, and leadership team with 25+ years of experience.",
 };
