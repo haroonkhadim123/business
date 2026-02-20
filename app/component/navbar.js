@@ -28,7 +28,7 @@ export default function Navbar() {
     { name: "Brands", href: "/brand", icon: <AiOutlineTag className="inline mr-2" /> },
     { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
     { name: "Businesses", href: "#divisions", icon: <AiOutlineShop className="inline mr-2" /> },
-    { name: "Careers", href: "#careers", icon: <AiOutlineSolution className="inline mr-2" /> },
+    { name: "Careers", href: "/career", icon: <AiOutlineSolution className="inline mr-2" /> },
   ];
 
   return (
