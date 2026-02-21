@@ -26,7 +26,7 @@ export default function Aboutbanner() {
       </motion.div>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6">

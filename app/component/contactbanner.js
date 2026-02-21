@@ -27,7 +27,7 @@ export default function ContactPage() {
           />
         </motion.div>
 
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 max-w-4xl px-6">
           <motion.p
