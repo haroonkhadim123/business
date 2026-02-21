@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin } from "lucide-react";
+import {User, Mail, Phone, MapPin } from "lucide-react";
 
 
 
@@ -86,7 +86,7 @@ export default function ContactPage() {
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="relative">
-                  <Mail className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
+                  <User className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
                   <input
                     type="text"
                     placeholder="Full Name"
