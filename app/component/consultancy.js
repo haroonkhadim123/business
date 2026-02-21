@@ -1,16 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Headphones, ArrowRight } from "lucide-react"; // icons ke liye
+import { Users, Headphones, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.2 } }
+  visible: { transition: { staggerChildren: 0.2 } },
 };
 
 export default function BusinessConsultancy() {
@@ -71,42 +73,51 @@ export default function BusinessConsultancy() {
 
               {/* Buttons */}
               <motion.div variants={fadeInUp} className="flex flex-wrap gap-6 mt-10">
-                <button className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition flex items-center gap-2 shadow-lg">
+                <Link
+                  href="/contact"
+                  className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition flex items-center gap-2 shadow-lg"
+                >
                   Contact Us <ArrowRight className="w-5 h-5" />
-                </button>
-             
+                </Link>
               </motion.div>
             </motion.div>
 
-            {/* Right - Images (overlapping) */}
+            {/* Right - Images (now responsive overlapping on all screens) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.4 }}
-              className="relative hidden lg:block"
+              className="relative flex justify-center lg:justify-end"
             >
-              <div className="relative">
-                {/* Background blurred shape or gradient optional */}
-                <div className="absolute -inset-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-3xl opacity-30" />
+              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-none aspect-[4/3] md:aspect-auto">
+                {/* Optional background blur shape */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-3xl opacity-30 scale-125" />
 
-                {/* Overlapping images */}
-                <img
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="Team discussion"
-                  className="rounded-2xl shadow-2xl object-cover w-full h-[500px] relative z-10"
-                />
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                  alt="Team meeting"
-                  className="rounded-2xl shadow-2xl object-cover w-3/5 absolute -bottom-10 -right-10 z-20 border-8 border-white"
-                />
+                {/* Main large image */}
+                <div className="relative w-full h-[320px] sm:h-[420px] lg:h-[500px]">
+                  <Image
+                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Team discussion"
+                    fill
+                    className="rounded-2xl shadow-2xl object-cover"
+                    priority // optional: better LCP
+                  />
+                </div>
+
+                {/* Smaller overlapping image - always absolute, responsive position */}
+                <div className="absolute -bottom-6 -right-4 sm:-bottom-10 sm:-right-8 lg:-bottom-12 lg:-right-10 z-20 w-3/5 sm:w-2/5 lg:w-3/5 max-w-[220px] sm:max-w-[280px] lg:max-w-none aspect-[4/3] border-4 sm:border-6 lg:border-8 border-white rounded-2xl shadow-2xl overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    alt="Team meeting"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
-
-      {/* Add more sections below as needed (services, testimonials, etc.) */}
     </main>
   );
 }
