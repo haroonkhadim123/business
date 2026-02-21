@@ -171,7 +171,7 @@ export default function Navbar() {
           ))}
 
           <Link
-            href="#contact"
+            href="/contact"
             className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-all flex items-center justify-center text-base shadow-sm"
             onClick={() => setIsOpen(false)}
           >
