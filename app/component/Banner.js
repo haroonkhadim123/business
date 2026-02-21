@@ -16,7 +16,7 @@ const slides = [
     subtitle:
       "HOORAB GROUP operates multiple brands across retail, wholesale and global distribution markets.",
     cta: "Explore Brands",
-    link: "#brands",
+    link: "/brand",
   },
   {
     src: "/banner.webp",
@@ -24,7 +24,7 @@ const slides = [
     subtitle:
       "Strategic sourcing, reliable partnerships and scalable distribution across UK, GCC & Europe.",
     cta: "Wholesale Inquiry",
-    link: "#contact",
+    link: "/contact",
   },
   {
     src: "/banner2.jpg",
@@ -32,7 +32,7 @@ const slides = [
     subtitle:
       "Delivering long-term value through supply chain excellence and trusted partnerships worldwide.",
     cta: "Contact Us",
-    link: "#contact",
+    link: "/contact",
   },
 ];
 

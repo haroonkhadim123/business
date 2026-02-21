@@ -16,7 +16,7 @@ export default function CareerBanner() {
         className="absolute inset-0"
       >
         <Image
-          src="/about-hero.jpg"
+          src="/career-hero.jpg"
           alt="Career Opportunities"
           fill
           priority

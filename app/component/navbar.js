@@ -90,7 +90,7 @@ export default function Navbar() {
           ))}
 
           <Link
-            href="#contact"
+            href="/contact"
             className="ml-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 flex items-center shadow-sm hover:shadow"
           >
             <AiOutlineMail className="mr-2 text-lg" />
