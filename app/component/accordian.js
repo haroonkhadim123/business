@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 const jobs = [
   {
@@ -106,9 +107,9 @@ export default function OpenPositions() {
                   >
                     <p>{job.description}</p>
 
-                    <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white transition px-6 py-2 rounded-full text-sm font-semibold">
+                    <Link href={'/apply'} className="mt-6 bg-blue-600 hover:bg-blue-700 text-white transition px-6 py-2 rounded-full text-sm font-semibold">
                       Apply Now
-                    </button>
+                    </Link>
                   </motion.div>
                 )}
               </AnimatePresence>
