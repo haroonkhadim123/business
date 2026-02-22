@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 export default function ContactUs() {
   return (
@@ -47,9 +48,9 @@ export default function ContactUs() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Call Us 24/7</p>
-                  <a href="tel:+25621452156" className="text-2xl font-semibold text-gray-900 hover:text-[#c5a26b] transition-colors">
+                  <Link href="tel:+25621452156" className="text-2xl font-semibold text-gray-900 hover:text-[#c5a26b] transition-colors">
                     (+256) 2145.2156
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
 
@@ -66,9 +67,9 @@ export default function ContactUs() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Work with us</p>
-                  <a href="mailto:info@invvena.com" className="text-2xl font-semibold text-gray-900 hover:text-[#c5a26b] transition-colors">
+                  <Link href="info@hoorabgroup.com" className="text-2xl font-semibold text-gray-900 hover:text-[#c5a26b] transition-colors">
                    info@hoorabgroup.com
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
 

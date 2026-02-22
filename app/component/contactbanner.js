@@ -3,19 +3,67 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {User, Mail, Phone, MapPin } from "lucide-react";
-
-
+import { FileText, User, Mail, Phone, MapPin } from "lucide-react";
 
 export default function ContactPage() {
+  /* ================= ANIMATION VARIANTS ================= */
+
+  const sectionFade = {
+    hidden: { opacity: 0, y: 80 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: "easeOut" },
+    },
+  };
+
+  const staggerContainer = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  };
+
+  const slideLeft = {
+    hidden: { opacity: 0, x: -80 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.9 },
+    },
+  };
+
+  const slideRight = {
+    hidden: { opacity: 0, x: 80 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.9 },
+    },
+  };
+
   return (
     <main className="bg-gray-50 text-gray-700 overflow-x-hidden">
-      {/* ================= HERO BANNER ================= */}
+
+      {/* ================= HERO ================= */}
       <section className="relative min-h-[75vh] md:min-h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
+
+        {/* Background Zoom */}
         <motion.div
-          initial={{ scale: 1.2 }}
+          initial={{ scale: 1.3 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 2.5, ease: "easeOut" }}
           className="absolute inset-0"
         >
           <Image
@@ -27,158 +75,193 @@ export default function ContactPage() {
           />
         </motion.div>
 
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
-        <div className="relative z-10 max-w-4xl px-6">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="relative z-10 max-w-4xl px-6"
+        >
           <motion.p
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={fadeUp}
             className="uppercase tracking-[6px] text-blue-400 font-semibold"
           >
             Get in Touch
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            variants={fadeUp}
             className="text-4xl md:text-5xl font-bold text-white mt-6 leading-tight"
           >
             Reach Out to HOORAB GROUP
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            variants={fadeUp}
             className="text-gray-300 mt-6 text-lg leading-relaxed"
           >
             Fill the form or contact our team for inquiries, support, or partnership opportunities.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
+            variants={fadeUp}
             className="mt-6 text-gray-300 text-sm flex items-center justify-center gap-2"
           >
-            <Link href="/" className="hover:text-white transition">Home</Link>
+            <Link href="/" className="hover:text-white transition">
+              Home
+            </Link>
             <span>/</span>
             <span className="text-white font-semibold">Contact</span>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* ================= FORM & INFO SIDE BY SIDE ================= */}
-      <section className="py-24 px-4 md:px-6">
+      {/* ================= FORM & INFO ================= */}
+      <motion.section
+        variants={sectionFade}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="py-24 px-4 md:px-6"
+      >
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-          
-          {/* Contact Form */}
-          <div className="bg-white p-4 md:p-10 rounded-3xl shadow-lg">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-700 mb-3 text-center">
-              Send Us a Message
-            </h2>
-            <p className="text-center text-gray-500 mb-10">
-              Our team is ready to assist you. Fill out the form and we will get back to you.
-            </p>
 
-            <form className="space-y-6">
+          {/* ================= FORM ================= */}
+          <motion.div
+            variants={slideLeft}
+            whileHover={{ y: -6 }}
+            className="bg-white p-4 md:p-10 rounded-3xl shadow-xl"
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-3xl md:text-4xl font-bold text-gray-700 mb-3 text-center"
+            >
+              Send Us a Message
+            </motion.h2>
+
+            <motion.p
+              variants={fadeUp}
+              className="text-center text-gray-500 mb-10"
+            >
+              Our team is ready to assist you. Fill out the form and we will get back to you.
+            </motion.p>
+
+            <motion.form
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="relative">
+
+                <motion.div variants={fadeUp} className="relative">
                   <User className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
                   <input
                     type="text"
                     placeholder="Full Name"
-                    className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700 placeholder-gray-400"
+                    className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
-                </div>
-                <div className="relative">
+                </motion.div>
+
+                <motion.div variants={fadeUp} className="relative">
                   <Mail className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
                   <input
                     type="email"
                     placeholder="Email Address"
-                    className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700 placeholder-gray-400"
+                    className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
-                </div>
+                </motion.div>
+
               </div>
 
-              <div className="relative">
+              <motion.div variants={fadeUp} className="relative">
                 <Phone className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700 placeholder-gray-400"
+                  className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
-              </div>
+              </motion.div>
 
-              <div className="relative">
-                <MapPin className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
+              <motion.div variants={fadeUp} className="relative">
+                <FileText className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Subject"
-                  className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700 placeholder-gray-400"
+                  className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
-              </div>
+              </motion.div>
 
-              <textarea
+              <motion.textarea
+                variants={fadeUp}
                 placeholder="Your Message"
                 rows={5}
-                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-700 placeholder-gray-400"
+                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
 
-              <button
+              <motion.button
+                variants={fadeUp}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-full font-semibold transition"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-full font-semibold"
               >
                 Send Message
-              </button>
-            </form>
-          </div>
+              </motion.button>
+            </motion.form>
+          </motion.div>
 
-          {/* Contact Info + Map */}
-          <div className="space-y-8">
-            <div className="bg-gray-100 p-8 rounded-3xl shadow-lg space-y-6">
-              <div className="flex items-center gap-4">
+          {/* ================= INFO ================= */}
+          <motion.div variants={slideRight} className="space-y-8">
+
+            <motion.div
+              whileHover={{ y: -6 }}
+              className="bg-gray-100 p-8 rounded-3xl shadow-xl space-y-6"
+            >
+              <motion.div variants={fadeUp} className="flex items-center gap-4">
                 <MapPin className="text-gray-500" size={28} />
                 <div>
                   <p className="font-semibold">Saudi Arabia Office</p>
                   <p>123 Corporate St., Riyadh</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-4">
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="flex items-center gap-4">
                 <Phone className="text-gray-500" size={28} />
                 <div>
                   <p className="font-semibold">+966 50 123 4567</p>
                   <p>Mon - Fri, 9:00am - 6:00pm</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-4">
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="flex items-center gap-4">
                 <Mail className="text-gray-500" size={28} />
                 <div>
-                  <p className="font-semibold"> info@hoorabgroup.com</p>
+                  <p className="font-semibold">info@hoorabgroup.com</p>
                   <p>We respond within 24 hours</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            {/* Google Map */}
-            <div className="rounded-3xl overflow-hidden shadow-lg h-[400px]">
+            <motion.div
+              variants={fadeUp}
+              whileHover={{ scale: 1.02 }}
+              className="rounded-3xl overflow-hidden shadow-xl h-[400px]"
+            >
               <iframe
                 title="HOORAB GROUP Saudi Arabia Office"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.123456789012!2d46.6750!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0123456789ab%3A0x1234567890abcdef!2sHOORAB%20GROUP%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
-                width="100%"
-                height="100%"
-                className="border-0 w-full h-full"
-                allowFullScreen=""
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.898897865973!2d46.67529531500002!3d24.71355128408843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0385b97b9df1%3A0xf2e1b64d6f839fa1!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1697441234567!5m2!1sen!2sus"
+                className="w-full h-full border-0"
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
-            </div>
-          </div>
+            </motion.div>
 
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
+
     </main>
   );
 }

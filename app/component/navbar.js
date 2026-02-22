@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { HiMenu, HiX } from "react-icons/hi";
 import {
-  AiFillHome,
+ AiOutlineHome,
   AiOutlineTeam,
   AiOutlineShop,
   AiOutlineTag,
@@ -24,7 +24,7 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { name: "Home", href: "/", icon: <AiFillHome className="inline mr-2" /> },
+    { name: "Home", href: "/", icon: <AiOutlineHome className="inline mr-2" /> },
     { name: "Brands", href: "/brand", icon: <AiOutlineTag className="inline mr-2" /> },
     { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
     { name: "Businesses", href: "#divisions", icon: <AiOutlineShop className="inline mr-2" /> },
@@ -33,6 +33,7 @@ export default function Navbar() {
 
   return (
     <nav
+    onBlur={()=>setIsOpen(false)}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-white"
       }`}

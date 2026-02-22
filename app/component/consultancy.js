@@ -96,7 +96,7 @@ export default function BusinessConsultancy() {
                 {/* Main large image */}
                 <div className="relative w-full h-[320px] sm:h-[420px] lg:h-[500px]">
                   <Image
-                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    src={'/mainteam.jpg'}
                     alt="Team discussion"
                     fill
                     className="rounded-2xl shadow-2xl object-cover"
@@ -107,7 +107,7 @@ export default function BusinessConsultancy() {
                 {/* Smaller overlapping image - always absolute, responsive position */}
                 <div className="absolute -bottom-6 -right-4 sm:-bottom-10 sm:-right-8 lg:-bottom-12 lg:-right-10 z-20 w-3/5 sm:w-2/5 lg:w-3/5 max-w-[220px] sm:max-w-[280px] lg:max-w-none aspect-[4/3] border-4 sm:border-6 lg:border-8 border-white rounded-2xl shadow-2xl overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                    src={'/smallteam.jpg'}
                     alt="Team meeting"
                     fill
                     className="object-cover"

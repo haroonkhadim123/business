@@ -106,7 +106,7 @@ export default function Footer() {
             <li><Link href="#divisions" className="hover:text-blue-500 transition">Businesses</Link></li>
    
             <li><Link href="/career" className="hover:text-blue-500 transition">Careers</Link></li>
-            <li><Link href="#contact" className="hover:text-blue-500 transition">Get in Touch</Link></li>
+            <li><Link href="/contact" className="hover:text-blue-500 transition">Get in Touch</Link></li>
           </ul>
         </motion.div>
 
