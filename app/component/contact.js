@@ -43,12 +43,12 @@ export default function ContactUs() {
                 whileHover={{ scale: 1.03 }}
                 className="flex gap-6 items-start group"
               >
-                <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#c5a26b] transition-colors">
+                <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 transition-colors">
                   <Phone size={28} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Call Us 24/7</p>
-                  <Link href="tel:+25621452156" className="text-2xl font-semibold text-gray-900 hover:text-[#c5a26b] transition-colors">
+                  <Link href="tel:+25621452156" className="text-2xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
                     (+256) 2145.2156
                   </Link>
                 </div>
@@ -62,12 +62,12 @@ export default function ContactUs() {
                 whileHover={{ scale: 1.03 }}
                 className="flex gap-6 items-start group"
               >
-                <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#c5a26b] transition-colors">
+                <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 transition-colors">
                   <Mail size={28} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Work with us</p>
-                  <Link href="info@hoorabgroup.com" className="text-2xl font-semibold text-gray-900 hover:text-[#c5a26b] transition-colors">
+                  <Link href="info@hoorabgroup.com" className="text-2xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
                    info@hoorabgroup.com
                   </Link>
                 </div>
@@ -81,12 +81,12 @@ export default function ContactUs() {
                 whileHover={{ scale: 1.03 }}
                 className="flex gap-6 items-start group"
               >
-                <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#c5a26b] transition-colors">
+                <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 transition-colors">
                   <MapPin size={28} />
                 </div>
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Our Location</p>
-                  <p className="text-2xl font-semibold text-gray-900">
+                  <p className="text-2xl font-semibold text-gray-900 group-hover:text-blue-600">
                 Saudi Office: Riyadh, Saudi Arabia
                   </p>
                 </div>

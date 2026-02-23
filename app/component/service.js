@@ -3,22 +3,27 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase, ClipboardCheck, Settings } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
     title: "Corporate Strategy",
     desc: "We help organizations define long-term vision, strategic direction, and sustainable competitive advantage.",
     icon: <Briefcase className="w-8 h-8" />,
+    Link:'/coporate',
   },
   {
     title: "Business Planning",
     desc: "Comprehensive business plans designed to drive measurable growth and operational excellence.",
     icon: <ClipboardCheck className="w-8 h-8" />,
+    Link:'/planning',
+
   },
   {
     title: "Process Optimization",
     desc: "Improving efficiency, reducing costs, and transforming operations through modern methodologies.",
     icon: <Settings className="w-8 h-8" />,
+     Link:'/process',
   },
 ];
 
@@ -97,11 +102,11 @@ export default function ServicesSection() {
                   `}>
                     →
                   </div>
-                  <span className={`font-medium group-hover:translate-x-2 transition-transform duration-300
+                  <Link href={service.Link} className={`font-medium group-hover:translate-x-2 transition-transform duration-300
                     ${isActive ? "text-gray-900" : "text-gray-800"}
                   `}>
                     Read More
-                  </span>
+                  </Link>
                 </div>
               </motion.div>
             );
