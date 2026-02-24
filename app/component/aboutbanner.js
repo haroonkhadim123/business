@@ -73,7 +73,7 @@ export default function Aboutbanner() {
             Home
           </Link>
           <span>/</span>
-          <span className="text-white font-semibold">Brands</span>
+          <span className="text-white font-semibold">About Us</span>
         </motion.div>
 
       </div>
