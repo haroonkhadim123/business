@@ -1,7 +1,7 @@
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./component/navbar";
-import Footer from "./component/footer";
+import ClientLayout from "./ClientLayout";
+
 
 /* ================= PREMIUM CORPORATE FONTS ================= */
 const poppins = Poppins({
@@ -72,11 +72,12 @@ export default function RootLayout({ children }) {
         className={`${poppins.variable} ${inter.variable} antialiased bg-[#0B1120] text-white`}
       >
         {/* ================= NAVBAR ================= */}
-        <Navbar />
-
+  
+<ClientLayout>
         {/* ================= PAGE CONTENT ================= */}
         {children}
-        <Footer/>
+        </ClientLayout>
+
 
         {/* ================= STRUCTURED DATA (SEO BOOST) ================= */}
         <script
