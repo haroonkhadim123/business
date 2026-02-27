@@ -166,7 +166,7 @@ export default function AdminLayout({ children }) {
         </AnimatePresence>
 
         {/* Page Content */}
-        <main className="flex-1 p-6 md:p-8 lg:p-10 bg-gray-50/40">
+        <main className="flex-1 p-4 md:p-8 lg:p-10 bg-gray-50/40">
           {children}
         </main>
       </div>
