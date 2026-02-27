@@ -9,7 +9,7 @@ export default function AddJob() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white shadow-2xl p-6 md:p-10 rounded-xl max-w-3xl mx-auto"
+      className="bg-white shadow-2xl p-4 md:p-10 rounded-xl max-w-3xl mx-auto"
     >
       <h1 className="text-2xl font-semibold mb-8 text-gray-800">
         Add Job Position
@@ -30,7 +30,7 @@ export default function AddJob() {
             <input
               type="text"
               placeholder="Enter job title (e.g. Senior Business Consultant)"
-              className="w-full pl-10 pr-4 py-3 border rounded-xl 
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl 
               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
           </div>
@@ -49,7 +49,7 @@ export default function AddJob() {
             <input
               type="text"
               placeholder="Enter job location (e.g. Karachi, Pakistan)"
-              className="w-full pl-10 pr-4 py-3 border rounded-xl 
+              className="w-full pl-10 pr-4 py-3 border rounded-xl border-gray-300 
               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
           </div>
@@ -68,7 +68,7 @@ export default function AddJob() {
             <input
               type="text"
               placeholder="Enter job type (Full Time, Part Time, Remote)"
-              className="w-full pl-10 pr-4 py-3 border rounded-xl 
+              className="w-full pl-10 pr-4 py-3 border rounded-xl border-gray-300
               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
           </div>
@@ -87,7 +87,7 @@ export default function AddJob() {
             <textarea
               rows="5"
               placeholder="Enter job responsibilities, requirements, and expectations..."
-              className="w-full pl-10 pr-4 py-3 border rounded-xl 
+              className="w-full pl-10 pr-4 py-3 border rounded-xl border-gray-300 
               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"
             />
           </div>

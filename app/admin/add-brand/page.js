@@ -1,25 +1,18 @@
 "use client";
 
-import { useState } from "react";
+
 import { motion } from "framer-motion";
-import { Tag, Globe, FileText, ImagePlus } from "lucide-react";
+import { Tag, Globe, FileText } from "lucide-react";
 
 export default function AddBrand() {
-  const [logo, setLogo] = useState(null);
 
-  const handleImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setLogo(URL.createObjectURL(file));
-    }
-  };
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white shadow-2xl p-6 md:p-10  rounded-lg max-w-3xl mx-auto"
+      className="bg-white shadow-2xl p-4 md:p-10  rounded-lg max-w-3xl mx-auto"
     >
       <h1 className="text-2xl font-semibold mb-8 text-gray-800">
         Add New Brand
@@ -35,7 +28,7 @@ export default function AddBrand() {
             <input
               type="text"
               placeholder="Enter brand name"
-              className="w-full pl-10 pr-4 py-3 border rounded-xl 
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl 
                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
           </div>
@@ -49,7 +42,7 @@ export default function AddBrand() {
             <input
               type="url"
               placeholder="https://brand.com"
-              className="w-full pl-10 pr-4 py-3 border rounded-xl 
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl 
                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
           </div>
@@ -63,7 +56,7 @@ export default function AddBrand() {
             <textarea
               rows="5"
               placeholder="Write short brand description..."
-              className="w-full pl-10 pr-4 py-3 border rounded-xl 
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl 
                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition resize-none"
             />
           </div>
