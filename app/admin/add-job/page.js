@@ -9,7 +9,7 @@ export default function AddJob() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white shadow-2xl p-4 md:p-10 rounded-xl max-w-3xl mx-auto"
+      className="bg-white shadow-2xl  p-4 md:p-10 rounded-xl max-w-3xl mx-auto"
     >
       <h1 className="text-2xl font-semibold mb-8 text-gray-800">
         Add Job Position

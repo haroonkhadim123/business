@@ -12,6 +12,7 @@ import {
   LogOut,
   Menu,
   X,
+  View
 } from "lucide-react";
 
 export default function AdminLayout({ children }) {
@@ -78,7 +79,7 @@ export default function AdminLayout({ children }) {
 
       <div className="flex pt-20 ">
         {/* Desktop Sidebar */}
-        <aside className="hidden  sticky left-0  md:block w-64 lg:w-72  bg-white shadow-sm border-r border-gray-200 min-h-screen">
+        <aside className="hidden   md:block w-64 lg:w-72  bg-white shadow-sm border-r border-gray-200 min-h-screen">
           <div className="p-6 lg:p-8">
             <SidebarLinks closeSidebar={closeSidebar} />
           </div>
@@ -166,7 +167,7 @@ export default function AdminLayout({ children }) {
         </AnimatePresence>
 
         {/* Page Content */}
-        <main className="flex-1 p-4 md:p-8 lg:p-10 bg-gray-50/40">
+        <main className="flex-1  p-4 md:p-8 lg:p-10 bg-gray-50/40 ">
           {children}
         </main>
       </div>
@@ -181,6 +182,7 @@ function SidebarLinks({ closeSidebar }) {
     { href: "/admin/manage-jobs", label: "Manage Jobs", icon: Briefcase },
     { href: "/admin/add-brand", label: "Add Brand", icon: PlusCircle },
     { href: "/admin/manage-brands", label: "Manage Brands", icon: Building2 },
+    { href: "/admin/view-application", label: "View Applications", icon: View },
   ];
 
   return (

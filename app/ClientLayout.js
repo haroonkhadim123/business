@@ -21,13 +21,21 @@ export default function ClientLayout({ children }) {
     pathname === "/about" ||
     pathname === "/brand" ||
     pathname === "/contact" ||
-    pathname === "/career" 
+    pathname === "/career" ||
+    pathname === "/process" ||
+    pathname === "/apply" ||
+    pathname === "/planning" ||
+    pathname === "/coporate" 
   const showFooter = 
-     pathname === "/" ||
+        pathname === "/" ||
     pathname === "/about" ||
     pathname === "/brand" ||
     pathname === "/contact" ||
-    pathname === "/career" 
+    pathname === "/career" ||
+    pathname === "/process" ||
+    pathname === "/apply" ||
+    pathname === "/planning" ||
+    pathname === "/coporate" 
   return (
     <>
       {showNavbar && <Navbar />}
