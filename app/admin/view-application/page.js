@@ -1,13 +1,12 @@
-"use client"; // since we use state and motion
+"use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { FileText } from "lucide-react";
+import { FileText, Trash2 } from "lucide-react";
 import Link from "next/link";
 
-
-
 export default function ViewApplicationsPage() {
-  const applications = [
+  const [applications, setApplications] = useState([
     {
       id: 1,
       name: "Ali Khan",
@@ -28,69 +27,64 @@ export default function ViewApplicationsPage() {
       coverLetter:
         "With 5 years experience in business analysis, I am confident I can contribute...",
     },
-  ];
+    
+  ]);
+
+  const handleDelete = (id) => {
+    if (confirm("Are you sure you want to delete this application?")) {
+      setApplications(applications.filter((app) => app.id !== id));
+    }
+  };
 
   return (
-    <div className="p-6 md:p-10 space-y-8">
+    <div className="p-6 md:p-10 space-y-6 ">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
         View Applications
       </h1>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-                Name
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-                Email
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-                Phone
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-                Position
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-                CV
-              </th>
-              <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">
-                Cover Letter
-              </th>
-            </tr>
-          </thead>
+      <div className="grid md:grid-cols-2 gap-6">
+        {applications.map((app, index) => (
+          <motion.div
+            key={app.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.05, duration: 0.3 }}
+            className="relative bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+          >
+          
+       
 
-          <tbody>
-            {applications.map((app, index) => (
-              <motion.tr
-                key={app.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
-                className="border-t hover:bg-gray-50 transition-colors"
-              >
-                <td className="px-4 py-3 text-sm text-gray-900">{app.name}</td>
-                <td className="px-4 py-3 text-sm text-gray-900">{app.email}</td>
-                <td className="px-4 py-3 text-sm text-gray-900">{app.phone}</td>
-                <td className="px-4 py-3 text-sm text-gray-900">{app.position}</td>
-                <td className="px-4 py-3 text-sm text-blue-600">
-                  <Link
-                    href={app.cv}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:underline"
-                  >
-                    <FileText className="w-4 h-4" /> View CV
-                  </Link>
-                </td>
-                <td className="px-4 py-3 text-sm text-gray-900 break-words">
-                  {app.coverLetter}
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
+       <div className="flex justify-between items-center">
+             <h2 className="text-lg font-semibold text-gray-900 mb-1">{app.name}</h2>
+                 <button
+              onClick={() => handleDelete(app.id)}
+              className=" p-1 rounded-full hover:bg-red-100 text-red-500 hover:text-red-700 transition-colors z-10"
+              title="Delete Application"
+            >
+              <Trash2 className="w-5 h-5" />
+            </button>
+       </div>
+            <p className="text-sm text-gray-700 mb-1">
+              <strong>Email:</strong> {app.email}
+            </p>
+            <p className="text-sm text-gray-700 mb-1">
+              <strong>Phone:</strong> {app.phone}
+            </p>
+            <p className="text-sm text-gray-700 mb-2">
+              <strong>Position:</strong> {app.position}
+            </p>
+            <Link
+              href={app.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-blue-600 hover:underline text-sm mb-2"
+            >
+              <FileText className="w-4 h-4" /> View CV
+            </Link>
+            <p className="text-sm text-gray-800 break-words">{app.coverLetter}</p>
+            
+          </motion.div>
+        ))}
       </div>
     </div>
   );
