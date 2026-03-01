@@ -54,6 +54,36 @@ export default function ManageBrands() {
       website: "https://hoorabelectronics.com",
   
     },
+       {
+      id: 16,
+      name: "Hoorab Electronics",
+      website: "https://hoorabelectronics.com",
+  
+    },
+        {
+      id: 17,
+      name: "Hoorab Fashion",
+      website: "https://hoorabfashion.com",
+  
+    },
+    {
+      id: 18,
+      name: "Hoorab Electronics",
+      website: "https://hoorabelectronics.com",
+  
+    },
+           {
+      id: 19,
+      name: "Hoorab Fashion",
+      website: "https://hoorabfashion.com",
+  
+    },
+    {
+      id: 20,
+      name: "Hoorab Electronics",
+      website: "https://hoorabelectronics.com",
+  
+    },
     
   ]);
 
