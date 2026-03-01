@@ -97,19 +97,19 @@ export default function ViewApplicationsPage() {
   };
 
   return (
-    <div className="p-4 md:p-10 space-y-6  ">
+    <div className="p-4 md:p-10 md:h-[70vh] h-[70vh] hide-scrollbar   overflow-y-auto space-y-6  ">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
         View Applications
       </h1>
 
-      <div className="grid md:grid-cols-2 md:h-[70vh] h-[70vh] hide-scrollbar p-2  overflow-y-auto  gap-6">
+      <div className="grid md:grid-cols-2   gap-6">
         {applications.map((app, index) => (
           <motion.div
             key={app.id}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05, duration: 0.3 }}
-            className="relative w-[fit] bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+            className="relative  bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
           >
           
        
