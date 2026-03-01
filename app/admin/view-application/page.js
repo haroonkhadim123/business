@@ -97,7 +97,7 @@ export default function ViewApplicationsPage() {
   };
 
   return (
-    <div className="p-4 md:p-10 space-y-6 h:[70vh]  md:h-[60vh] hide-scrollbar   overflow-y-auto ">
+    <div className="p-4 md:p-10 space-y-6 h:[70vh]   hide-scrollbar   overflow-y-auto ">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
         View Applications
       </h1>
