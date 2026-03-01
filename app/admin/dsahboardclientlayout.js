@@ -25,7 +25,7 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-8 p-6  ">
+    <div className="space-y-8 p-4 sm:p-6 lg:p-8  ">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
           Dashboard Overview

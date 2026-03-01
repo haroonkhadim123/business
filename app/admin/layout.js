@@ -79,7 +79,7 @@ export default function AdminLayout({ children }) {
 
       <div className="flex pt-20 ">
         {/* Desktop Sidebar */}
-        <aside className="hidden   md:block w-64 lg:w-72  bg-white shadow-sm border-r border-gray-200 min-h-screen">
+        <aside className="hidden   md:block w-64 lg:w-72  bg-white shadow-xl border-r border-gray-200 min-h-screen">
           <div className="p-6 lg:p-8">
             <SidebarLinks closeSidebar={closeSidebar} />
           </div>

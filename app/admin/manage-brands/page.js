@@ -54,6 +54,7 @@ export default function ManageBrands() {
       website: "https://hoorabelectronics.com",
   
     },
+    
   ]);
 
   const handleDelete = (id) => {
@@ -61,7 +62,7 @@ export default function ManageBrands() {
   };
 
   return (
-    <div className="p-2 overflow-scroll  ">
+    <div className="p-4 sm:p-6 lg:p-8 ">
       <h1 className="text-3xl font-bold mb-8">Manage Brands</h1>
 
       <div className="grid md:grid-cols-2 gap-6   ">
