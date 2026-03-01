@@ -18,7 +18,67 @@ export default function ViewApplicationsPage() {
         "I am very interested in joining HOORAB GROUP as a Software Engineer...",
     },
     {
-      id: 2,
+      id: 6,
+      name: "Sara Malik",
+      email: "sara@example.com",
+      phone: "+92 301 7654321",
+      position: "Business Analyst",
+      cv: "/files/sara-malik-cv.pdf",
+      coverLetter:
+        "With 5 years experience in business analysis, I am confident I can contribute...",
+    },
+       {
+      id: 7,
+      name: "Ali Khan",
+      email: "ali@example.com",
+      phone: "+92 300 1234567",
+      position: "Software Engineer",
+      cv: "/files/ali-khan-cv.pdf",
+      coverLetter:
+        "I am very interested in joining HOORAB GROUP as a Software Engineer...",
+    },
+    {
+      id: 8,
+      name: "Sara Malik",
+      email: "sara@example.com",
+      phone: "+92 301 7654321",
+      position: "Business Analyst",
+      cv: "/files/sara-malik-cv.pdf",
+      coverLetter:
+        "With 5 years experience in business analysis, I am confident I can contribute...",
+    },
+       {
+      id: 9,
+      name: "Ali Khan",
+      email: "ali@example.com",
+      phone: "+92 300 1234567",
+      position: "Software Engineer",
+      cv: "/files/ali-khan-cv.pdf",
+      coverLetter:
+        "I am very interested in joining HOORAB GROUP as a Software Engineer...",
+    },
+    {
+      id: 10,
+      name: "Sara Malik",
+      email: "sara@example.com",
+      phone: "+92 301 7654321",
+      position: "Business Analyst",
+      cv: "/files/sara-malik-cv.pdf",
+      coverLetter:
+        "With 5 years experience in business analysis, I am confident I can contribute...",
+    },
+       {
+      id: 11,
+      name: "Ali Khan",
+      email: "ali@example.com",
+      phone: "+92 300 1234567",
+      position: "Software Engineer",
+      cv: "/files/ali-khan-cv.pdf",
+      coverLetter:
+        "I am very interested in joining HOORAB GROUP as a Software Engineer...",
+    },
+    {
+      id: 12,
       name: "Sara Malik",
       email: "sara@example.com",
       phone: "+92 301 7654321",
@@ -37,7 +97,7 @@ export default function ViewApplicationsPage() {
   };
 
   return (
-    <div className="p-4 md:p-10 space-y-6 ">
+    <div className="p-4 md:p-10 space-y-6 h:[70vh]  md:h-[60vh] hide-scrollbar   overflow-y-auto ">
       <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
         View Applications
       </h1>
