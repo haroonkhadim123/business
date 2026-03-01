@@ -42,7 +42,7 @@ export default function ViewApplicationsPage() {
         View Applications
       </h1>
 
-      <div className="grid md:grid-cols-2 h:[70vh]  md:h-[60vh] hide-scrollbar p-2  overflow-y-auto gap-6">
+      <div className="grid md:grid-cols-2  gap-6">
         {applications.map((app, index) => (
           <motion.div
             key={app.id}
