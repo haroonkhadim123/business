@@ -8,6 +8,18 @@ export default function ManageJobs() {
     { id: 1, title: "Marketing Manager" },
     { id: 2, title: "Software Engineer" },
     { id: 3, title: "Business Analyst" },
+        { id: 4, title: "Marketing Manager" },
+    { id: 5, title: "Software Engineer" },
+    { id: 6, title: "Business Analyst" },
+        { id: 7, title: "Marketing Manager" },
+    { id: 8, title: "Software Engineer" },
+    { id: 9, title: "Business Analyst" },
+        { id: 10, title: "Marketing Manager" },
+    { id: 11, title: "Software Engineer" },
+    { id: 12, title: "Business Analyst" },
+        { id: 13, title: "Marketing Manager" },
+    { id: 14, title: "Software Engineer" },
+    { id: 15, title: "Business Analyst" },
 
     // You can add more dummy data or fetch real jobs
   ];
@@ -19,7 +31,7 @@ export default function ManageJobs() {
       </h1>
 
       {/* Scrollable container */}
-      <div className="space-y-4 h-36 overflow-y-auto pr-2">
+      <div className="space-y-4 h-[60vh] hide-scrollbar p-2  overflow-y-auto pr-2">
         {jobs.map((job, index) => (
           <motion.div
             key={job.id}
