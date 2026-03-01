@@ -31,7 +31,7 @@ export default function ManageJobs() {
       </h1>
 
       {/* Scrollable container */}
-      <div className="space-y-4 h-[60vh] hide-scrollbar p-2  overflow-y-auto pr-2">
+      <div className="space-y-4 md:h-[60vh] h-[70vh] hide-scrollbar p-2  overflow-y-auto pr-2">
         {jobs.map((job, index) => (
           <motion.div
             key={job.id}
