@@ -103,7 +103,7 @@ export default function ManageBrands() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2 }}
             whileHover={{ scale: 1.03 }}
-            className="bg-white p-6 rounded-2xl shadow-lg flex items-center justify-between"
+            className=" bg-white p-4 sm:p-5 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between"
           >
             {/* Left Section */}
             <div className="flex items-center gap-4 ">
