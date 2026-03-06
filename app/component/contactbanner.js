@@ -4,10 +4,45 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FileText, User, Mail, Phone, MapPin } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function ContactPage() {
   /* ================= ANIMATION VARIANTS ================= */
+  const [form, setform] = useState({name:'',email:'',phone:'',subject:'',message:''})
 
+  const handlechange=(e)=>{
+    setform({...form,[e.target.name]:e.target.value})
+  }
+
+const handlesubmit = async (e) => {
+  e.preventDefault();
+
+  // Check before sending
+  if(!form.name || !form.email || !form.phone || !form.subject || !form.message){
+    toast.error("All fields are required");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await response.json();
+
+    if(data.error){
+      toast.error(data.message);
+    } else {
+      toast.success(data.message);
+      setform({ name:"", email:"", phone:"", subject:"", message:"" }); // reset form
+    }
+  } catch (error) {
+    toast.error("Something went wrong while sending your message");
+  }
+};
   const sectionFade = {
     hidden: { opacity: 0, y: 80 },
     visible: {
@@ -153,6 +188,7 @@ export default function ContactPage() {
               whileInView="visible"
               viewport={{ once: true }}
               className="space-y-6"
+              onSubmit={handlesubmit}
             >
               <div className="grid md:grid-cols-2 gap-6">
 
@@ -162,6 +198,9 @@ export default function ContactPage() {
                     type="text"
                     placeholder="Full Name"
                     className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    onChange={handlechange}
+                    name="name"
+                    value={form.name}
                   />
                 </motion.div>
 
@@ -171,6 +210,9 @@ export default function ContactPage() {
                     type="email"
                     placeholder="Email Address"
                     className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        onChange={handlechange}
+                                        name="email"
+                                        value={form.email}
                   />
                 </motion.div>
 
@@ -182,6 +224,10 @@ export default function ContactPage() {
                   type="tel"
                   placeholder="Phone Number"
                   className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                      onChange={handlechange}
+                                      name='phone'
+                                      value={form.phone}
+                  
                 />
               </motion.div>
 
@@ -191,6 +237,9 @@ export default function ContactPage() {
                   type="text"
                   placeholder="Subject"
                   className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                      onChange={handlechange}
+                                      name="subject"
+                                      value={form.subject}
                 />
               </motion.div>
 
@@ -199,6 +248,9 @@ export default function ContactPage() {
                 placeholder="Your Message"
                 rows={5}
                 className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    onChange={handlechange}
+                                    name='message'
+                                    value={form.message}
               />
 
               <motion.button

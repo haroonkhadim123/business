@@ -1,6 +1,7 @@
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
+import { Toaster } from "react-hot-toast";
 
 
 /* ================= PREMIUM CORPORATE FONTS ================= */
@@ -77,6 +78,7 @@ export default function RootLayout({ children }) {
         {/* ================= PAGE CONTENT ================= */}
         {children}
         </ClientLayout>
+        
 
 
         {/* ================= STRUCTURED DATA (SEO BOOST) ================= */}
@@ -97,6 +99,7 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
+         <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
   );
