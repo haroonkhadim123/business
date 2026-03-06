@@ -33,7 +33,7 @@ export async function POST(req) {
     await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>", // default from, can be your domain email later
       to: ["haroonkhadim971@gmail.com"], // replace with your email
-      subject: `You have recevied new message: ${subject}`,
+      subject: `New Contact Message: ${subject}`,
       html: `
         <h2>New Contact Message</h2>
         <p><b>Name:</b> ${name}</p>
