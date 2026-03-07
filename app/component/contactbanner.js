@@ -6,41 +6,106 @@ import { motion } from "framer-motion";
 import { FileText, User, Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import Loader from './Loader';
 
 export default function ContactPage() {
   /* ================= ANIMATION VARIANTS ================= */
-  const [form, setform] = useState({name:'',email:'',phone:'',subject:'',message:''})
+  const [form, setform] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
+  const [error, seterror] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
+  const [loader, setloader] = useState(false);
 
-  const handlechange=(e)=>{
-    setform({...form,[e.target.name]:e.target.value})
+  const handlechange = (e) => {
+    setform({ ...form, [e.target.name]: e.target.value })
   }
 
 const handlesubmit = async (e) => {
   e.preventDefault();
 
-  // Check before sending
-  if(!form.name || !form.email || !form.phone || !form.subject || !form.message){
-    toast.error("All fields are required");
-    return;
+  let newErrors = {};
+
+  // Name validation
+  const nameRegex = /^[A-Za-z\s]+$/;
+
+  if (!form.name.trim()) {
+    newErrors.name = "Name is required.";
+  } else if (!nameRegex.test(form.name)) {
+    newErrors.name = "Please enter a valid name (letters only)";
+  } else if (form.name.trim().length < 3) {
+    newErrors.name = "Name must be at least 3 characters long.";
   }
 
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.com$/;
+
+  if (!form.email.trim()) {
+    newErrors.email = "Email is required.";
+  } else if (!emailRegex.test(form.email.trim())) {
+    newErrors.email = "Email must end with .com (example: name@gmail.com)";
+  }
+
+  // Phone validation
+const phoneRegex = /^\+[1-9]\d{1,14}$/;
+
+// form.phone me react-phone-input-2 ka value use karte hain
+if (!form.phone.trim()) {
+  newErrors.phone = "Phone number is required.";
+} else if (!phoneRegex.test("+" + form.phone)) {
+  newErrors.phone = "Please enter a valid phone number with country code.";
+}
+
+  // Subject validation
+  if (!form.subject.trim()) {
+    newErrors.subject = "Subject is required.";
+  } else if (form.subject.trim().length < 5) {
+    newErrors.subject = "Subject must be at least 5 characters long.";
+  }
+
+  // Message validation
+  if (!form.message.trim()) {
+    newErrors.message = "Message is required.";
+  } else if (form.message.trim().length < 10) {
+    newErrors.message = "Message must be at least 10 characters long.";
+  }
+
+  seterror(newErrors);
+
+  if (Object.keys(newErrors).length > 0) {
+    return;
+  }
+setloader(true);
   try {
     const response = await fetch("/api/contact", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(form),
     });
 
     const data = await response.json();
 
-    if(data.error){
+    if (data.error) {
       toast.error(data.message);
     } else {
       toast.success(data.message);
-      setform({ name:"", email:"", phone:"", subject:"", message:"" }); // reset form
+
+      setform({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+
+      seterror({});
     }
   } catch (error) {
     toast.error("Something went wrong while sending your message");
+  }
+  finally{
+    setloader(false);
   }
 };
   const sectionFade = {
@@ -182,87 +247,132 @@ const handlesubmit = async (e) => {
               Our team is ready to assist you. Fill out the form and we will get back to you.
             </motion.p>
 
-            <motion.form
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-6"
-              onSubmit={handlesubmit}
-            >
-              <div className="grid md:grid-cols-2 gap-6">
+         <motion.form
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="space-y-6 max-w-3xl mx-auto"
+      onSubmit={handlesubmit}
+    >
+      <div className="grid md:grid-cols-2 gap-6">
+        
+        {/* Name */}
+        <motion.div variants={fadeUp}>
+          <div className="relative">
+            <User className="absolute top-4 left-3 text-gray-400" />
 
-                <motion.div variants={fadeUp} className="relative">
-                  <User className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    onChange={handlechange}
-                    name="name"
-                    value={form.name}
-                  />
-                </motion.div>
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              name="name"
+              value={form.name}
+              onChange={handlechange}
+              autoComplete="off"
+            />
+          </div>
 
-                <motion.div variants={fadeUp} className="relative">
-                  <Mail className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                        onChange={handlechange}
-                                        name="email"
-                                        value={form.email}
-                  />
-                </motion.div>
+          {error?.name && (
+            <p className="text-red-500 text-sm mt-1">{error.name}</p>
+          )}
+        </motion.div>
 
-              </div>
+        {/* Email */}
+        <motion.div variants={fadeUp}>
+          <div className="relative">
+            <Mail className="absolute top-4 left-3 text-gray-400" />
 
-              <motion.div variants={fadeUp} className="relative">
-                <Phone className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                      onChange={handlechange}
-                                      name='phone'
-                                      value={form.phone}
-                  
-                />
-              </motion.div>
+            <input
+              type="email"
+              placeholder="Email Address"
+              className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              name="email"
+              value={form.email}
+              onChange={handlechange}
+              autoComplete="off"
+            />
+          </div>
 
-              <motion.div variants={fadeUp} className="relative">
-                <FileText className="absolute top-1/2 left-3 -translate-y-1/2 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Subject"
-                  className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                      onChange={handlechange}
-                                      name="subject"
-                                      value={form.subject}
-                />
-              </motion.div>
+          {error?.email && (
+            <p className="text-red-500 text-sm mt-1">{error.email}</p>
+          )}
+        </motion.div>
 
-              <motion.textarea
-                variants={fadeUp}
-                placeholder="Your Message"
-                rows={5}
-                className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                                    onChange={handlechange}
-                                    name='message'
-                                    value={form.message}
-              />
+      </div>
 
-              <motion.button
-                variants={fadeUp}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-full font-semibold"
-              >
-                Send Message
-              </motion.button>
-            </motion.form>
+      {/* Phone */}
+<motion.div variants={fadeUp}>
+  <div className="relative">
+
+    <PhoneInput
+      country={"pk"}
+      value={form.phone}
+      onChange={(phone) => setform({ ...form, phone })}
+      containerClass="w-full"
+      inputClass="!w-full !pl-14 !p-6 !border !border-gray-300 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
+      buttonClass="!border-none !bg-transparent"
+
+    />
+
+  </div>
+
+  {error?.phone && (
+    <p className="text-red-500 text-sm mt-1">{error.phone}</p>
+  )}
+</motion.div>
+
+      {/* Subject */}
+      <motion.div variants={fadeUp}>
+        <div className="relative">
+          <FileText className="absolute top-4 left-3 text-gray-400" />
+
+          <input
+            type="text"
+            placeholder="Subject"
+            className="w-full pl-10 p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            name="subject"
+            value={form.subject}
+            onChange={handlechange}
+               autoComplete="off"
+          />
+        </div>
+
+        {error?.subject && (
+          <p className="text-red-500 text-sm mt-1">{error.subject}</p>
+        )}
+      </motion.div>
+
+      {/* Message */}
+      <motion.div variants={fadeUp}>
+        <textarea
+          placeholder="Your Message"
+          rows={5}
+          className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          name="message"
+          value={form.message}
+          onChange={handlechange}
+             autoComplete="off"
+        />
+
+        {error?.message && (
+          <p className="text-red-500 text-sm mt-1">{error.message}</p>
+        )}
+      </motion.div>
+
+      {/* Button */}
+   <motion.button
+  variants={fadeUp}
+  whileHover={{ scale: loader ? 1 : 1.05 }}   // hover only if not loading
+  whileTap={{ scale: loader ? 1 : 0.95 }}     // tap only if not loading
+  disabled={loader}
+  type="submit"
+  className={`w-full text-white py-3 rounded-full font-semibold 
+    ${loader ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
+>
+  {loader ? <Loader/> : "Send Message"}
+</motion.button>
+    </motion.form>
           </motion.div>
 
           {/* ================= INFO ================= */}
@@ -304,7 +414,7 @@ const handlesubmit = async (e) => {
             >
               <iframe
                 title="HOORAB GROUP Saudi Arabia Office"
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.898897865973!2d46.67529531500002!3d24.71355128408843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0385b97b9df1%3A0xf2e1b64d6f839fa1!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1697441234567!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.898897865973!2d46.67529531500002!3d24.71355128408843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0385b97b9df1%3A0xf2e1b64d6f839fa1!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1697441234567!5m2!1sen!2sus"
                 className="w-full h-full border-0"
                 loading="lazy"
               ></iframe>
