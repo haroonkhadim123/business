@@ -56,8 +56,7 @@ export default function PartnerHero() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-gray-200 mt-6 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
         >
-          Partner with us to distribute premium products, grow your business, and unlock exclusive opportunities. 
-          Whether you're a distributor, dealer, wholesaler or retailer — let's build success together.
+       Join us as a partner to distribute premium products and unlock new growth opportunities.
         </motion.p>
 
         {/* Optional subtle CTA button (many partnership pages add one here) */}
