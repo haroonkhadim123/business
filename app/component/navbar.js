@@ -11,6 +11,7 @@ import {
   AiOutlineTag,
   AiOutlineSolution,
   AiOutlineMail,
+  AiOutlineLink
 } from "react-icons/ai";
 
 export default function Navbar() {
@@ -28,6 +29,11 @@ export default function Navbar() {
     { name: "Brands", href: "/brand", icon: <AiOutlineTag className="inline mr-2" /> },
     { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
     { name: "Businesses", href: "/admin", icon: <AiOutlineShop className="inline mr-2" /> },
+    { 
+  name: "Partner", 
+  href: "/partner", 
+  icon: <AiOutlineLink className="inline mr-2" />   // "add partner / join network"
+},
     { name: "Careers", href: "/career", icon: <AiOutlineSolution className="inline mr-2" /> },
   ];
 
@@ -38,7 +44,7 @@ export default function Navbar() {
         scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-white"
       }`}
     >
-      <div className="max-w-7xl py-4 mx-auto px-5 sm:px-6 lg:px-8 flex justify-between items-center ">
+      <div className=" py-4 mx-auto px-5 sm:px-6 lg:px-10  flex justify-between items-center ">
  <Link
   href="/"
   className="flex items-center flex-shrink-0 gap-2 md:gap-4"

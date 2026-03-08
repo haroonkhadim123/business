@@ -25,6 +25,7 @@ export default function ClientLayout({ children }) {
     pathname === "/process" ||
     pathname === "/apply" ||
     pathname === "/planning" ||
+    pathname === "/partner" ||
     pathname === "/coporate" 
   const showFooter = 
         pathname === "/" ||
@@ -35,6 +36,7 @@ export default function ClientLayout({ children }) {
     pathname === "/process" ||
     pathname === "/apply" ||
     pathname === "/planning" ||
+    pathname === "/partner" ||
     pathname === "/coporate" 
   return (
     <>
