@@ -8,8 +8,10 @@ import toast from "react-hot-toast";
 import Loader from "./Loader";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { useRouter } from "next/navigation";
 
 export default function ApplyPage() {
+  const router= useRouter();
   const [form, setform] = useState({
     name: "",
     email: "",
@@ -106,7 +108,7 @@ export default function ApplyPage() {
       if (data.error) {
         toast.error("Error in submitting your application. Please try again.");
       } else {
-        toast.success("Your application has been sent successfully!");
+       router.push('/success');
         setform({
           name: "",
           email: "",
