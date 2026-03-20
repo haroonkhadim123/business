@@ -12,13 +12,13 @@ export default function AddBrand() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white shadow-2xl p-4 md:p-10  rounded-lg max-w-3xl mx-auto"
+      className="bg-white shadow-2xl md:mt-14 p-4 md:p-10  rounded-lg max-w-3xl mx-auto"
     >
       <h1 className="text-2xl font-semibold mb-8 text-gray-800">
         Add New Brand
       </h1>
 
-      <form className="space-y-7">
+      <form className="space-y-3">
 
         {/* Brand Name */}
         <div className="flex flex-col gap-2">

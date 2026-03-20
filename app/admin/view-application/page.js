@@ -15,9 +15,6 @@ export default function ViewApplicationsPage() {
       const data = await res.json();
       if (res.ok) {
         setapplication(data.applyitem);
-        console.log(data);
-      } else {
-        console.log("Failed to fetch applications");
       }
     };
     fetchApplications();
@@ -34,70 +31,90 @@ export default function ViewApplicationsPage() {
         },
         body: JSON.stringify({ id }),
       });
+
       const data = await res.json();
+
       if (data.success) {
         setapplication((prev) => prev.filter((app) => app._id !== id));
-        toast.success("Application deleted successfully");
+        toast.success("Application deleted");
       } else {
-        toast.error("Failed to delete application");
+        toast.error("Delete failed");
       }
     } catch (error) {
-      console.error("Error deleting application:", error);
-      toast.error("An error occurred while deleting the application");
+      toast.error("Error deleting application");
     }
   };
 
   return (
-    <div className="p-1 md:p-10 md:h-[70vh] hide-scrollbar overflow-y-auto space-y-6">
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-        View Applications
+    <div className="p-3 md:p-10 md:mt-14 space-y-6">
+      
+      {/* Header */}
+      <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
+        Applications
       </h1>
 
+      {/* Empty State */}
       {applications.length === 0 ? (
-        <p className="text-gray-500 text-lg mt-10 text-center">
-          No applications submitted yet.
-        </p>
+        <div className="text-center mt-16">
+          <p className="text-gray-500 text-lg">
+            No applications submitted yet.
+          </p>
+        </div>
       ) : (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           {applications.map((app, index) => (
             <motion.div
               key={app._id}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.3 }}
-              className="relative bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+              transition={{ delay: index * 0.05 }}
+              className="group relative bg-white p-5 md:p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300"
             >
-              <div className="flex justify-between items-center">
-                <h2 className="text-lg font-semibold text-gray-900 mb-1">
-                  {app.name}
-                </h2>
-                <button
-                  onClick={() => handleDelete(app._id)}
-                  className="p-1 rounded-full hover:bg-red-100 text-red-500 hover:text-red-700 transition-colors z-10"
-                  title="Delete Application"
-                >
-                  <Trash2 className="w-5 h-5" />
-                </button>
+              {/* Delete Button */}
+              <button
+                onClick={() => handleDelete(app._id)}
+                className="absolute top-4 right-4 p-2 rounded-full bg-gray-50 hover:bg-red-100 text-red-500 hover:text-red-700 transition"
+              >
+                <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
+
+              {/* Name */}
+              <h1 className="text-lg md:text-3xl font-semibold uppercase text-gray-900 mb-2">
+                {app.name}
+              </h1>
+
+              {/* Info */}
+              <div className="space-y-1.5 text-sm md:text-base text-gray-700">
+                <p>
+                  <span className="font-bold  text-black">Email:</span>{" "}
+                  {app.email}
+                </p>
+                <p>
+                  <span className="font-bold  text-black">Phone:</span>{" "}
+                  {app.phoneNumber}
+                </p>
+                <p>
+                  <span className="font-bold  text-black">Position:</span>{" "}
+                  {app.position}
+                </p>
               </div>
 
-              <p className="text-sm text-gray-700 mb-1">
-                <strong>Email:</strong> {app.email}
-              </p>
-              <p className="text-sm text-gray-700 mb-1">
-                <strong>Phone:</strong> {app.phoneNumber}
-              </p>
-              <p className="text-sm text-gray-700 mb-2">
-                <strong>Position:</strong> {app.position}
-              </p>
+              {/* CV Button */}
               <Link
                 href={app.cv}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-blue-600 hover:underline text-sm mb-2"
+                className="inline-flex items-center gap-2 mt-4 text-sm md:text-base font-medium text-indigo-600 hover:text-indigo-800 transition"
               >
-                <FileText className="w-4 h-4" /> View CV
+                <FileText className="w-4 h-4 md:w-5 md:h-5" />
+                View CV
               </Link>
-              <p className="text-sm text-gray-800 break-words">
+
+              {/* Divider */}
+              <div className="my-4 h-px bg-gray-200" />
+
+              {/* Cover Letter */}
+              <p className="text-sm md:text-base text-gray-800 leading-relaxed line-clamp-4">
                 {app.coverLetter}
               </p>
             </motion.div>
