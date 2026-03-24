@@ -11,7 +11,7 @@ import "react-phone-input-2/lib/style.css";
 import { useRouter } from "next/navigation";
 
 export default function ApplyPage() {
-  const router= useRouter();
+  const router = useRouter();
   const [form, setform] = useState({
     name: "",
     email: "",
@@ -108,7 +108,7 @@ export default function ApplyPage() {
       if (data.error) {
         toast.error("Error in submitting your application. Please try again.");
       } else {
-       router.push('/success');
+        router.push("/success");
         setform({
           name: "",
           email: "",
@@ -130,7 +130,6 @@ export default function ApplyPage() {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Check file type before upload
     const allowedExtensions = ["pdf", "doc", "docx"];
     const fileExt = file.name.split(".").pop().toLowerCase();
     if (!allowedExtensions.includes(fileExt)) {
@@ -163,27 +162,47 @@ export default function ApplyPage() {
     }
   };
 
-  /* ================= ANIMATION VARIANTS ================= */
+  // Animation variants
   const pageFade = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.8 } } };
   const cardAnimation = { hidden: { opacity: 0, y: 60, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease: "easeOut" } } };
   const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.15 } } };
   const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 
   return (
-    <motion.section variants={pageFade} initial="hidden" animate="visible" className="min-h-screen bg-gray-50 py-20 px-4 md:px-6 overflow-hidden">
+    <motion.section
+      variants={pageFade}
+      initial="hidden"
+      animate="visible"
+      className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20 px-4 md:px-6 overflow-hidden"
+    >
       {/* Back Link */}
       <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl mt-5 mx-auto mb-10">
-        <Link href="/career" className="text-blue-600 text-sm font-medium hover:underline">
+        <Link href="/career" className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
           ← Back to Careers
         </Link>
       </motion.div>
 
       {/* Main Card */}
-      <motion.div variants={cardAnimation} initial="hidden" animate="visible" className="max-w-3xl mx-auto bg-white p-4 md:p-10 rounded-3xl shadow-xl">
-        <motion.h1 initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="text-3xl md:text-4xl font-bold text-center text-gray-900">
+      <motion.div
+        variants={cardAnimation}
+        initial="hidden"
+        animate="visible"
+        className="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-4 md:p-10 rounded-3xl shadow-xl"
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white"
+        >
           Apply Now
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }} className="text-center text-gray-600 mt-3 mb-10">
+        <motion.p
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="text-center text-gray-600 dark:text-gray-300 mt-3 mb-10"
+        >
           Fill in your details and submit your application.
         </motion.p>
 
@@ -192,69 +211,100 @@ export default function ApplyPage() {
           {/* Name + Email */}
           <div className="grid md:grid-cols-2 gap-6">
             <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-              <User className="absolute left-4 top-4 text-gray-400" size={18} />
-              <input type="text" placeholder="Full Name" onChange={handlechange} name="name" value={form.name} autoComplete="off" className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
+              <User className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+              <input
+                type="text"
+                placeholder="Full Name"
+                onChange={handlechange}
+                name="name"
+                value={form.name}
+                autoComplete="off"
+                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+              />
               {error.name && <p className="text-red-500 text-sm mt-1">{error.name}</p>}
             </motion.div>
 
             <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-              <Mail className="absolute left-4 top-4 text-gray-400" size={18} />
-              <input type="email" placeholder="Email Address" onChange={handlechange} name="email" value={form.email} autoComplete="off" className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
+              <Mail className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+              <input
+                type="email"
+                placeholder="Email Address"
+                onChange={handlechange}
+                name="email"
+                value={form.email}
+                autoComplete="off"
+                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+              />
               {error.email && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
             </motion.div>
           </div>
 
           {/* Phone */}
           <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-            <Phone className="absolute left-4 top-4 text-gray-400" size={18} />
-             <PhoneInput
-      country={"pk"}
-      value={form.phoneNumber}
-      onChange={(phoneNumber) => setform({ ...form, phoneNumber })}
-      containerClass="w-full"
-      inputClass="!w-full !pl-14 !p-6 !border !border-gray-300 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
-      buttonClass="!border-none !bg-transparent"
-
-    />
+            <Phone className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+            <PhoneInput
+              country={"pk"}
+              value={form.phoneNumber}
+              onChange={(phoneNumber) => setform({ ...form, phoneNumber })}
+              containerClass="w-full"
+              inputClass="!w-full !pl-14 !p-6 !bg-white dark:!bg-gray-900 !text-gray-900 dark:!text-white !border !border-gray-300 dark:!border-gray-700 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
+              buttonClass="!border-none !bg-transparent"
+            />
             {error.phoneNumber && <p className="text-red-500 text-sm mt-1">{error.phoneNumber}</p>}
           </motion.div>
 
           {/* Position */}
           <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-            <Briefcase className="absolute left-4 top-4 text-gray-400" size={18} />
-            <input type="text" placeholder="Position Applying For" name="position" value={form.position} onChange={handlechange} autoComplete="off" className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
+            <Briefcase className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+            <input
+              type="text"
+              placeholder="Position Applying For"
+              name="position"
+              value={form.position}
+              onChange={handlechange}
+              autoComplete="off"
+              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            />
             {error.position && <p className="text-red-500 text-sm mt-1">{error.position}</p>}
           </motion.div>
 
           {/* Cover Letter */}
           <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-            <FileText className="absolute left-4 top-4 text-gray-400" size={18} />
-            <textarea placeholder="Cover Letter / Message" rows={4} name="coverLetter" value={form.coverLetter} onChange={handlechange} autoComplete="off" className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none transition" />
+            <FileText className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+            <textarea
+              placeholder="Cover Letter / Message"
+              rows={4}
+              name="coverLetter"
+              value={form.coverLetter}
+              onChange={handlechange}
+              autoComplete="off"
+              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+            />
             {error.coverLetter && <p className="text-red-500 text-sm mt-1">{error.coverLetter}</p>}
           </motion.div>
 
           {/* CV Upload */}
-          <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="border border-dashed border-gray-300 rounded-xl p-6 text-center transition">
-            <Upload className="mx-auto text-gray-400 mb-2" size={28} />
-            <p className="text-sm text-gray-500 mb-2">Upload your Resume (PDF, DOC, DOCX)</p>
-            <input type="file" accept=".pdf,.doc,.docx" onChange={handleCVUpload} className="w-full text-gray-700" />
+          <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="border border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-6 text-center transition">
+            <Upload className="mx-auto text-gray-400 dark:text-gray-300 mb-2" size={28} />
+            <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">Upload your Resume (PDF, DOC, DOCX)</p>
+            <input type="file" accept=".pdf,.doc,.docx" onChange={handleCVUpload} className="w-full text-gray-700 dark:text-gray-300" />
             {error.cv && <p className="text-red-500 text-sm mt-1">{error.cv}</p>}
           </motion.div>
 
           {/* Submit */}
-  <motion.button
-  type="submit"
-  disabled={uploading || loader}
-  whileHover={{ scale: uploading || loader ? 1 : 1.05 }}
-  whileTap={{ scale: uploading || loader ? 1 : 0.95 }}
-  className={`w-full py-4 font-semibold rounded-xl shadow-lg flex items-center justify-center space-x-2 transition-all duration-200
-    ${uploading || loader
-      ? "bg-gray-400 text-gray-200 cursor-not-allowed"
-      : "bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-    }`}
->
-  {uploading ? "Uploading CV..." : loader ? <Loader /> : "Submit Application"}
-</motion.button>
+          <motion.button
+            type="submit"
+            disabled={uploading || loader}
+            whileHover={{ scale: uploading || loader ? 1 : 1.05 }}
+            whileTap={{ scale: uploading || loader ? 1 : 0.95 }}
+            className={`w-full py-4 font-semibold rounded-xl shadow-lg flex items-center justify-center space-x-2 transition-all duration-200
+              ${uploading || loader
+                ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              }`}
+          >
+            {uploading ? "Uploading CV..." : loader ? <Loader /> : "Submit Application"}
+          </motion.button>
         </motion.form>
       </motion.div>
     </motion.section>

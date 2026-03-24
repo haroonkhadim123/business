@@ -49,7 +49,7 @@ export default function ManageBrands() {
     <div className=" w-full md:mt-12 max-w-4xl mx-auto p-1  lg:p-8">
       <h1 className="text-3xl font-bold mb-8">Manage Brands</h1>
 
-      <div className="grid md:grid-cols-2 gap-6 h-[12vh]  hide-scrollbar p-2  overflow-y-auto  ">
+      <div className="grid md:grid-cols-2 gap-6 h-[12vh]   ">
         {brands.map((brand, index) => (
           <motion.div
             key={brand._id}
