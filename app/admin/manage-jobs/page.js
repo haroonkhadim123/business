@@ -19,6 +19,7 @@ export default function ManageJobs() {
   }, []);
     const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this application?")) return;
+      setjobs((prev) => prev.filter((jobs) => jobs._id !== id));
 
     try {
       const res = await fetch("/api/job", {
@@ -32,7 +33,7 @@ export default function ManageJobs() {
       const data = await res.json();
 
       if (data.success) {
-        setjobs((prev) => prev.filter((jobs) => jobs._id !== id));
+      
         toast.success("Job deleted");
       } else {
         toast.error("Delete failed");

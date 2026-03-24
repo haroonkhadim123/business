@@ -22,6 +22,7 @@ export default function ViewApplicationsPage() {
 
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this application?")) return;
+         setapplication((prev) => prev.filter((app) => app._id !== id));
 
     try {
       const res = await fetch("/api/application", {
@@ -35,7 +36,7 @@ export default function ViewApplicationsPage() {
       const data = await res.json();
 
       if (data.success) {
-        setapplication((prev) => prev.filter((app) => app._id !== id));
+   
         toast.success("Application deleted");
       } else {
         toast.error("Delete failed");
