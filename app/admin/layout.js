@@ -34,38 +34,38 @@ export default function AdminLayout({ children }) {
             <Menu size={26} />
           </button>
 
-          {/* Logo */}
-          <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
-            <svg
-              width="36"
-              height="36"
-              viewBox="0 0 128 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="md:w-10 md:h-10"
-            >
-              <path
-                d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-                fill="#000"
-                stroke="#000"
-                strokeWidth="4"
-              />
-              <path
-                d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
-                fill="#111"
-                opacity="0.1"
-              />
-            </svg>
+         <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
+  <svg
+    width="36"
+    height="36"
+    viewBox="0 0 128 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="md:w-10 md:h-10"
+  >
+    {/* Use currentColor for fill and stroke */}
+    <path
+      d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="4"
+    />
+    <path
+      d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
+      fill="currentColor"
+      opacity="0.1"
+    />
+  </svg>
 
-            <div className="flex flex-col leading-tight">
-              <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
-                HOORAB
-              </span>
-              <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
-                Business Cooperative Solutions
-              </span>
-            </div>
-          </Link>
+  <div className="flex flex-col leading-tight">
+    <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
+      HOORAB
+    </span>
+    <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
+      Business Cooperative Solutions
+    </span>
+  </div>
+</Link>
         </div>
 
         {/* Logout */}
@@ -102,36 +102,37 @@ export default function AdminLayout({ children }) {
                 <div className="p-5 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                   <span className="font-semibold text-gray-800 dark:text-gray-100">
                     <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
-                      <svg
-                        width="36"
-                        height="36"
-                        viewBox="0 0 128 100"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="md:w-10 md:h-10"
-                      >
-                        <path
-                          d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-                          fill="#000"
-                          stroke="#000"
-                          strokeWidth="4"
-                        />
-                        <path
-                          d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
-                          fill="#111"
-                          opacity="0.1"
-                        />
-                      </svg>
+  <svg
+    width="36"
+    height="36"
+    viewBox="0 0 128 100"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="md:w-10 md:h-10"
+  >
+    {/* Use currentColor for fill and stroke */}
+    <path
+      d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="4"
+    />
+    <path
+      d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
+      fill="currentColor"
+      opacity="0.1"
+    />
+  </svg>
 
-                      <div className="flex flex-col leading-tight">
-                        <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
-                          HOORAB
-                        </span>
-                        <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
-                          Business Cooperative Solutions
-                        </span>
-                      </div>
-                    </Link>
+  <div className="flex flex-col leading-tight">
+    <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
+      HOORAB
+    </span>
+    <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
+      Business Cooperative Solutions
+    </span>
+  </div>
+</Link>
                   </span>
                   <button onClick={closeSidebar} className="text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white transition">
                     <X size={26} />
