@@ -7,57 +7,47 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 
 export default function ViewApplicationsPage() {
-  const [applications, setapplication] = useState([]);
+  const [applications, setApplications] = useState([]);
 
   useEffect(() => {
     const fetchApplications = async () => {
       const res = await fetch("/api/application", { cache: "no-store" });
       const data = await res.json();
-      if (res.ok) {
-        setapplication(data.applyitem);
-      }
+      if (res.ok) setApplications(data.applyitem);
     };
     fetchApplications();
   }, []);
 
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this application?")) return;
-         setapplication((prev) => prev.filter((app) => app._id !== id));
+    setApplications((prev) => prev.filter((app) => app._id !== id));
 
     try {
       const res = await fetch("/api/application", {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
 
       const data = await res.json();
-
-      if (data.success) {
-   
-        toast.success("Application deleted");
-      } else {
-        toast.error("Delete failed");
-      }
+      if (data.success) toast.success("Application deleted");
+      else toast.error("Delete failed");
     } catch (error) {
       toast.error("Error deleting application");
     }
   };
 
   return (
-    <div className="p-3 md:p-10 md:mt-14 space-y-6">
-      
+    <div className="p-3 md:p-10 md:mt-14 space-y-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
       {/* Header */}
-      <h1 className="text-2xl md:text-4xl font-bold text-gray-900">
+      <h1 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
         Applications
       </h1>
 
       {/* Empty State */}
       {applications.length === 0 ? (
         <div className="text-center mt-16">
-          <p className="text-gray-500 text-lg">
+          <p className="text-gray-500 dark:text-gray-400 text-lg">
             No applications submitted yet.
           </p>
         </div>
@@ -69,33 +59,39 @@ export default function ViewApplicationsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              className="group relative bg-white p-5 md:p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300"
+              className="group relative bg-white dark:bg-gray-800 p-5 md:p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300"
             >
               {/* Delete Button */}
               <button
                 onClick={() => handleDelete(app._id)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-gray-50 hover:bg-red-100 text-red-500 hover:text-red-700 transition"
+                className="absolute top-4 right-4 p-2 rounded-full bg-gray-50 dark:bg-gray-700 hover:bg-red-100 dark:hover:bg-red-800 text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-200 transition"
               >
                 <Trash2 className="w-4 h-4 md:w-5 md:h-5" />
               </button>
 
               {/* Name */}
-              <h1 className="text-lg md:text-3xl font-semibold uppercase text-gray-900 mb-2">
+              <h1 className="text-lg md:text-3xl font-semibold uppercase text-gray-900 dark:text-gray-100 mb-2">
                 {app.name}
               </h1>
 
               {/* Info */}
-              <div className="space-y-1.5 text-sm md:text-base text-gray-700">
+              <div className="space-y-1.5 text-sm md:text-base text-gray-700 dark:text-gray-300">
                 <p>
-                  <span className="font-bold  text-black">Email:</span>{" "}
+                  <span className="font-bold text-black dark:text-gray-100">
+                    Email:
+                  </span>{" "}
                   {app.email}
                 </p>
                 <p>
-                  <span className="font-bold  text-black">Phone:</span>{" "}
+                  <span className="font-bold text-black dark:text-gray-100">
+                    Phone:
+                  </span>{" "}
                   {app.phoneNumber}
                 </p>
                 <p>
-                  <span className="font-bold  text-black">Position:</span>{" "}
+                  <span className="font-bold text-black dark:text-gray-100">
+                    Position:
+                  </span>{" "}
                   {app.position}
                 </p>
               </div>
@@ -105,17 +101,17 @@ export default function ViewApplicationsPage() {
                 href={app.cv}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 text-sm md:text-base font-medium text-indigo-600 hover:text-indigo-800 transition"
+                className="inline-flex items-center gap-2 mt-4 text-sm md:text-base font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition"
               >
                 <FileText className="w-4 h-4 md:w-5 md:h-5" />
                 View CV
               </Link>
 
               {/* Divider */}
-              <div className="my-4 h-px bg-gray-200" />
+              <div className="my-4 h-px bg-gray-200 dark:bg-gray-700" />
 
               {/* Cover Letter */}
-              <p className="text-sm md:text-base text-gray-800 leading-relaxed line-clamp-4">
+              <p className="text-sm md:text-base text-gray-800 dark:text-gray-200 leading-relaxed line-clamp-4">
                 {app.coverLetter}
               </p>
             </motion.div>

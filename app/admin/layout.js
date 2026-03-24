@@ -35,7 +35,7 @@ export default function AdminLayout({ children }) {
           </button>
 
           {/* Logo */}
-          <Link href="/admin" className="flex items-center gap-3 md:gap-4">
+          <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
             <svg
               width="36"
               height="36"
@@ -101,7 +101,7 @@ export default function AdminLayout({ children }) {
                 {/* Top */}
                 <div className="p-5 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                   <span className="font-semibold text-gray-800 dark:text-gray-100">
-                    <Link href="/admin" className="flex items-center gap-3 md:gap-4">
+                    <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
                       <svg
                         width="36"
                         height="36"
