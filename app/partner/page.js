@@ -190,12 +190,11 @@ export default function PartnerPage() {
           </label>
           <select
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition shadow-sm bg-white"
+            className="w-full  px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition shadow-sm bg-white"
           >
             <option value="">Select brand</option>
-            <option value="Zylliq">Zylliq</option>
-            <option value="HOORAB">HOORAB</option>
-            <option value="HDS">HDS</option>
+            <option className="uppercase" value="Zylliq">ZYLLIQ</option>
+         
             {/* Add more brands if needed in future */}
           </select>
         </div>
@@ -248,26 +247,28 @@ export default function PartnerPage() {
 
       {/* Full width fields */}
       <div className="md:col-span-2 space-y-7">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
-            Partnership Type(s) of Interest <span className="text-red-500">*</span>
-          </label>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {['Wholesale', 'Dealership', 'Offline Store Shelves'].map((type) => (
-              <label
-                key={type}
-                className="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition group focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500"
-              >
-                <input
-                  type="checkbox"
-                  className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  required // at least one should be checked – handle in validation
-                />
-                <span className="ml-3 text-gray-700 group-hover:text-blue-700">{type}</span>
-              </label>
-            ))}
-          </div>
-        </div>
+     <div>
+  <label className="block text-sm font-medium text-gray-700 mb-3">
+    Partnership Type(s) of Interest <span className="text-red-500">*</span>
+  </label>
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    {['Wholesale', 'Dealership', 'Offline Store Shelves'].map((type) => (
+      <label
+        key={type}
+        className="flex items-center p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 transition group focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500"
+      >
+        <input
+          type="radio"               // <-- change from checkbox to radio
+          name="partnershipType"      // <-- all radios must have same name
+          value={type}
+          className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          required
+        />
+        <span className="ml-3 text-gray-700 group-hover:text-blue-700">{type}</span>
+      </label>
+    ))}
+  </div>
+</div>
 
         <div>
           <label htmlFor="introduction" className="block text-sm font-medium text-gray-700 mb-1.5">
