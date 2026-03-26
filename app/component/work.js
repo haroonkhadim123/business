@@ -8,11 +8,13 @@ export default function CallToAction() {
       style={{ backgroundImage: "url('/work.jpg')" }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="absolute inset-0 bg-black/55"></div>
+
+      {/* Brand Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/25"></div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-
         {/* Animated Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
@@ -34,12 +36,14 @@ export default function CallToAction() {
         >
           <Link
             href="/partner"
-            className="bg-blue-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition-colors duration-300"
+            className="text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+            style={{
+              background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
+            }}
           >
             Let’s Work Together
           </Link>
         </motion.div>
-
       </div>
     </section>
   );

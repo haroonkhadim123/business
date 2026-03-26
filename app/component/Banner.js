@@ -48,7 +48,6 @@ export default function Banner() {
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index} className="relative overflow-hidden">
-
           {/* Background Zoom Animation */}
           <motion.div
             initial={{ scale: 1.2 }}
@@ -66,11 +65,13 @@ export default function Banner() {
           </motion.div>
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/55" />
+
+          {/* Optional brand tint overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/20" />
 
           {/* Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-
             <motion.h1
               key={slide.title}
               initial={{ opacity: 0, y: 40 }}
@@ -85,7 +86,7 @@ export default function Banner() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-base md:text-xl text-gray-200 mb-8 max-w-2xl"
+              className="text-base md:text-xl text-gray-100 mb-8 max-w-2xl"
             >
               {slide.subtitle}
             </motion.p>
@@ -97,12 +98,14 @@ export default function Banner() {
             >
               <Link
                 href={slide.link}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:scale-105 transition"
+                className="text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:scale-105 transition duration-300"
+                style={{
+                  background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
+                }}
               >
                 {slide.cta}
               </Link>
             </motion.div>
-
           </div>
         </SwiperSlide>
       ))}

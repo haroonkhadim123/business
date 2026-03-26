@@ -10,36 +10,33 @@ const services = [
     title: "Corporate Strategy",
     desc: "We help organizations define long-term vision, strategic direction, and sustainable competitive advantage.",
     icon: <Briefcase className="w-8 h-8" />,
-    Link:'/coporate',
+    Link: "/coporate",
   },
   {
     title: "Business Planning",
     desc: "Comprehensive business plans designed to drive measurable growth and operational excellence.",
     icon: <ClipboardCheck className="w-8 h-8" />,
-    Link:'/planning',
-
+    Link: "/planning",
   },
   {
     title: "Process Optimization",
     desc: "Improving efficiency, reducing costs, and transforming operations through modern methodologies.",
     icon: <Settings className="w-8 h-8" />,
-     Link:'/process',
+    Link: "/process",
   },
 ];
 
 export default function ServicesSection() {
-  const [activeIndex, setActiveIndex] = useState(null); // Track clicked card
+ const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="relative bg-gray-100 py-28 overflow-hidden hide-scrollbar">
-      
+    <section className="relative bg-[#f8fdff] py-28 overflow-hidden hide-scrollbar">
       {/* Background Text */}
-      <h1 className="absolute top-10 left-1/2 -translate-x-1/2 text-[120px] font-bold text-gray-200 opacity-20 select-none">
+      <h1 className="absolute top-10 left-1/2 -translate-x-1/2 text-[120px] font-bold text-[#139aff] opacity-10 select-none">
         Services
       </h1>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -48,11 +45,14 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <p className="uppercase tracking-widest text-gray-900 font-semibold">
+          <p className="uppercase tracking-widest text-[#139aff] font-semibold">
             Our Services
           </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4">
-            High Quality Corporate Solutions
+            High Quality{" "}
+            <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+              Corporate Solutions
+            </span>
           </h2>
         </motion.div>
 
@@ -70,41 +70,60 @@ export default function ServicesSection() {
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
                 onClick={() => setActiveIndex(index)}
-                className={`flex-shrink-0 w-72 md:w-80 lg:w-96 p-6 md:p-10 rounded-3xl transition-all duration-500 cursor-pointer
-                  ${isActive ? "bg-white shadow-xl" : "bg-transparent"}
+                className={`flex-shrink-0 w-72 md:w-80 lg:w-96 p-6 md:p-10 rounded-3xl transition-all duration-500 cursor-pointer border
+                  ${
+                    isActive
+                      ? "bg-white shadow-xl border-[#00e6ff]/30"
+                      : "bg-white/60 border-transparent hover:border-[#139aff]/20 hover:shadow-lg"
+                  }
                 `}
               >
                 {/* Icon */}
-                <div className={`w-16 h-16 flex items-center justify-center rounded-xl mb-6
-                  ${isActive ? "bg-gray-200 text-gray-900" : "bg-gray-100 text-gray-800"}
-                `}>
+                <div
+                  className={`w-16 h-16 flex items-center justify-center rounded-xl mb-6 transition-all duration-300
+                  ${
+                    isActive
+                      ? "bg-gradient-to-r from-[#00e6ff] to-[#139aff] text-white shadow-md"
+                      : "bg-[#eefdff] text-[#139aff]"
+                  }
+                `}
+                >
                   {service.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className={`text-xl md:text-2xl font-bold mb-4
-                  ${isActive ? "text-gray-900" : "text-gray-900"}
-                `}>
+                <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-900">
                   {service.title}
                 </h3>
 
                 {/* Description */}
-                <p className={`leading-relaxed mb-6
-                  ${isActive ? "text-gray-800" : "text-gray-700"}
-                `}>
+                <p
+                  className={`leading-relaxed mb-6 ${
+                    isActive ? "text-gray-800" : "text-gray-600"
+                  }`}
+                >
                   {service.desc}
                 </p>
 
                 {/* Read More */}
                 <div className="flex items-center gap-3 group">
-                  <div className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300
-                    ${isActive ? "bg-gray-200 text-gray-900" : "bg-gray-100 text-gray-900"}
-                  `}>
+                  <div
+                    className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300
+                    ${
+                      isActive
+                        ? "bg-gradient-to-r from-[#00e6ff] to-[#139aff] text-white"
+                        : "bg-[#eefdff] text-[#139aff]"
+                    }
+                  `}
+                  >
                     →
                   </div>
-                  <Link href={service.Link} className={`font-medium group-hover:translate-x-2 transition-transform duration-300
-                    ${isActive ? "text-gray-900" : "text-gray-800"}
-                  `}>
+                  <Link
+                    href={service.Link}
+                    className={`font-medium group-hover:translate-x-2 transition-transform duration-300 ${
+                      isActive ? "text-[#139aff]" : "text-gray-800"
+                    }`}
+                  >
                     Read More
                   </Link>
                 </div>
@@ -112,7 +131,6 @@ export default function ServicesSection() {
             );
           })}
         </div>
-
       </div>
     </section>
   );
