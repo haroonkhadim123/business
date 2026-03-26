@@ -163,43 +163,55 @@ export default function ContactPage() {
           </motion.div>
 
           {/* ================= INFO ================= */}
-          <motion.div variants={slideRight} className="space-y-8">
-            <motion.div whileHover={{ y: -6 }} className="bg-gray-100 p-8 rounded-3xl shadow-xl space-y-6">
-              <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <MapPin className="text-gray-500" size={28} />
-                <div className="dark:text-black">
-                  <p className="font-semibold">London Office</p>
-                  <p>123 Corporate St., London, United Kingdom</p>
-                </div>
-              </motion.div>
-              <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <Phone className="text-gray-500" size={28} />
-                <div className="dark:text-black">
-                  <p className="font-semibold">+966 50 123 4567</p>
-                  <p>Mon - Fri, 9:00am - 6:00pm</p>
-                </div>
-              </motion.div>
-              <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <Mail className="text-gray-500" size={28} />
-                  <div className="dark:text-black">
-                  <p className="font-semibold">info@hoorabgroup.com</p>
-                  <p>We respond within 24 hours</p>
-                </div>
-              </motion.div>
-            </motion.div>
+        <motion.div variants={slideRight} className="space-y-8">
+  <motion.div
+    whileHover={{ y: -6 }}
+    className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl space-y-6 transition-colors duration-300"
+  >
+    {/* Location */}
+    <motion.div variants={fadeUp} className="flex items-center gap-4">
+      <MapPin className="text-gray-500 dark:text-gray-300" size={28} />
+      <div className="text-gray-900 dark:text-gray-100">
+        <p className="font-semibold">London Office</p>
+        <p>123 Corporate St., London, United Kingdom</p>
+      </div>
+    </motion.div>
 
-            <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="rounded-3xl overflow-hidden shadow-xl h-[400px]">
-              <iframe
-                className="w-full h-full border-0"
-                src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
-                loading="lazy"
-                style={{ border: 0 }}
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </motion.div>
+    {/* Phone */}
+    <motion.div variants={fadeUp} className="flex items-center gap-4">
+      <Phone className="text-gray-500 dark:text-gray-300" size={28} />
+      <div className="text-gray-900 dark:text-gray-100">
+        <p className="font-semibold">+966 50 123 4567</p>
+        <p>Mon - Fri, 9:00am - 6:00pm</p>
+      </div>
+    </motion.div>
 
-          </motion.div>
+    {/* Email */}
+    <motion.div variants={fadeUp} className="flex items-center gap-4">
+      <Mail className="text-gray-500 dark:text-gray-300" size={28} />
+      <div className="text-gray-900 dark:text-gray-100">
+        <p className="font-semibold">info@hoorabgroup.com</p>
+        <p>We respond within 24 hours</p>
+      </div>
+    </motion.div>
+  </motion.div>
+
+  {/* Map */}
+  <motion.div
+    variants={fadeUp}
+    whileHover={{ scale: 1.02 }}
+    className="rounded-3xl overflow-hidden shadow-xl h-[400px]"
+  >
+    <iframe
+      className="w-full h-full border-0"
+      src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
+      loading="lazy"
+      style={{ border: 0 }}
+      allowFullScreen
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </motion.div>
+</motion.div>
         </div>
       </motion.section>
     </main>
