@@ -69,7 +69,7 @@ export default function ContactPage() {
   const slideRight = { hidden: { opacity: 0, x: 80 }, visible: { opacity: 1, x: 0, transition: { duration: 0.9 } } };
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-100 overflow-x-hidden">
+    <main className="bg-gray-50 overflow-x-hidden">
 
       {/* ================= HERO ================= */}
       <section className="relative min-h-[75vh] md:min-h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
@@ -77,7 +77,6 @@ export default function ContactPage() {
           <Image src="/conatct-hero.jpg" alt="Contact HOORAB GROUP" fill priority className="object-cover" />
         </motion.div>
         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10 max-w-4xl px-6">
           <motion.p variants={fadeUp} className="uppercase tracking-[6px] text-blue-400 font-semibold">Get in Touch</motion.p>
           <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-white mt-6 leading-tight">Reach Out to HOORAB GROUP</motion.h1>
@@ -97,9 +96,9 @@ export default function ContactPage() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
 
           {/* ================= FORM ================= */}
-          <motion.div variants={slideLeft} whileHover={{ y: -6 }} className="bg-white dark:bg-gray-800 p-4 md:p-10 rounded-3xl shadow-xl">
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-gray-700 dark:text-white mb-3 text-center">Send Us a Message</motion.h2>
-            <motion.p variants={fadeUp} className="text-center text-gray-500 dark:text-gray-300 mb-10">
+          <motion.div variants={slideLeft} whileHover={{ y: -6 }} className="bg-white p-4 md:p-10 rounded-3xl shadow-xl">
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-gray-700 mb-3 text-center">Send Us a Message</motion.h2>
+            <motion.p variants={fadeUp} className="text-center text-gray-500 mb-10">
               Our team is ready to assist you. Fill out the form and we will get back to you.
             </motion.p>
 
@@ -108,42 +107,40 @@ export default function ContactPage() {
               {/* Name & Email */}
               <div className="grid md:grid-cols-2 gap-6">
                 <motion.div variants={fadeUp} className="relative">
-                  <User className="absolute top-4 left-3 text-gray-400 dark:text-gray-300" />
+                  <User className="absolute top-4 left-3 text-gray-500" />
                   <input type="text" placeholder="Full Name" name="name" value={form.name} onChange={handlechange} 
-                    className="w-full pl-10 p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                    className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
                   {error?.name && <p className="text-red-500 text-sm mt-1">{error.name}</p>}
                 </motion.div>
 
                 <motion.div variants={fadeUp} className="relative">
-                  <Mail className="absolute top-4 left-3 text-gray-400 dark:text-gray-300" />
+                  <Mail className="absolute top-4 left-3 text-gray-500" />
                   <input type="email" placeholder="Email Address" name="email" value={form.email} onChange={handlechange} 
-                    className="w-full pl-10 p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                    className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
                   {error?.email && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
                 </motion.div>
               </div>
 
               {/* Phone */}
-         <motion.div variants={fadeUp} className="relative">
-  <PhoneInput
-    country={"gb"} 
-    value={form.phone}
-    onChange={(phone) => setform({ ...form, phone })}
-    containerClass="w-full"
-    inputClass="!w-full !pl-14 !p-6 !bg-white dark:!bg-gray-900 !text-gray-900 dark:!text-white !border !border-gray-300 dark:!border-gray-700 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
-    buttonClass="!border-none !bg-transparent"
-  />
-  {error?.phone && (
-    <p className="text-red-500 text-sm mt-1">{error.phone}</p>
-  )}
-</motion.div>
+              <motion.div variants={fadeUp} className="relative">
+                <PhoneInput
+                  country={"gb"} 
+                  value={form.phone}
+                  onChange={(phone) => setform({ ...form, phone })}
+                  containerClass="w-full"
+                  inputClass="!w-full !pl-14 !p-6 !bg-white !text-gray-900 !border !border-gray-300 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
+                  buttonClass="!border-none !bg-transparent"
+                />
+                {error?.phone && <p className="text-red-500 text-sm mt-1">{error.phone}</p>}
+              </motion.div>
 
               {/* Subject */}
               <motion.div variants={fadeUp} className="relative">
-                <FileText className="absolute top-4 left-3 text-gray-400 dark:text-gray-300" />
+                <FileText className="absolute top-4 left-3 text-gray-500" />
                 <input type="text" placeholder="Subject" name="subject" value={form.subject} onChange={handlechange} 
-                  className="w-full pl-10 p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                  className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 />
                 {error?.subject && <p className="text-red-500 text-sm mt-1">{error.subject}</p>}
               </motion.div>
@@ -151,7 +148,7 @@ export default function ContactPage() {
               {/* Message */}
               <motion.div variants={fadeUp}>
                 <textarea placeholder="Your Message" rows={5} name="message" value={form.message} onChange={handlechange} 
-                  className="w-full p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                  className="w-full p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 />
                 {error?.message && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
               </motion.div>
@@ -167,24 +164,24 @@ export default function ContactPage() {
 
           {/* ================= INFO ================= */}
           <motion.div variants={slideRight} className="space-y-8">
-            <motion.div whileHover={{ y: -6 }} className="bg-gray-100 dark:bg-gray-800 p-8 rounded-3xl shadow-xl space-y-6">
+            <motion.div whileHover={{ y: -6 }} className="bg-gray-100 p-8 rounded-3xl shadow-xl space-y-6">
               <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <MapPin className="text-gray-500 dark:text-gray-300" size={28} />
-           <div>
-  <p className="font-semibold">London Office</p>
-  <p>123 Corporate St., London, United Kingdom</p>
-</div>
+                <MapPin className="text-gray-500" size={28} />
+                <div className="dark:text-black">
+                  <p className="font-semibold">London Office</p>
+                  <p>123 Corporate St., London, United Kingdom</p>
+                </div>
               </motion.div>
               <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <Phone className="text-gray-500 dark:text-gray-300" size={28} />
-                <div>
+                <Phone className="text-gray-500" size={28} />
+                <div className="dark:text-black">
                   <p className="font-semibold">+966 50 123 4567</p>
                   <p>Mon - Fri, 9:00am - 6:00pm</p>
                 </div>
               </motion.div>
               <motion.div variants={fadeUp} className="flex items-center gap-4">
-                <Mail className="text-gray-500 dark:text-gray-300" size={28} />
-                <div>
+                <Mail className="text-gray-500" size={28} />
+                  <div className="dark:text-black">
                   <p className="font-semibold">info@hoorabgroup.com</p>
                   <p>We respond within 24 hours</p>
                 </div>
@@ -192,20 +189,19 @@ export default function ContactPage() {
             </motion.div>
 
             <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="rounded-3xl overflow-hidden shadow-xl h-[400px]">
-          <iframe
-  className="w-full h-full border-0"
-  src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
-  loading="lazy"
-  style={{ border: 0 }}
-  allowFullScreen
-  referrerPolicy="no-referrer-when-downgrade"
-></iframe>
+              <iframe
+                className="w-full h-full border-0"
+                src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
+                loading="lazy"
+                style={{ border: 0 }}
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </motion.div>
 
           </motion.div>
         </div>
       </motion.section>
-
     </main>
   );
 }

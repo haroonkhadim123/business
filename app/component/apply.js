@@ -38,85 +38,50 @@ export default function ApplyPage() {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-
     let newErrors = {};
 
-    // Name validation
+    // --- Validation logic (same as your code) ---
     const nameRegex = /^[A-Za-z\s]+$/;
-    if (!form.name.trim()) {
-      newErrors.name = "Name is required.";
-    } else if (!nameRegex.test(form.name.trim())) {
-      newErrors.name = "Please enter a valid name (letters only)";
-    } else if (form.name.trim().length < 3) {
-      newErrors.name = "Name must be at least 3 characters long.";
-    }
+    if (!form.name.trim()) newErrors.name = "Name is required.";
+    else if (!nameRegex.test(form.name.trim())) newErrors.name = "Please enter a valid name (letters only)";
+    else if (form.name.trim().length < 3) newErrors.name = "Name must be at least 3 characters long.";
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
-    if (!form.email.trim()) {
-      newErrors.email = "Email is required.";
-    } else if (!emailRegex.test(form.email.trim())) {
-      newErrors.email = "Please enter a valid email address.";
-    }
+    if (!form.email.trim()) newErrors.email = "Email is required.";
+    else if (!emailRegex.test(form.email.trim())) newErrors.email = "Please enter a valid email address.";
 
-    // Phone validation
     const phoneRegex = /^\+[1-9]\d{1,14}$/;
-    if (!form.phoneNumber.trim()) {
-      newErrors.phoneNumber = "Phone number is required.";
-    } else if (!phoneRegex.test("+" + form.phoneNumber.replace(/\D/g, ""))) {
+    if (!form.phoneNumber.trim()) newErrors.phoneNumber = "Phone number is required.";
+    else if (!phoneRegex.test("+" + form.phoneNumber.replace(/\D/g, "")))
       newErrors.phoneNumber = "Please enter a valid phone number with country code.";
-    }
 
-    // Position validation
-    if (!form.position.trim()) {
-      newErrors.position = "Position is required.";
-    }
-
-    // Cover letter validation
-    if (!form.coverLetter.trim()) {
-      newErrors.coverLetter = "Cover letter is required.";
-    } else if (form.coverLetter.trim().length < 10) {
+    if (!form.position.trim()) newErrors.position = "Position is required.";
+    if (!form.coverLetter.trim()) newErrors.coverLetter = "Cover letter is required.";
+    else if (form.coverLetter.trim().length < 10)
       newErrors.coverLetter = "Cover letter must be at least 10 characters long.";
-    }
 
-    // CV validation
-    if (!form.cv.trim()) {
-      newErrors.cv = "Please upload your CV.";
-    } else {
+    if (!form.cv.trim()) newErrors.cv = "Please upload your CV.";
+    else {
       const allowedExtensions = ["pdf", "doc", "docx"];
       const ext = form.cv.split(".").pop().toLowerCase();
-      if (!allowedExtensions.includes(ext)) {
-        newErrors.cv = "Only PDF, DOC or DOCX files are allowed.";
-      }
+      if (!allowedExtensions.includes(ext)) newErrors.cv = "Only PDF, DOC or DOCX files are allowed.";
     }
 
     seterror(newErrors);
-
     if (Object.keys(newErrors).length > 0) return;
 
     setloader(true);
-
     try {
       const response = await fetch("/api/application", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-
       const data = await response.json();
-
-      if (data.error) {
-        toast.error("Error in submitting your application. Please try again.");
-      } else {
+      if (data.error) toast.error("Error in submitting your application. Please try again.");
+      else {
         router.push("/success");
-        setform({
-          name: "",
-          email: "",
-          phoneNumber: "",
-          position: "",
-          coverLetter: "",
-          cv: "",
-        });
+        setform({ name: "", email: "", phoneNumber: "", position: "", coverLetter: "", cv: "" });
         seterror({});
       }
     } catch (err) {
@@ -140,7 +105,6 @@ export default function ApplyPage() {
     }
 
     setUploading(true);
-
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", "unsigned_upload");
@@ -154,15 +118,13 @@ export default function ApplyPage() {
       const data = await res.json();
       setform((prev) => ({ ...prev, cv: data.secure_url }));
       toast.success("File uploaded successfully!");
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error("CV upload failed");
     } finally {
       setUploading(false);
     }
   };
 
-  // Animation variants
   const pageFade = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.8 } } };
   const cardAnimation = { hidden: { opacity: 0, y: 60, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease: "easeOut" } } };
   const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.15 } } };
@@ -173,67 +135,47 @@ export default function ApplyPage() {
       variants={pageFade}
       initial="hidden"
       animate="visible"
-      className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20 px-4 md:px-6 overflow-hidden"
+      className="min-h-screen bg-gray-50 py-20 px-4 md:px-6 overflow-hidden"
     >
-      {/* Back Link */}
       <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl mt-5 mx-auto mb-10">
-        <Link href="/career" className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline">
+        <Link href="/career" className="text-blue-600 text-sm font-medium hover:underline">
           ← Back to Careers
         </Link>
       </motion.div>
 
-      {/* Main Card */}
-      <motion.div
-        variants={cardAnimation}
-        initial="hidden"
-        animate="visible"
-        className="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-4 md:p-10 rounded-3xl shadow-xl"
-      >
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white"
-        >
+      <motion.div variants={cardAnimation} initial="hidden" animate="visible" className="max-w-3xl mx-auto bg-white p-4 md:p-10 rounded-3xl shadow-xl">
+        <motion.h1 initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="text-3xl md:text-4xl font-bold text-center text-gray-900">
           Apply Now
         </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-center text-gray-600 dark:text-gray-300 mt-3 mb-10"
-        >
+        <motion.p initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.6 }} className="text-center text-gray-600 mt-3 mb-10">
           Fill in your details and submit your application.
         </motion.p>
 
-        {/* Form */}
         <motion.form variants={staggerContainer} initial="hidden" animate="visible" className="space-y-6" onSubmit={handlesubmit}>
           {/* Name + Email */}
           <div className="grid md:grid-cols-2 gap-6">
             <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-              <User className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+              <User className="absolute left-4 top-4 text-gray-400" size={18} />
               <input
                 type="text"
                 placeholder="Full Name"
                 onChange={handlechange}
                 name="name"
                 value={form.name}
-                
-                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                className="w-full pl-12 pr-4 py-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition placeholder-dark"
               />
               {error.name && <p className="text-red-500 text-sm mt-1">{error.name}</p>}
             </motion.div>
 
             <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-              <Mail className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+              <Mail className="absolute left-4 top-4 text-gray-400" size={18} />
               <input
                 type="email"
                 placeholder="Email Address"
                 onChange={handlechange}
                 name="email"
                 value={form.email}
-                
-                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                className="w-full pl-12 pr-4 py-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition placeholder-dark"
               />
               {error.email && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
             </motion.div>
@@ -241,13 +183,13 @@ export default function ApplyPage() {
 
           {/* Phone */}
           <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-            <Phone className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+            <Phone className="absolute left-4 top-4 text-gray-400" size={18} />
             <PhoneInput
               country={"gb"}
               value={form.phoneNumber}
               onChange={(phoneNumber) => setform({ ...form, phoneNumber })}
               containerClass="w-full"
-              inputClass="!w-full !pl-14 !p-6 !bg-white dark:!bg-gray-900 !text-gray-900 dark:!text-white !border !border-gray-300 dark:!border-gray-700 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
+              inputClass="!w-full !pl-14 !p-6 !bg-white !text-gray-900 !border !border-gray-300 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none placeholder-dark"
               buttonClass="!border-none !bg-transparent"
             />
             {error.phoneNumber && <p className="text-red-500 text-sm mt-1">{error.phoneNumber}</p>}
@@ -255,39 +197,37 @@ export default function ApplyPage() {
 
           {/* Position */}
           <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-            <Briefcase className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+            <Briefcase className="absolute left-4 top-4 text-gray-400" size={18} />
             <input
               type="text"
               placeholder="Position Applying For"
               name="position"
               value={form.position}
               onChange={handlechange}
-              
-              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+              className="w-full pl-12 pr-4 py-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition placeholder-dark"
             />
             {error.position && <p className="text-red-500 text-sm mt-1">{error.position}</p>}
           </motion.div>
 
           {/* Cover Letter */}
           <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
-            <FileText className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
+            <FileText className="absolute left-4 top-4 text-gray-400" size={18} />
             <textarea
               placeholder="Cover Letter / Message"
               rows={4}
               name="coverLetter"
               value={form.coverLetter}
               onChange={handlechange}
-              
-              className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+              className="w-full pl-12 pr-4 py-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:outline-none transition placeholder-dark"
             />
             {error.coverLetter && <p className="text-red-500 text-sm mt-1">{error.coverLetter}</p>}
           </motion.div>
 
           {/* CV Upload */}
-          <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="border border-dashed border-gray-300 dark:border-gray-700 rounded-xl p-6 text-center transition">
-            <Upload className="mx-auto text-gray-400 dark:text-gray-300 mb-2" size={28} />
-            <p className="text-sm text-gray-500 dark:text-gray-300 mb-2">Upload your Resume (PDF, DOC, DOCX)</p>
-            <input type="file" accept=".pdf,.doc,.docx" onChange={handleCVUpload} className="w-full text-gray-700 dark:text-gray-300" />
+          <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="border border-dashed border-gray-300 rounded-xl p-6 text-center transition">
+            <Upload className="mx-auto text-gray-400 mb-2" size={28} />
+            <p className="text-sm text-gray-500 mb-2">Upload your Resume (PDF, DOC, DOCX)</p>
+            <input type="file" accept=".pdf,.doc,.docx" onChange={handleCVUpload} className="w-full text-gray-700" />
             {error.cv && <p className="text-red-500 text-sm mt-1">{error.cv}</p>}
           </motion.div>
 

@@ -69,7 +69,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-    <body className="bg-[var(--background)] text-[var(--foreground)] antialiased">
+      <body
+        className={`${poppins.variable} ${inter.variable} antialiased bg-[#0B1120] text-white`}
+      >
         {/* ================= NAVBAR ================= */}
   
 <ClientLayout>

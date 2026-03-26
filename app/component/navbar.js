@@ -30,8 +30,8 @@ export default function Navbar() {
     { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
     { name: "Businesses", href: "/admin", icon: <AiOutlineShop className="inline mr-2" /> },
     { 
-  name: "Partner", 
-  href: "/partner", 
+  name: "Partner Opportunity", 
+  href: "/partner ", 
   icon: <AiOutlineLink className="inline mr-2" />   // "add partner / join network"
 },
     { name: "Careers", href: "/career", icon: <AiOutlineSolution className="inline mr-2" /> },
