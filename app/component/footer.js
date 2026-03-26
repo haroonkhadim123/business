@@ -114,12 +114,12 @@ export default function Footer() {
         {/* Contact Info */}
         <motion.div variants={fadeUp} className="space-y-4">
           <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-          <p>Saudi Office: Riyadh, Saudi Arabia</p>
+       <p>London Office: London, United Kingdom</p>
           <p>Email: info@hoorabgroup.com</p>
-          <p>Phone: +966 5XXXXXXXX</p>
-        <iframe
+     
+  <iframe
   className="w-full h-40 rounded mt-2"
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.898897865973!2d46.67529531500002!3d24.71355128408843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0385b97b9df1%3A0xf2e1b64d6f839fa1!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1697441234567!5m2!1sen!2sus"
+  src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
   loading="lazy"
   style={{ border: 0 }}
   allowFullScreen

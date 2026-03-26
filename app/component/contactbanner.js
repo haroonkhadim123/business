@@ -109,7 +109,7 @@ export default function ContactPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <motion.div variants={fadeUp} className="relative">
                   <User className="absolute top-4 left-3 text-gray-400 dark:text-gray-300" />
-                  <input type="text" placeholder="Full Name" name="name" value={form.name} onChange={handlechange} autoComplete="off"
+                  <input type="text" placeholder="Full Name" name="name" value={form.name} onChange={handlechange} 
                     className="w-full pl-10 p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
                   {error?.name && <p className="text-red-500 text-sm mt-1">{error.name}</p>}
@@ -117,7 +117,7 @@ export default function ContactPage() {
 
                 <motion.div variants={fadeUp} className="relative">
                   <Mail className="absolute top-4 left-3 text-gray-400 dark:text-gray-300" />
-                  <input type="email" placeholder="Email Address" name="email" value={form.email} onChange={handlechange} autoComplete="off"
+                  <input type="email" placeholder="Email Address" name="email" value={form.email} onChange={handlechange} 
                     className="w-full pl-10 p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                   />
                   {error?.email && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
@@ -125,20 +125,24 @@ export default function ContactPage() {
               </div>
 
               {/* Phone */}
-              <motion.div variants={fadeUp} className="relative">
-                <PhoneInput
-                  country={"pk"} value={form.phone} onChange={(phone) => setform({ ...form, phone })}
-                  containerClass="w-full"
-                  inputClass="!w-full !pl-14 !p-6 !bg-white dark:!bg-gray-900 !text-gray-900 dark:!text-white !border !border-gray-300 dark:!border-gray-700 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
-                  buttonClass="!border-none !bg-transparent"
-                />
-                {error?.phone && <p className="text-red-500 text-sm mt-1">{error.phone}</p>}
-              </motion.div>
+         <motion.div variants={fadeUp} className="relative">
+  <PhoneInput
+    country={"gb"} 
+    value={form.phone}
+    onChange={(phone) => setform({ ...form, phone })}
+    containerClass="w-full"
+    inputClass="!w-full !pl-14 !p-6 !bg-white dark:!bg-gray-900 !text-gray-900 dark:!text-white !border !border-gray-300 dark:!border-gray-700 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
+    buttonClass="!border-none !bg-transparent"
+  />
+  {error?.phone && (
+    <p className="text-red-500 text-sm mt-1">{error.phone}</p>
+  )}
+</motion.div>
 
               {/* Subject */}
               <motion.div variants={fadeUp} className="relative">
                 <FileText className="absolute top-4 left-3 text-gray-400 dark:text-gray-300" />
-                <input type="text" placeholder="Subject" name="subject" value={form.subject} onChange={handlechange} autoComplete="off"
+                <input type="text" placeholder="Subject" name="subject" value={form.subject} onChange={handlechange} 
                   className="w-full pl-10 p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 />
                 {error?.subject && <p className="text-red-500 text-sm mt-1">{error.subject}</p>}
@@ -146,7 +150,7 @@ export default function ContactPage() {
 
               {/* Message */}
               <motion.div variants={fadeUp}>
-                <textarea placeholder="Your Message" rows={5} name="message" value={form.message} onChange={handlechange} autoComplete="off"
+                <textarea placeholder="Your Message" rows={5} name="message" value={form.message} onChange={handlechange} 
                   className="w-full p-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
                 />
                 {error?.message && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
@@ -166,10 +170,10 @@ export default function ContactPage() {
             <motion.div whileHover={{ y: -6 }} className="bg-gray-100 dark:bg-gray-800 p-8 rounded-3xl shadow-xl space-y-6">
               <motion.div variants={fadeUp} className="flex items-center gap-4">
                 <MapPin className="text-gray-500 dark:text-gray-300" size={28} />
-                <div>
-                  <p className="font-semibold">Saudi Arabia Office</p>
-                  <p>123 Corporate St., Riyadh</p>
-                </div>
+           <div>
+  <p className="font-semibold">London Office</p>
+  <p>123 Corporate St., London, United Kingdom</p>
+</div>
               </motion.div>
               <motion.div variants={fadeUp} className="flex items-center gap-4">
                 <Phone className="text-gray-500 dark:text-gray-300" size={28} />
@@ -188,10 +192,14 @@ export default function ContactPage() {
             </motion.div>
 
             <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="rounded-3xl overflow-hidden shadow-xl h-[400px]">
-              <iframe title="HOORAB GROUP Saudi Arabia Office"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.898897865973!2d46.67529531500002!3d24.71355128408843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f0385b97b9df1%3A0xf2e1b64d6f839fa1!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1697441234567!5m2!1sen!2sus"
-                className="w-full h-full border-0" loading="lazy"
-              ></iframe>
+          <iframe
+  className="w-full h-full border-0"
+  src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
+  loading="lazy"
+  style={{ border: 0 }}
+  allowFullScreen
+  referrerPolicy="no-referrer-when-downgrade"
+></iframe>
             </motion.div>
 
           </motion.div>

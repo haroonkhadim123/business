@@ -11,19 +11,18 @@ export default function ContactUs() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
           {/* ==================== LEFT - MAP ==================== */}
-          <div className="relative h-[500px] lg:h-[620px] rounded-3xl overflow-hidden shadow-2xl">
-         <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.7757087034495!2d46.67310741500143!3d24.71355128415165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03f0f0f0f0f0%3A0xabcdef1234567890!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1697351234567!5m2!1sen!2ssa"
-  width="100%"
-  height="100%"
-  style={{ border: 0 }}
-  allowFullScreen=""
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-  className="rounded-3xl"
-></iframe>
-
-          </div>
+        <div className="relative h-[500px] lg:h-[620px] rounded-3xl overflow-hidden shadow-2xl">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19800.840501!2d-0.1277583!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b3333fffff%3A0xabcdef1234567890!2sLondon%2C%20United%20Kingdom!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    className="rounded-3xl"
+  ></iframe>
+</div>
 
           {/* ==================== RIGHT - CONTACT INFO ==================== */}
           <div className="space-y-12">
@@ -84,12 +83,12 @@ export default function ContactUs() {
                 <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-600 transition-colors">
                   <MapPin size={28} />
                 </div>
-                <div>
-                  <p className="text-sm text-gray-500 font-medium">Our Location</p>
-                  <p className="text-2xl font-semibold text-gray-900 group-hover:text-blue-600">
-                Saudi Office: Riyadh, Saudi Arabia
-                  </p>
-                </div>
+             <div>
+  <p className="text-sm text-gray-500 font-medium">Our Location</p>
+  <p className="text-2xl font-semibold text-gray-900 group-hover:text-blue-600">
+    London Office: London, United Kingdom
+  </p>
+</div>
               </motion.div>
             </div>
           </div>

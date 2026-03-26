@@ -218,7 +218,7 @@ export default function ApplyPage() {
                 onChange={handlechange}
                 name="name"
                 value={form.name}
-                autoComplete="off"
+                
                 className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
               />
               {error.name && <p className="text-red-500 text-sm mt-1">{error.name}</p>}
@@ -232,7 +232,7 @@ export default function ApplyPage() {
                 onChange={handlechange}
                 name="email"
                 value={form.email}
-                autoComplete="off"
+                
                 className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
               />
               {error.email && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
@@ -243,7 +243,7 @@ export default function ApplyPage() {
           <motion.div variants={fadeUp} whileHover={{ y: -4 }} className="relative">
             <Phone className="absolute left-4 top-4 text-gray-400 dark:text-gray-300" size={18} />
             <PhoneInput
-              country={"pk"}
+              country={"gb"}
               value={form.phoneNumber}
               onChange={(phoneNumber) => setform({ ...form, phoneNumber })}
               containerClass="w-full"
@@ -262,7 +262,7 @@ export default function ApplyPage() {
               name="position"
               value={form.position}
               onChange={handlechange}
-              autoComplete="off"
+              
               className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
             />
             {error.position && <p className="text-red-500 text-sm mt-1">{error.position}</p>}
@@ -277,7 +277,7 @@ export default function ApplyPage() {
               name="coverLetter"
               value={form.coverLetter}
               onChange={handlechange}
-              autoComplete="off"
+              
               className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 rounded-xl placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
             />
             {error.coverLetter && <p className="text-red-500 text-sm mt-1">{error.coverLetter}</p>}
