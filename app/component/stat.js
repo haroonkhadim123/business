@@ -9,15 +9,13 @@ import {
 import { useEffect, useState } from "react";
 import { Briefcase, Radio, Users, Star } from "lucide-react";
 
-// Stats data
 const stats = [
-  { number: 199, label: "SUCCESSFUL PROJECTS", icon: <Briefcase className="w-10 h-10 text-white" /> },
-  { number: 300, label: "MEDIA ACTIVITIES", icon: <Radio className="w-10 h-10 text-white" /> },
-  { number: 699, label: "SKILLED EXPERTS", icon: <Users className="w-10 h-10 text-white" /> },
-  { number: 120, label: "HAPPY CLIENTS", icon: <Star className="w-10 h-10 text-white" /> },
+  { number: 199, label: "SUCCESSFUL PROJECTS", icon: <Briefcase className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 300, label: "MEDIA ACTIVITIES", icon: <Radio className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 699, label: "SKILLED EXPERTS", icon: <Users className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 120, label: "HAPPY CLIENTS", icon: <Star className="w-10 h-10 text-[#00e6ff]" /> },
 ];
 
-// ✅ FIXED Counter Component
 function Counter({ value }) {
   const count = useMotionValue(0);
   const [display, setDisplay] = useState(0);
@@ -31,13 +29,12 @@ function Counter({ value }) {
     return controls.stop;
   }, [value, count]);
 
-  // Listen to value changes safely
   useMotionValueEvent(count, "change", (latest) => {
     setDisplay(Math.floor(latest));
   });
 
   return (
-    <span className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+    <span className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
       {display}+
     </span>
   );
@@ -45,7 +42,7 @@ function Counter({ value }) {
 
 export default function StatsSection() {
   return (
-    <section className="bg-gray-950 py-16 md:py-24 -z-50">
+    <section className="bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 py-16 md:py-24">
       <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
         
         <motion.div
@@ -65,8 +62,12 @@ export default function StatsSection() {
             >
               
               <div className="relative mb-4">
-                <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-white flex items-center justify-center bg-transparent">
-                  <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-900 flex items-center justify-center">
+                
+                {/* Outer Gradient Border */}
+                <div className="w-28 h-28 md:w-32 md:h-32 rounded-full p-[2px] bg-gradient-to-r from-[#00e6ff] to-[#139aff] shadow-[0_0_25px_rgba(0,230,255,0.4)]">
+                  
+                  {/* Inner Circle */}
+                  <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
                     {stat.icon}
                   </div>
                 </div>
@@ -76,7 +77,7 @@ export default function StatsSection() {
                 </div>
               </div>
 
-              <p className="text-white text-sm md:text-base font-medium uppercase tracking-wide">
+              <p className="text-gray-300 text-sm md:text-base font-medium uppercase tracking-wide">
                 {stat.label}
               </p>
             </motion.div>

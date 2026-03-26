@@ -15,17 +15,16 @@ export default function PartnerHero() {
         className="absolute inset-0"
       >
         <Image
-          src="/partner-hero.jpg"   // 🔁 Replace with your actual partnership-themed image
-          // Suggestions: handshake, global distribution map, team meeting, product display in store, modern warehouse, etc.
+          src="/partner-hero.jpg"
           alt="Become Our Partner"
           fill
           priority
-          className="object-cover brightness-90" // slightly brighter than brands page if needed
+          className="object-cover brightness-90"
         />
       </motion.div>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50" /> {/* Slightly darker for serious B2B feel */}
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6">
@@ -34,19 +33,22 @@ export default function PartnerHero() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="uppercase tracking-[6px] text-blue-400 font-semibold"
+          className="uppercase tracking-[6px] text-[#00e6ff] font-semibold"
         >
           Join Our Network
         </motion.p>
 
-        {/* Main Heading */}
+        {/* Main Heading with Brand Gradient on Last Words */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-4xl md:text-6xl font-bold text-white mt-6 leading-tight"
         >
-          Become a Partner
+        
+          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+            Become a{" "}  Partner
+          </span>
         </motion.h1>
 
         {/* Description */}
@@ -56,24 +58,25 @@ export default function PartnerHero() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-gray-200 mt-6 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
         >
-       Join us as a partner to distribute premium products and unlock new growth opportunities.
+          Join us as a partner to distribute premium products and unlock new
+          growth opportunities.
         </motion.p>
 
-        {/* Optional subtle CTA button (many partnership pages add one here) */}
+        {/* CTA Button with Brand Gradient */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.7 }}
           className="mt-10"
         >
-            <button
+          <button
             onClick={() => {
               const section = document.getElementById("application-form");
               section?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="bg-blue-600 hover:bg-blue-700 transition px-6 sm:px-8 py-3 rounded-full text-white font-semibold text-sm sm:text-base"
+            className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] hover:from-[#139aff] hover:to-[#00e6ff] transition px-6 sm:px-8 py-3 rounded-full text-white font-semibold text-sm sm:text-base"
           >
-           Apply now
+            Apply Now
           </button>
         </motion.div>
 
@@ -88,7 +91,7 @@ export default function PartnerHero() {
             Home
           </Link>
           <span>/</span>
-          <span className="text-white font-semibold">Become a Partner</span>
+          <span className="text-[#00e6ff] font-semibold">Become a Partner</span>
         </motion.div>
       </div>
     </section>

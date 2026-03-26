@@ -5,31 +5,24 @@ import Contact from "@/models/contact";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend API
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Verified fallback email (Resend default)
-const VERIFIED_EMAIL = "onboarding@resend.dev";
 
 export async function POST(req) {
   try {
-    // Connect to MongoDB
     await dbConnect();
 
-    // Parse request body
-    const body = await req.json();
-    const { name, email, phone, subject, message } = body;
+    const { name, email, phone, subject, message } = await req.json();
 
-    // Validation
+    // Simple validation
     if (!name || !email || !phone || !subject || !message) {
       return NextResponse.json(
-        { error: "All fields are required" },
+        { success: false, message: "All fields are required" },
         { status: 400 }
       );
     }
 
-    // Save contact message to MongoDB
-    const createContact = await Contact.create({
+    // Save to DB
+    const newContact = await Contact.create({
       name,
       email,
       phone,
@@ -37,65 +30,36 @@ export async function POST(req) {
       message,
     });
 
-    // Determine the sender email
-    let fromEmail = `care@hoorab.co.uk`;
-
-    // Attempt to send email
-    let emailResult;
-    try {
-      emailResult = await resend.emails.send({
-        from: `Contact Form <${fromEmail}>`,
-        to: ["care@hoorab.co.uk"], // recipient
-        subject: `New Contact Message: ${subject}`,
-        html: `
-          <h2>New Contact Message</h2>
-          <p><b>Name:</b> ${name}</p>
-          <p><b>Email:</b> ${email}</p>
-          <p><b>Phone:</b> ${phone}</p>
-          <p><b>Subject:</b> ${subject}</p>
-          <p><b>Message:</b> ${message}</p>
-        `,
-      });
-    } catch (err) {
-      // If domain not verified, fallback to verified email
-      console.warn(
-        "Original sender not verified, falling back to verified email.",
-        err
-      );
-      fromEmail = VERIFIED_EMAIL;
-      emailResult = await resend.emails.send({
-        from: `Contact Form <${fromEmail}>`,
-        to: ["care@hoorab.co.uk"],
-        subject: `New Contact Message: ${subject}`,
-        html: `
-          <h2>New Contact Message</h2>
-          <p><b>Name:</b> ${name}</p>
-          <p><b>Email:</b> ${email}</p>
-          <p><b>Phone:</b> ${phone}</p>
-          <p><b>Subject:</b> ${subject}</p>
-          <p><b>Message:</b> ${message}</p>
-        `,
-      });
-    }
-
-    console.log("Resend Email Result:", emailResult);
+    // Send email (use Resend default email to avoid errors)
+    await resend.emails.send({
+      from: "Contact Form <onboarding@resend.dev>",
+      to: ["haroonkhadim971@gmail.com"],
+      subject: `New Message: ${subject}`,
+      html: `
+        <h3>New Contact Message</h3>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Phone:</b> ${phone}</p>
+        <p><b>Subject:</b> ${subject}</p>
+        <p><b>Message:</b> ${message}</p>
+      `,
+    });
 
     return NextResponse.json(
       {
-        error: false,
         success: true,
-        message: "Your message has been sent successfully",
-        createContact,
+        message: "Message sent successfully",
+        data: newContact,
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Contact Form Error:", error);
+    console.error(error);
+
     return NextResponse.json(
       {
-        error: true,
         success: false,
-        message: "Something went wrong while sending your message",
+        message: "Something went wrong",
       },
       { status: 500 }
     );

@@ -6,9 +6,8 @@ import Link from "next/link";
 
 export default function BrandHero() {
   return (
-   <section className="relative min-h-[75vh] md:h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
+    <section className="relative min-h-[75vh] md:h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
 
-      
       {/* Background Image with Smooth Zoom */}
       <motion.div
         initial={{ scale: 1.2 }}
@@ -26,7 +25,7 @@ export default function BrandHero() {
       </motion.div>
 
       {/* Dark Overlay */}
-             <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6">
@@ -36,7 +35,7 @@ export default function BrandHero() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="uppercase tracking-[6px] text-blue-400 font-semibold"
+          className="uppercase tracking-[6px] font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
         >
           Our Portfolio
         </motion.p>
@@ -46,7 +45,7 @@ export default function BrandHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-4xl md:text-6xl font-bold text-white mt-6 leading-tight"
+          className="text-4xl md:text-6xl font-bold mt-6 leading-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
         >
           Our Brands
         </motion.h1>
@@ -61,17 +60,21 @@ export default function BrandHero() {
           Discover the powerful brands we have built and nurtured —
           each crafted with innovation, strategy, and a commitment to excellence.
         </motion.p>
-             <motion.div
+
+        {/* Breadcrumbs */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.6 }}
           className="mt-6 text-gray-300 text-sm flex items-center justify-center gap-2"
         >
-          <Link href="/" className="hover:text-white transition">
+          <Link href="/" className="hover:text-[#00e6ff] transition">
             Home
           </Link>
           <span>/</span>
-          <span className="text-white font-semibold">Brands</span>
+          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent font-semibold">
+            Brands
+          </span>
         </motion.div>
 
       </div>

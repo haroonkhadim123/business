@@ -9,24 +9,20 @@ import ThreeDotLoader from "./threedotloader";
 export default function OpenPositions() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [jobs, setjobs] = useState([]);
-  const [loading, setLoading] = useState(true); // ✅ added
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         const res = await fetch("/api/job", { cache: "no-store" });
         const data = await res.json();
-
-        if (res.ok) {
-          setjobs(data.jobitem);
-        }
+        if (res.ok) setjobs(data.jobitem);
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false); // ✅ stop loader
+        setLoading(false);
       }
     };
-
     fetchJobs();
   }, []);
 
@@ -34,25 +30,25 @@ export default function OpenPositions() {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const capitalize = (text) => {
-    if (!text) return "";
-    return text.charAt(0).toUpperCase() + text.slice(1);
-  };
+  const capitalize = (text) => text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
 
   return (
-    <section id="open-positions" className="py-24 bg-white">
+    <section id="open-positions" className="py-24 bg-gradient-to-b from-gray-50 to-white w-full">
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-center text-gray-900"
-        >
-          Open Positions
-        </motion.h2>
+     <motion.h2
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="text-4xl md:text-5xl text-black font-bold text-center"
+>
+  Open{" "}
+  <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+    Positions
+  </span>
+</motion.h2>
 
         <motion.p
           initial={{ opacity: 0 }}
@@ -64,16 +60,14 @@ export default function OpenPositions() {
           Explore exciting career opportunities and join our dynamic team.
         </motion.p>
 
-        {/* ✅ Loader Condition */}
+        {/* Loader */}
         {loading ? (
           <div className="flex flex-col items-center justify-center min-h-[250px] gap-4">
             <ThreeDotLoader />
             <p className="text-gray-500 text-sm">Loading positions...</p>
           </div>
         ) : jobs.length === 0 ? (
-          <p className="text-center text-gray-500 mt-16">
-            No positions available
-          </p>
+          <p className="text-center text-gray-500 mt-16">No positions available</p>
         ) : (
           <div className="mt-16 space-y-6">
             {jobs.map((job, index) => (
@@ -83,7 +77,7 @@ export default function OpenPositions() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="border border-gray-200 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition"
+                className="rounded-2xl overflow-hidden shadow-md border border-gray-200 hover:shadow-xl hover:border-[#00e6ff]/40 transition-all duration-300 bg-white"
               >
                 {/* Header */}
                 <button
@@ -91,13 +85,11 @@ export default function OpenPositions() {
                   className="w-full flex justify-between items-center p-6 text-left"
                 >
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900">
+                    <h3 className="text-xl font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
                       {capitalize(job.jobtitle)}
                     </h3>
-
                     <p className="text-sm text-gray-500 mt-1">
-                      {capitalize(job.joblocation)} •{" "}
-                      {capitalize(job.jobtype)}
+                      {capitalize(job.joblocation)} • {capitalize(job.jobtype)}
                     </p>
                   </div>
 
@@ -138,11 +130,11 @@ export default function OpenPositions() {
                       <Link
                         href={job.status === "Closed" ? "#" : "/apply"}
                         className={`mt-6 inline-block px-6 py-2 rounded-full text-sm font-semibold transition
-                        ${
-                          job.status === "Closed"
-                            ? "bg-gray-400 cursor-not-allowed pointer-events-none text-white"
-                            : "bg-blue-600 hover:bg-blue-700 text-white"
-                        }`}
+                          ${
+                            job.status === "Closed"
+                              ? "bg-gray-400 cursor-not-allowed pointer-events-none text-white"
+                              : "bg-gradient-to-r from-[#00e6ff] to-[#139aff] hover:from-[#139aff] hover:to-[#00e6ff] text-white"
+                          }`}
                       >
                         Apply Now
                       </Link>
@@ -153,7 +145,6 @@ export default function OpenPositions() {
             ))}
           </div>
         )}
-
       </div>
     </section>
   );

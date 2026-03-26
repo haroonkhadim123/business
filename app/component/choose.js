@@ -13,25 +13,25 @@ const features = [
     title: "Global Supply Network",
     description:
       "Strong international sourcing network ensuring timely and efficient delivery worldwide.",
-    icon: <Globe className="w-10 h-10 text-gray-600" />,
+    icon: <Globe className="w-10 h-10 text-[#139aff]" />,
   },
   {
     title: "Reliable Partnerships",
     description:
       "Long-term collaborations built on trust, transparency, and performance excellence.",
-    icon: <Handshake className="w-10 h-10 text-gray-600" />,
+    icon: <Handshake className="w-10 h-10 text-[#139aff]" />,
   },
   {
     title: "Scalable Distribution",
     description:
       "Flexible logistics and scalable distribution systems to support business growth.",
-    icon: <TrendingUp className="w-10 h-10 text-gray-600" />,
+    icon: <TrendingUp className="w-10 h-10 text-[#139aff]" />,
   },
   {
     title: "Quality Assurance",
     description:
       "Strict quality control processes to ensure premium standards across all operations.",
-    icon: <ShieldCheck className="w-10 h-10 text-gray-600" />,
+    icon: <ShieldCheck className="w-10 h-10 text-[#139aff]" />,
   },
 ];
 
@@ -47,7 +47,7 @@ const stagger = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 bg-gray-50 w-full">
+    <section className="py-24 bg-gradient-to-b from-gray-50 to-white w-full">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         
         {/* Heading */}
@@ -58,8 +58,12 @@ export default function WhyChooseUs() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-black">
-            Why Choose <span className="text-black">HOORAB GROUP</span>
+            Why Choose{" "}
+            <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+              HOORAB GROUP
+            </span>
           </h2>
+
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
             Delivering excellence through innovation, strategic partnerships,
             and world-class operational standards.
@@ -78,21 +82,24 @@ export default function WhyChooseUs() {
             <motion.div
               key={i}
               variants={fadeInUp}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -10 }}
               transition={{ type: "spring", stiffness: 200 }}
-              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border border-gray-200"
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border border-gray-200 hover:border-[#00e6ff]/40 hover:shadow-[0_10px_30px_rgba(0,230,255,0.15)]"
             >
               
+              {/* Icon */}
               <div className="flex justify-center mb-6">
-                <div className="bg-gray-100 p-4 rounded-full">
+                <div className="bg-[#00e6ff]/10 p-4 rounded-full">
                   {item.icon}
                 </div>
               </div>
 
+              {/* Title */}
               <h3 className="text-lg font-semibold text-black">
                 {item.title}
               </h3>
 
+              {/* Description */}
               <p className="text-gray-600 text-sm mt-3 leading-relaxed">
                 {item.description}
               </p>

@@ -26,62 +26,78 @@ const features = [
   },
 ];
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
 export default function WhyWorkWithUs() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6 text-center">
+    <section className="py-24 bg-white w-full">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
 
-        {/* Section Title */}
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-gray-900"
         >
-          Why Work With Us
-        </motion.h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-black">
+            Why Work {" "}
+            <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+             With Us
+            </span>
+          </h2>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-gray-600 mt-4 max-w-2xl mx-auto"
-        >
-          We believe in empowering talent, encouraging innovation,
-          and building leaders for tomorrow.
-        </motion.p>
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            We believe in empowering talent, encouraging innovation, and building leaders for tomorrow.
+          </p>
+        </motion.div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-          {features.map((item, index) => {
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={stagger}
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
+        >
+          {features.map((item, i) => {
             const Icon = item.icon;
             return (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 group"
+                key={i}
+                variants={fadeInUp}
+                whileHover={{ y: -10 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border border-gray-200 hover:border-[#00e6ff]/40 hover:shadow-[0_10px_30px_rgba(0,230,255,0.15)]"
               >
-                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-black/5 mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                  <Icon size={28} className="text-black" />
+                {/* Icon */}
+                <div className="flex justify-center mb-6">
+                  <div className="bg-[#00e6ff]/10 p-4 rounded-full">
+                    <Icon size={28} className="text-[#00e6ff]" />
+                  </div>
                 </div>
 
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                {/* Title */}
+                <h3 className="text-lg font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-600 text-sm leading-relaxed">
+                {/* Description */}
+                <p className="text-gray-600 text-sm mt-3 leading-relaxed">
                   {item.desc}
                 </p>
               </motion.div>
             );
           })}
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );

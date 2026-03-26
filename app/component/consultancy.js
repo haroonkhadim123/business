@@ -21,7 +21,8 @@ export default function BusinessConsultancy() {
       <section className="relative pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden">
         <div className="container mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left - Text & Features */}
+            
+            {/* LEFT */}
             <motion.div
               variants={staggerContainer}
               initial="hidden"
@@ -34,7 +35,7 @@ export default function BusinessConsultancy() {
               >
                 JUST A CONSULTANCY
                 <br />
-                <span className="text-gray-900">Business Goal</span>
+                <span className="text-[#139aff]">Business Goal</span>
               </motion.h1>
 
               <motion.p
@@ -47,8 +48,8 @@ export default function BusinessConsultancy() {
               {/* Features */}
               <div className="space-y-8">
                 <motion.div variants={fadeInUp} className="flex items-start gap-4">
-                  <div className="p-3 bg-gray-100 rounded-lg">
-                    <Users className="w-8 h-8 text-black" />
+                  <div className="p-3 bg-[#00e6ff]/20 rounded-lg">
+                    <Users className="w-8 h-8 text-[#139aff]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold">Best Business Consulting</h3>
@@ -59,8 +60,8 @@ export default function BusinessConsultancy() {
                 </motion.div>
 
                 <motion.div variants={fadeInUp} className="flex items-start gap-4">
-                  <div className="p-3 bg-gray-100 rounded-lg">
-                    <Headphones className="w-8 h-8 text-black" />
+                  <div className="p-3 bg-[#00e6ff]/20 rounded-lg">
+                    <Headphones className="w-8 h-8 text-[#139aff]" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold">24/7 Customer Support</h3>
@@ -71,18 +72,18 @@ export default function BusinessConsultancy() {
                 </motion.div>
               </div>
 
-              {/* Buttons */}
+              {/* Button */}
               <motion.div variants={fadeInUp} className="flex flex-wrap gap-6 mt-10">
                 <Link
                   href="/contact"
-                  className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition flex items-center gap-2 shadow-lg"
+                  className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] text-white px-8 py-4 rounded-full font-medium hover:opacity-90 transition flex items-center gap-2 shadow-lg"
                 >
                   Contact Us <ArrowRight className="w-5 h-5" />
                 </Link>
               </motion.div>
             </motion.div>
 
-            {/* Right - Images (now responsive overlapping on all screens) */}
+            {/* RIGHT */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -90,21 +91,22 @@ export default function BusinessConsultancy() {
               className="relative flex justify-center lg:justify-end"
             >
               <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-none aspect-[4/3] md:aspect-auto">
-                {/* Optional background blur shape */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-3xl opacity-30 scale-125" />
+                
+                {/* Brand Gradient Blur */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00e6ff] to-[#139aff] rounded-full blur-3xl opacity-20 scale-125" />
 
-                {/* Main large image */}
+                {/* Main Image */}
                 <div className="relative w-full h-[320px] sm:h-[420px] lg:h-[500px]">
                   <Image
                     src={'/mainteam.jpg'}
                     alt="Team discussion"
                     fill
                     className="rounded-2xl shadow-2xl object-cover"
-                    priority // optional: better LCP
+                    priority
                   />
                 </div>
 
-                {/* Smaller overlapping image - always absolute, responsive position */}
+                {/* Small Image */}
                 <div className="absolute -bottom-6 -right-4 sm:-bottom-10 sm:-right-8 lg:-bottom-12 lg:-right-10 z-20 w-3/5 sm:w-2/5 lg:w-3/5 max-w-[220px] sm:max-w-[280px] lg:max-w-none aspect-[4/3] border-4 sm:border-6 lg:border-8 border-white rounded-2xl shadow-2xl overflow-hidden">
                   <Image
                     src={'/smallteam.jpg'}
@@ -115,6 +117,7 @@ export default function BusinessConsultancy() {
                 </div>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>

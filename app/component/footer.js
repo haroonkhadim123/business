@@ -2,16 +2,20 @@
 "use client";
 
 import Link from "next/link";
-import { AiFillFacebook, AiFillInstagram, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
+import {
+  AiFillFacebook,
+  AiFillInstagram,
+  AiFillLinkedin,
+  AiFillTwitterCircle,
+} from "react-icons/ai";
 import { motion } from "framer-motion";
-
 
 export default function Footer() {
   const socialIcons = [
-    { icon: <AiFillFacebook />, href: "#", color: "hover:text-blue-600" },
-    { icon: <AiFillInstagram />, href: "#", color: "hover:text-pink-500" },
-    { icon: <AiFillLinkedin />, href: "#", color: "hover:text-blue-500" },
-    { icon: <AiFillTwitterCircle />, href: "#", color: "hover:text-blue-400" },
+    { icon: <AiFillFacebook />, href: "#" },
+    { icon: <AiFillInstagram />, href: "#" },
+    { icon: <AiFillLinkedin />, href: "#" },
+    { icon: <AiFillTwitterCircle />, href: "#" },
   ];
 
   const fadeUp = {
@@ -20,124 +24,159 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white text-gray-900 py-12 border-t border-gray-200">
+    <footer className="relative bg-gray-900 text-white py-16 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#00e6ff]/20 via-[#139aff]/20 to-[#00e6ff]/10 blur-3xl"></div>
+
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
-        className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8"
+        className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12"
       >
-        {/* Company Info */}
-      <motion.div
-  variants={fadeUp}
-  className="space-y-4 max-w-sm text-gray-800"
->
-  {/* Logo */}
-<Link
-  href="/"
-  className="flex items-center flex-shrink-0 gap-2 md:gap-4"
->
-  {/* SVG Icon */}
-  <svg
-    width="36"             // smaller default for mobile
-    height="36"
-    viewBox="0 0 128 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="flex-shrink-0 md:w-12 md:h-12" // responsive sizing
-  >
-    <path
-      d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-      fill="#000000"
-      stroke="#000000"
-      strokeWidth="4"
-    />
-    <path
-      d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
-      fill="#111111"
-      opacity="0.12"
-    />
-  </svg>
+        {/* ================= Company Info ================= */}
+        <motion.div
+          variants={fadeUp}
+          className="space-y-4 max-w-sm text-gray-200"
+        >
+          <Link href="/" className="flex items-center gap-3">
+            {/* Logo */}
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 128 100"
+              className="md:w-12 md:h-12"
+            >
+              <path
+                d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
+                fill="url(#brandGradient)"
+              />
+              <defs>
+                <linearGradient
+                  id="brandGradient"
+                  x1="0"
+                  y1="0"
+                  x2="1"
+                  y2="1"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="#00e6ff" />
+                  <stop offset="1" stopColor="#139aff" />
+                </linearGradient>
+              </defs>
+            </svg>
 
-  {/* Text */}
-  <div className="flex flex-col leading-tight">
-    <span className="text-2xl md:text-3xl font-black tracking-[-1px] text-black">
-      HOORAB
-    </span>
-    <span className="text-xs md:text-sm font-semibold text-gray-700 tracking-wide mt-1">
-      Business Cooperative Solutions
-    </span>
-  </div>
-</Link>
+            <div className="flex flex-col leading-tight">
+              <span className="text-2xl md:text-3xl font-black tracking-[-1px] text-white">
+                HOORAB
+              </span>
+              <span className="text-xs md:text-sm font-semibold text-gray-400 mt-1">
+                Business Cooperative Solutions
+              </span>
+            </div>
+          </Link>
 
+          <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+            Providing professional corporate services with multiple business divisions, sustainable growth strategies, and a cooperative structure.
+          </p>
 
-  {/* Description */}
-  <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-    Providing professional corporate services with multiple business divisions, sustainable growth strategies, and a cooperative structure.
-  </p>
+          {/* Social Icons */}
+          <div className="flex gap-4 mt-2">
+            {socialIcons.map((item, i) => (
+              <motion.a
+                key={i}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full text-gray-300 hover:text-white hover:bg-[#00e6ff]/20 transition-shadow shadow-md hover:shadow-[#00e6ff]/40 flex items-center justify-center"
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.icon}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
 
-  {/* Social Icons */}
-  <div className="flex gap-4 mt-2">
-    {socialIcons.map((item, i) => (
-      <motion.a
-        key={i}
-        href={item.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`p-2 rounded-full transition ${item.color} hover:shadow-lg hover:scale-110 flex items-center justify-center`}
-        whileHover={{ scale: 1.15 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {item.icon}
-      </motion.a>
-    ))}
-  </div>
-</motion.div>
-
-
-        {/* Quick Links */}
+        {/* ================= Quick Links ================= */}
         <motion.div variants={fadeUp} className="space-y-2">
-          <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+          <h3 className="text-xl font-semibold mb-4 text-[#00e6ff]">
+            Quick Links
+          </h3>
           <ul className="space-y-2">
-            <li><Link href="/" className="hover:text-blue-500 transition">Home</Link></li>
-            <li><Link href="/brand" className="hover:text-blue-500 transition">Brands</Link></li>
-                     <li><Link href="/about" className="hover:text-blue-500 transition">About Us</Link></li>
-            <li><Link href="#divisions" className="hover:text-blue-500 transition">Businesses</Link></li>
-            <li><Link href="/partner" className="hover:text-blue-500 transition">Partner</Link></li>
-   
-            <li><Link href="/career" className="hover:text-blue-500 transition">Careers</Link></li>
-            <li><Link href="/contact" className="hover:text-blue-500 transition">Get in Touch</Link></li>
+            <li>
+              <Link href="/" className="hover:text-[#139aff] transition">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/brand" className="hover:text-[#139aff] transition">
+                Brands
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-[#139aff] transition">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link href="#divisions" className="hover:text-[#139aff] transition">
+                Businesses
+              </Link>
+            </li>
+            <li>
+              <Link href="/partner" className="hover:text-[#139aff] transition">
+                Partner
+              </Link>
+            </li>
+            <li>
+              <Link href="/career" className="hover:text-[#139aff] transition">
+                Careers
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-[#139aff] transition">
+                Get in Touch
+              </Link>
+            </li>
           </ul>
         </motion.div>
 
-        {/* Contact Info */}
+        {/* ================= Contact Info ================= */}
         <motion.div variants={fadeUp} className="space-y-4">
-          <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-       <p>London Office: London, United Kingdom</p>
-          <p>Email: info@hoorabgroup.com</p>
-     
-  <iframe
-  className="w-full h-40 rounded mt-2"
-  src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
-  loading="lazy"
-  style={{ border: 0 }}
-  allowFullScreen
-  referrerPolicy="no-referrer-when-downgrade"
-></iframe>
+          <h3 className="text-xl font-semibold mb-4 text-[#00e6ff]">
+            Contact Us
+          </h3>
 
+          <p className="text-gray-300">
+            London Office: London, United Kingdom
+          </p>
+          <p className="text-gray-300">
+            Email: <span className="text-[#139aff]">info@hoorabgroup.com</span>
+          </p>
+
+          <iframe
+            className="w-full h-40 rounded-lg border border-[#00e6ff]/30 shadow-lg shadow-[#00e6ff]/20 mt-2"
+            src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
+            loading="lazy"
+            style={{ border: 0 }}
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </motion.div>
       </motion.div>
 
-      {/* Bottom */}
+      {/* ================= Bottom ================= */}
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="mt-12 border-t border-gray-200 pt-6 text-center text-sm text-gray-500"
+        className="mt-12 border-t border-[#00e6ff]/20 pt-6 text-center text-sm text-gray-400"
       >
-        &copy; {new Date().getFullYear()} HOORAB GROUP. All rights reserved.
+        &copy; {new Date().getFullYear()}{" "}
+        <span className="text-[#139aff] font-semibold">HOORAB GROUP</span>. All
+        rights reserved.
       </motion.div>
     </footer>
   );
