@@ -8,7 +8,7 @@ export default function CareerBanner() {
   return (
     <section className="relative min-h-[75vh] md:h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
 
-      {/* Background Image */}
+      {/* Background Image with Smooth Zoom */}
       <motion.div
         initial={{ scale: 1.2 }}
         animate={{ scale: 1 }}
@@ -24,8 +24,10 @@ export default function CareerBanner() {
         />
       </motion.div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/55" />
+      {/* Brand Tint Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/20" />
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl px-6">
@@ -45,11 +47,10 @@ export default function CareerBanner() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 leading-snug"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 leading-snug text-white"
         >
-
           <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-            Build Your Future With{" "}  Us
+            Build Your Future With Us
           </span>
         </motion.h1>
 
@@ -58,7 +59,7 @@ export default function CareerBanner() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-gray-200 mt-4 text-sm sm:text-base md:text-lg leading-relaxed"
+          className="text-gray-100 mt-4 text-sm sm:text-base md:text-lg leading-relaxed"
         >
           We are looking for passionate professionals ready to innovate, collaborate, and grow. Explore exciting career opportunities with us.
         </motion.p>
@@ -71,14 +72,12 @@ export default function CareerBanner() {
           className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <button
-            style={{
-              background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
-            }}
+            style={{ background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)" }}
             onClick={() => {
               const section = document.getElementById("open-positions");
               section?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className=" transition px-6 sm:px-8 py-3 rounded-full text-white font-semibold text-sm sm:text-base"
+            className="transition px-6 sm:px-8 py-3 rounded-full text-white font-semibold text-sm sm:text-base"
           >
             View Open Positions
           </button>
@@ -102,7 +101,9 @@ export default function CareerBanner() {
             Home
           </Link>
           <span>/</span>
-          <span className="text-[#00e6ff] font-semibold">Careers</span>
+          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent font-semibold">
+            Careers
+          </span>
         </motion.div>
 
       </div>

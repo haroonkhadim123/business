@@ -14,7 +14,7 @@ export default function CareerCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="uppercase tracking-[6px] text-blue-600 font-semibold mb-4"
+          className="uppercase tracking-[6px] font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#00e6ff] to-[#139aff]"
         >
           Join Our Team
         </motion.p>
@@ -25,9 +25,12 @@ export default function CareerCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+          className="text-4xl text-black md:text-5xl font-bold mb-6"
         >
-          Ready to Build Your Future With Us?
+          Ready to Build Your{" "}
+          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+            Future With Us?
+          </span>
         </motion.h2>
 
         {/* Description */}
@@ -50,25 +53,28 @@ export default function CareerCTA() {
           viewport={{ once: true }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-           <button
-  onClick={() => {
-    const section = document.getElementById("open-positions");
-
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }}
-  className="bg-blue-600 hover:bg-blue-700 transition px-8 py-3 rounded-full text-white font-semibold"
->
-  View Open Positions
-</button>
+          <button
+            onClick={() => {
+              const section = document.getElementById("open-positions");
+              if (section) {
+                section.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }}
+            className="px-8 py-3 rounded-full font-semibold text-white transition shadow-lg"
+            style={{
+              background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
+            }}
+          >
+            View Open Positions
+          </button>
 
           <Link
             href="/contact"
-            className="border border-blue-600 hover:bg-blue-600 hover:text-white text-blue-600 px-8 py-3 rounded-full font-semibold transition"
+            className="px-8 text-black py-3 rounded-full font-semibold border border-transparent transition shadow-lg"
+          
           >
             Contact HR
           </Link>

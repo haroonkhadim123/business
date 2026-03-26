@@ -77,7 +77,7 @@ export default function Banner() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-3xl md:text-6xl font-bold text-white mb-6 max-w-4xl leading-tight"
+              className="text-3xl md:text-5xl font-bold mb-6 max-w-4xl leading-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
             >
               {slide.title}
             </motion.h1>

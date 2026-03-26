@@ -15,9 +15,7 @@ export default function ContactPage() {
   const [error, seterror] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [loader, setloader] = useState(false);
 
-  const handlechange = (e) => {
-    setform({ ...form, [e.target.name]: e.target.value });
-  };
+  const handlechange = (e) => setform({ ...form, [e.target.name]: e.target.value });
 
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -72,24 +70,75 @@ export default function ContactPage() {
     <main className="bg-gray-50 overflow-x-hidden">
 
       {/* ================= HERO ================= */}
-      <section className="relative min-h-[75vh] md:min-h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
-        <motion.div initial={{ scale: 1.3 }} animate={{ scale: 1 }} transition={{ duration: 2.5, ease: "easeOut" }} className="absolute inset-0">
-          <Image src="/conatct-hero.jpg" alt="Contact HOORAB GROUP" fill priority className="object-cover" />
-        </motion.div>
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-        <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="relative z-10 max-w-4xl px-6">
-          <motion.p variants={fadeUp} className="uppercase tracking-[6px] text-blue-400 font-semibold">Get in Touch</motion.p>
-          <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-white mt-6 leading-tight">Reach Out to HOORAB GROUP</motion.h1>
-          <motion.p variants={fadeUp} className="text-gray-300 mt-6 text-lg leading-relaxed">
-            Fill the form or contact our team for inquiries, support, or partnership opportunities.
-          </motion.p>
-          <motion.div variants={fadeUp} className="mt-6 text-gray-300 text-sm flex items-center justify-center gap-2">
-            <Link href="/" className="hover:text-white transition">Home</Link>
-            <span>/</span>
-            <span className="text-white font-semibold">Contact</span>
-          </motion.div>
-        </motion.div>
-      </section>
+   <section className="relative min-h-[75vh] md:min-h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
+  {/* Background Image with smooth zoom */}
+  <motion.div
+    initial={{ scale: 1.2 }}
+    animate={{ scale: 1 }}
+    transition={{ duration: 2 }}
+    className="absolute inset-0"
+  >
+    <Image
+      src="/conatct-hero.jpg"
+      alt="Contact HOORAB GROUP"
+      fill
+      priority
+      className="object-cover brightness-90"
+    />
+  </motion.div>
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/50" />
+
+  {/* Brand gradient overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/20" />
+
+  {/* Content */}
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={staggerContainer}
+    className="relative z-10 max-w-4xl px-6"
+  >
+    {/* Subtitle */}
+    <motion.p
+      variants={fadeUp}
+      className="uppercase tracking-[6px] font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
+    >
+      Get in Touch
+    </motion.p>
+
+    {/* Main heading */}
+    <motion.h1
+      variants={fadeUp}
+    className="text-3xl md:text-5xl font-bold mt-6 leading-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
+    >
+      Reach Out to HOORAB GROUP
+    </motion.h1>
+
+    {/* Description */}
+    <motion.p
+      variants={fadeUp}
+      className="text-gray-200 mt-6 text-lg md:text-xl leading-relaxed"
+    >
+      Fill the form or contact our team for inquiries, support, or partnership opportunities.
+    </motion.p>
+
+    {/* Breadcrumb */}
+    <motion.div
+      variants={fadeUp}
+      className="mt-6 text-gray-300 text-sm flex items-center justify-center gap-2"
+    >
+      <Link href="/" className="hover:text-white transition">
+        Home
+      </Link>
+      <span>/</span>
+      <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent font-semibold">
+        Contact
+      </span>
+    </motion.div>
+  </motion.div>
+</section>
 
       {/* ================= FORM & INFO ================= */}
       <motion.section variants={sectionFade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="py-24 px-4 md:px-6">
@@ -97,7 +146,12 @@ export default function ContactPage() {
 
           {/* ================= FORM ================= */}
           <motion.div variants={slideLeft} whileHover={{ y: -6 }} className="bg-white p-4 md:p-10 rounded-3xl shadow-xl">
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-gray-700 mb-3 text-center">Send Us a Message</motion.h2>
+           <motion.h2
+  variants={fadeUp}
+  className="text-3xl md:text-4xl text-black font-bold mb-3 text-center"
+>
+  Send Us a <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">Message</span>
+</motion.h2>
             <motion.p variants={fadeUp} className="text-center text-gray-500 mb-10">
               Our team is ready to assist you. Fill out the form and we will get back to you.
             </motion.p>
@@ -107,17 +161,17 @@ export default function ContactPage() {
               {/* Name & Email */}
               <div className="grid md:grid-cols-2 gap-6">
                 <motion.div variants={fadeUp} className="relative">
-                  <User className="absolute top-4 left-3 text-gray-500" />
+                  <User className="absolute top-4 left-3 text-[#139aff]" />
                   <input type="text" placeholder="Full Name" name="name" value={form.name} onChange={handlechange} 
-                    className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                    className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-[#00e6ff] focus:outline-none transition"
                   />
                   {error?.name && <p className="text-red-500 text-sm mt-1">{error.name}</p>}
                 </motion.div>
 
                 <motion.div variants={fadeUp} className="relative">
-                  <Mail className="absolute top-4 left-3 text-gray-500" />
+                  <Mail className="absolute top-4 left-3 text-[#139aff]" />
                   <input type="email" placeholder="Email Address" name="email" value={form.email} onChange={handlechange} 
-                    className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                    className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-[#00e6ff] focus:outline-none transition"
                   />
                   {error?.email && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
                 </motion.div>
@@ -130,7 +184,7 @@ export default function ContactPage() {
                   value={form.phone}
                   onChange={(phone) => setform({ ...form, phone })}
                   containerClass="w-full"
-                  inputClass="!w-full !pl-14 !p-6 !bg-white !text-gray-900 !border !border-gray-300 !rounded-xl focus:!ring-2 focus:!ring-blue-500 !outline-none"
+                  inputClass="!w-full !pl-14 !p-6 !bg-white !text-gray-900 !border !border-gray-300 !rounded-xl focus:!ring-2 focus:!ring-[#00e6ff] !outline-none"
                   buttonClass="!border-none !bg-transparent"
                 />
                 {error?.phone && <p className="text-red-500 text-sm mt-1">{error.phone}</p>}
@@ -138,9 +192,9 @@ export default function ContactPage() {
 
               {/* Subject */}
               <motion.div variants={fadeUp} className="relative">
-                <FileText className="absolute top-4 left-3 text-gray-500" />
+                <FileText className="absolute top-4 left-3 text-[#139aff]" />
                 <input type="text" placeholder="Subject" name="subject" value={form.subject} onChange={handlechange} 
-                  className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                  className="w-full pl-10 p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-[#00e6ff] focus:outline-none transition"
                 />
                 {error?.subject && <p className="text-red-500 text-sm mt-1">{error.subject}</p>}
               </motion.div>
@@ -148,14 +202,14 @@ export default function ContactPage() {
               {/* Message */}
               <motion.div variants={fadeUp}>
                 <textarea placeholder="Your Message" rows={5} name="message" value={form.message} onChange={handlechange} 
-                  className="w-full p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
+                  className="w-full p-4 bg-white text-gray-900 border border-gray-300 rounded-xl placeholder-gray-500 focus:ring-2 focus:ring-[#00e6ff] focus:outline-none transition"
                 />
                 {error?.message && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
               </motion.div>
 
               {/* Submit */}
               <motion.button variants={fadeUp} whileHover={{ scale: loader ? 1 : 1.05 }} whileTap={{ scale: loader ? 1 : 0.95 }} disabled={loader} type="submit"
-                className={`w-full text-white py-3 rounded-full font-semibold ${loader ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
+                className={`w-full text-white py-3 rounded-full font-semibold ${loader ? "bg-gray-400 cursor-not-allowed" : "bg-gradient-to-r from-[#00e6ff] to-[#139aff] hover:from-[#139aff] hover:to-[#00e6ff]"}`}
               >
                 {loader ? <Loader /> : "Send Message"}
               </motion.button>
@@ -164,44 +218,46 @@ export default function ContactPage() {
 
           {/* ================= INFO ================= */}
         <motion.div variants={slideRight} className="space-y-8">
-  <motion.div
-    whileHover={{ y: -6 }}
-    className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-xl space-y-6 transition-colors duration-300"
-  >
+
+  <motion.div whileHover={{ y: -6 }} className="bg-white  p-8 rounded-3xl shadow-xl space-y-6 transition-colors duration-300">
+
     {/* Location */}
     <motion.div variants={fadeUp} className="flex items-center gap-4">
-      <MapPin className="text-gray-500 dark:text-gray-300" size={28} />
-      <div className="text-gray-900 dark:text-gray-100">
-        <p className="font-semibold">London Office</p>
+      <MapPin className="text-gray-500 " size={28} />
+      <div className="text-gray-900 ">
+        <p className="font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+          London Office
+        </p>
         <p>123 Corporate St., London, United Kingdom</p>
       </div>
     </motion.div>
 
     {/* Phone */}
     <motion.div variants={fadeUp} className="flex items-center gap-4">
-      <Phone className="text-gray-500 dark:text-gray-300" size={28} />
-      <div className="text-gray-900 dark:text-gray-100">
-        <p className="font-semibold">+966 50 123 4567</p>
+      <Phone className="text-gray-500 " size={28} />
+      <div className="text-gray-900 ">
+        <p className="font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+          +966 50 123 4567
+        </p>
         <p>Mon - Fri, 9:00am - 6:00pm</p>
       </div>
     </motion.div>
 
     {/* Email */}
     <motion.div variants={fadeUp} className="flex items-center gap-4">
-      <Mail className="text-gray-500 dark:text-gray-300" size={28} />
-      <div className="text-gray-900 dark:text-gray-100">
-        <p className="font-semibold">info@hoorabgroup.com</p>
+      <Mail className="text-gray-500 " size={28} />
+      <div className="text-gray-900 ">
+        <p className="font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+          info@hoorabgroup.com
+        </p>
         <p>We respond within 24 hours</p>
       </div>
     </motion.div>
+
   </motion.div>
 
   {/* Map */}
-  <motion.div
-    variants={fadeUp}
-    whileHover={{ scale: 1.02 }}
-    className="rounded-3xl overflow-hidden shadow-xl h-[400px]"
-  >
+  <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="rounded-3xl overflow-hidden shadow-xl h-[400px] border-2 border-gradient-to-r from-[#00e6ff] to-[#139aff]">
     <iframe
       className="w-full h-full border-0"
       src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
@@ -211,6 +267,7 @@ export default function ContactPage() {
       referrerPolicy="no-referrer-when-downgrade"
     ></iframe>
   </motion.div>
+
 </motion.div>
         </div>
       </motion.section>

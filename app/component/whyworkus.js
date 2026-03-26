@@ -86,7 +86,7 @@ export default function WhyWorkWithUs() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+                <h3 className="text-lg font-semibold text-black">
                   {item.title}
                 </h3>
 

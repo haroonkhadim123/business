@@ -40,7 +40,10 @@ export default function HiringProcess() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-gray-900"
           >
-            Hiring Process
+            Hiring{" "}
+            <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+              Process
+            </span>
           </motion.h2>
 
           <motion.p
@@ -71,10 +74,12 @@ export default function HiringProcess() {
                 viewport={{ once: true }}
                 className="relative flex flex-col md:flex-row items-start md:items-center"
               >
-                {/* Icon Circle */}
-                <div className="flex-shrink-0 w-16 h-16 bg-black/5 text-black rounded-full flex items-center justify-center md:mr-8 mb-4 md:mb-0">
-                  <Icon size={28} />
-                </div>
+                {/* Icon Circle with brand color */}
+             <div className="flex-shrink-0 w-16 h-16 mb-4 md:mb-0 md:mr-8 flex items-center justify-center rounded-full">
+  <div className="bg-[#00e6ff]/10 p-4 rounded-full flex items-center justify-center">
+    <Icon size={28} className="text-[#139aff]" />
+  </div>
+</div>
 
                 {/* Content */}
                 <div className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-200 flex-1">

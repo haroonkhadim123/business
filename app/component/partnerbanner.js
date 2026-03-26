@@ -23,8 +23,10 @@ export default function PartnerHero() {
         />
       </motion.div>
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50" />
+      {/* Dark Overlay (like Banner) */}
+      <div className="absolute inset-0 bg-black/55" />
+      {/* Brand Tint Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/20" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6">
@@ -43,11 +45,10 @@ export default function PartnerHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-4xl md:text-6xl font-bold text-white mt-6 leading-tight"
+          className="text-3xl md:text-5xl font-bold text-white mt-6 leading-tight"
         >
-        
           <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-            Become a{" "}  Partner
+            Become a Partner
           </span>
         </motion.h1>
 
@@ -56,7 +57,7 @@ export default function PartnerHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-gray-200 mt-6 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
+          className="text-gray-100 mt-6 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
         >
           Join us as a partner to distribute premium products and unlock new
           growth opportunities.
@@ -91,7 +92,9 @@ export default function PartnerHero() {
             Home
           </Link>
           <span>/</span>
-          <span className="text-[#00e6ff] font-semibold">Become a Partner</span>
+          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent font-semibold">
+            Become a Partner
+          </span>
         </motion.div>
       </div>
     </section>

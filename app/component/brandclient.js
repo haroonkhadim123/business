@@ -61,7 +61,7 @@ export default function BrandsClient() {
                 transition={{ delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 relative border-2 border-transparent"
+                className="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 relative"
                 style={{
                   borderImageSlice: 1,
                   borderImageSource: "linear-gradient(to right, #00e6ff, #139aff)"
@@ -70,7 +70,7 @@ export default function BrandsClient() {
                 {/* Brand Name with Gradient */}
                 <h2 className="text-2xl font-bold text-gray-900">
                   {brand.brandname.split(' ').slice(0, -1).join(' ')}{' '}
-                  <span className="text-[#00e6ff]">
+                  <span className="text-black">
                     {brand.brandname.split(' ').slice(-1)}
                   </span>
                 </h2>

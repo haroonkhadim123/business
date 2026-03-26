@@ -57,7 +57,10 @@ export default function BenefitsSection() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-gray-900"
           >
-            Employee Benefits
+            Employee{" "}
+            <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+              Benefits
+            </span>
           </motion.h2>
 
           <motion.p
@@ -86,12 +89,28 @@ export default function BenefitsSection() {
                 viewport={{ once: true }}
                 className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group border border-gray-200"
               >
-                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-black/5 mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <Icon size={26} className="text-black" />
-                </div>
+                {/* Icon with brand gradient background */}
+          {/* Icon with brand gradient background (like WhyChooseUs) */}
+<div className="flex  mb-6">
+  <div className="bg-[#00e6ff]/10 p-4 rounded-full">
+    <Icon size={26} className="text-[#139aff]" />
+  </div>
+</div>
 
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {item.title}
+                {/* Title with brand gradient for keywords */}
+                <h3 className="text-xl font-semibold mb-3">
+                  {item.title.split(" ").map((word, i) => (
+                    i === 0 ? (
+                      <span
+                        key={i}
+                        className="text-black"
+                      >
+                        {word}{" "}
+                      </span>
+                    ) : (
+                      <span key={i}>{word} </span>
+                    )
+                  ))}
                 </h3>
 
                 <p className="text-gray-600 text-sm leading-relaxed">
