@@ -31,19 +31,21 @@ export async function POST(req) {
     });
 
     // Send email (use Resend default email to avoid errors)
-    await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: ["haroonkhadim971@gmail.com"],
-      subject: `New Message: ${subject}`,
-      html: `
-        <h3>New Contact Message</h3>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Phone:</b> ${phone}</p>
-        <p><b>Subject:</b> ${subject}</p>
-        <p><b>Message:</b> ${message}</p>
-      `,
-    });
+ // Send email
+ await resend.emails.send({
+  from: "Contact Form <info@hoorabgroup.com>",
+  to: ["info@hoorabgroup.com"],
+  subject: `New Message: ${subject}`,
+  html: `
+    <h3>New Contact Message</h3>
+    <p><b>Name:</b> ${name}</p>
+    <p><b>Email:</b> ${email}</p>
+    <p><b>Phone:</b> ${phone}</p>
+    <p><b>Subject:</b> ${subject}</p>
+    <p><b>Message:</b> ${message}</p>
+  `,
+});
+
 
     return NextResponse.json(
       {

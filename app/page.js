@@ -4,7 +4,7 @@
 import Link from "next/link";
 import Banner from "./component/Banner";
 import Image from "next/image";
-import { CheckCircle, Contact, Phone } from "lucide-react";
+import { CheckCircle, Contact, Phone,Mail } from "lucide-react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect } from "react";
 import ServicesSection from "./component/service";
@@ -145,22 +145,19 @@ useEffect(() => {
         className="flex items-center gap-6 mt-10"
       >
         <div className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] p-5 rounded-xl text-white text-lg shadow-lg">
-          <Phone />
+          <Mail />
         </div>
 
         <div>
-          <p className="text-gray-500">Call Our Corporate Desk</p>
+          <p className="text-gray-500">Mail Our Corporate Desk</p>
           <h3 className="text-xl font-bold text-gray-900">
-            +92 300 1234567
+            info@hoorabgroup.com
           </h3>
         </div>
       </motion.div>
 
-      {/* CEO Signature */}
-      <p className="mt-12 text-2xl font-serif italic text-[#139aff]">
-        Qandeel Faryad
-      </p>
-      <p className="text-gray-500 text-sm">Chief Executive Officer</p>
+   
+   
     </motion.div>
   </div>
 </section>
