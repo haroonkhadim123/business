@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function PartnerHero() {
   return (
     <section className="relative min-h-[75vh] md:h-[90vh] pt-24 md:pt-0 w-full flex items-center justify-center text-center overflow-hidden">
+
       {/* Background Image with Smooth Zoom */}
       <motion.div
         initial={{ scale: 1.2 }}
@@ -15,41 +16,41 @@ export default function PartnerHero() {
         className="absolute inset-0"
       >
         <Image
-          src="/partner-hero.jpg"
+          src="/partner-hero.jpg" // 🔁 Replace with your image
           alt="Become Our Partner"
           fill
           priority
-          className="object-cover brightness-90"
+          className="object-cover"
         />
       </motion.div>
 
-      {/* Dark Overlay (like Banner) */}
-      <div className="absolute inset-0 bg-black/55" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
+
       {/* Brand Tint Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/20 to-[#139aff]/20" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6">
+
         {/* Small Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="uppercase tracking-[6px] text-[#00e6ff] font-semibold"
+    className="uppercase tracking-[6px] font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
         >
           Join Our Network
         </motion.p>
 
-        {/* Main Heading with Brand Gradient on Last Words */}
-        <motion.h1
+        {/* Main Heading */}
+      <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-3xl md:text-5xl font-bold text-white mt-6 leading-tight"
+          className="text-3xl md:text-5xl font-bold mt-6 leading-tight text-white"
         >
-          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-            Become a Partner
-          </span>
+          Become a <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">Partner</span>
         </motion.h1>
 
         {/* Description */}
@@ -57,13 +58,12 @@ export default function PartnerHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-gray-100 mt-6 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
+          className="text-gray-200 mt-6 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
         >
-          Join us as a partner to distribute premium products and unlock new
-          growth opportunities.
+          Join us as a partner to distribute premium products and unlock new growth opportunities.
         </motion.p>
 
-        {/* CTA Button with Brand Gradient */}
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,6 +96,7 @@ export default function PartnerHero() {
             Become a Partner
           </span>
         </motion.div>
+
       </div>
     </section>
   );

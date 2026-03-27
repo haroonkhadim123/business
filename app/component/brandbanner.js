@@ -16,7 +16,7 @@ export default function BrandHero() {
         className="absolute inset-0"
       >
         <Image
-          src="/brandimage.jpg"   // 🔁 change to your image
+          src="/brandimage.jpg"   // 🔁 Replace with your brand image
           alt="Our Brands"
           fill
           priority
@@ -24,10 +24,11 @@ export default function BrandHero() {
         />
       </motion.div>
 
-      {/* Dark Overlay (like Swiper Banner) */}
-      <div className="absolute inset-0 bg-black/55" />
-      {/* Optional Brand Tint Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/20" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
+
+      {/* Brand Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/20 to-[#139aff]/20" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl px-6">
@@ -47,9 +48,9 @@ export default function BrandHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-3xl md:text-5xl font-bold mt-6 leading-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
+          className="text-3xl md:text-5xl font-bold mt-6 leading-tight text-white"
         >
-          Our Brands
+          Our <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">Brands</span>
         </motion.h1>
 
         {/* Description */}
@@ -57,13 +58,12 @@ export default function BrandHero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-gray-100 mt-6 text-lg leading-relaxed"
+          className="text-gray-200 mt-6 text-lg leading-relaxed max-w-3xl mx-auto"
         >
-          Discover the powerful brands we have built and nurtured —
-          each crafted with innovation, strategy, and a commitment to excellence.
+          Discover the powerful brands we have built and nurtured — each crafted with innovation, strategy, and a commitment to excellence.
         </motion.p>
 
-        {/* Breadcrumbs */}
+        {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function BrandHero() {
             Home
           </Link>
           <span>/</span>
-          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent font-semibold">
+          <span className="font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
             Brands
           </span>
         </motion.div>

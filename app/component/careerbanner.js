@@ -43,15 +43,13 @@ export default function CareerBanner() {
         </motion.p>
 
         {/* Heading with brand gradient */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+   <motion.h1
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 leading-snug text-white"
+          className="text-3xl md:text-5xl font-bold mt-6 leading-tight text-white"
         >
-          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-            Build Your Future With Us
-          </span>
+          Build Your Future <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">With Us</span>
         </motion.h1>
 
         {/* Description */}

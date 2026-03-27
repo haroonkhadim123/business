@@ -38,77 +38,95 @@ const slides = [
 
 export default function Banner() {
   return (
-    <Swiper
-      modules={[Autoplay, EffectFade]}
-      effect="fade"
-      fadeEffect={{ crossFade: true }}
-      autoplay={{ delay: 5000, disableOnInteraction: false }}
-      loop={true}
-      className="h-[75vh] md:h-[90vh]"
-    >
-      {slides.map((slide, index) => (
-        <SwiperSlide key={index} className="relative overflow-hidden">
-          {/* Background Zoom Animation */}
-          <motion.div
-            initial={{ scale: 1.2 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2 }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={slide.src}
-              alt={slide.title}
-              fill
-              className="object-cover"
-              priority={index === 0}
-            />
-          </motion.div>
+  <Swiper
+  modules={[Autoplay, EffectFade]}
+  effect="fade"
+  fadeEffect={{ crossFade: true }}
+  autoplay={{ delay: 5000, disableOnInteraction: false }}
+  loop={true}
+  className="h-[75vh] md:h-[90vh]"
+>
+  {slides.map((slide, index) => (
+    <SwiperSlide key={index} className="relative overflow-hidden">
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/55" />
+      {/* Background Zoom */}
+      <motion.div
+        initial={{ scale: 1.2 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={slide.src}
+          alt={slide.title}
+          fill
+          className="object-cover"
+          priority={index === 0}
+        />
+      </motion.div>
 
-          {/* Optional brand tint overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/15 to-[#139aff]/20" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
-          {/* Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <motion.h1
-              key={slide.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-3xl md:text-5xl font-bold mb-6 max-w-4xl leading-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
-            >
-              {slide.title}
-            </motion.h1>
+      {/* Brand Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#00e6ff]/20 to-[#139aff]/20" />
 
-            <motion.p
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-base md:text-xl text-gray-100 mb-8 max-w-2xl"
-            >
-              {slide.subtitle}
-            </motion.p>
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
 
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-            >
-              <Link
-                href={slide.link}
-                className="text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:scale-105 transition duration-300"
-                style={{
-                  background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
-                }}
+        {/* Heading */}
+        <motion.h1
+          key={slide.title}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl md:text-5xl font-bold mb-6 max-w-4xl leading-tight text-white"
+          style={{ textShadow: "0 4px 20px rgba(0,0,0,0.5)" }}
+        >
+          {slide.title.split(" ").map((word, i) =>
+            i >= Math.floor(slide.title.split(" ").length / 2) ? (
+              <span
+                key={i}
+                className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
               >
-                {slide.cta}
-              </Link>
-            </motion.div>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+                {word}{" "}
+              </span>
+            ) : (
+              <span key={i}>{word} </span>
+            )
+          )}
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-base md:text-xl text-gray-200 mb-8 max-w-2xl"
+        >
+          {slide.subtitle}
+        </motion.p>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          <Link
+            href={slide.link}
+            className="text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:scale-105 transition duration-300"
+            style={{
+              background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
+            }}
+          >
+            {slide.cta}
+          </Link>
+        </motion.div>
+
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
   );
 }

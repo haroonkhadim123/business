@@ -103,18 +103,20 @@ export default function ContactPage() {
     {/* Subtitle */}
     <motion.p
       variants={fadeUp}
-      className="uppercase tracking-[6px] font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
+       className="uppercase tracking-[6px] font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
     >
       Get in Touch
     </motion.p>
 
     {/* Main heading */}
     <motion.h1
-      variants={fadeUp}
-    className="text-3xl md:text-5xl font-bold mt-6 leading-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
-    >
-      Reach Out to HOORAB GROUP
-    </motion.h1>
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-3xl md:text-5xl font-bold mt-6 leading-tight text-white"
+        >
+          Reach Out to <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">HOORAB GROUP</span>
+        </motion.h1>
 
     {/* Description */}
     <motion.p
