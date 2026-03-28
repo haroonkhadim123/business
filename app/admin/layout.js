@@ -34,7 +34,8 @@ export default function AdminLayout({ children }) {
             <Menu size={26} />
           </button>
 
-         <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
+    <span className="font-semibold text-gray-800 dark:text-gray-100">
+                    <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
   <svg
     width="36"
     height="36"
@@ -66,10 +67,11 @@ export default function AdminLayout({ children }) {
     </span>
   </div>
 </Link>
+                  </span>
         </div>
 
         {/* Logout */}
-        <button className="flex items-center gap-2 text-sm font-medium text-red-500 hover:text-red-700 transition">
+        <button className="flex items-center gap-2 text-sm font-bold text-white bg-red-500 p-3 rounded-2xl  justify-center hover:bg-red-700 transition">
           <LogOut size={18} />
           <span className="hidden md:block">Logout</span>
         </button>

@@ -5,21 +5,30 @@ import { motion } from "framer-motion";
 import { FileText, Trash2 } from "lucide-react";
 import Link from "next/link";
 import toast from "react-hot-toast";
+ // ✅ adjust path if needed
 
 export default function ViewApplicationsPage() {
   const [applications, setApplications] = useState([]);
+  const [loading, setLoading] = useState(true); // ✅ loader state
 
   useEffect(() => {
     const fetchApplications = async () => {
-      const res = await fetch("/api/application", { cache: "no-store" });
-      const data = await res.json();
-      if (res.ok) setApplications(data.applyitem);
+      try {
+        const res = await fetch("/api/application", { cache: "no-store" });
+        const data = await res.json();
+        if (res.ok) setApplications(data.applyitem);
+      } catch (error) {
+        toast.error("Failed to fetch applications");
+      } finally {
+        setLoading(false); // ✅ stop loader
+      }
     };
     fetchApplications();
   }, []);
 
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this application?")) return;
+
     setApplications((prev) => prev.filter((app) => app._id !== id));
 
     try {
@@ -40,14 +49,20 @@ export default function ViewApplicationsPage() {
   return (
     <div className="p-3 md:p-10 md:mt-14 space-y-6 bg-gray-50 dark:bg-gray-900 min-h-screen">
       {/* Header */}
-      <h1 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-gray-100">
+      <h1 className="text-2xl w-full md:px-28 md:text-4xl font-bold text-gray-900 dark:text-gray-100">
         Applications
       </h1>
 
-      {/* Empty State */}
-      {applications.length === 0 ? (
-        <div className="text-center mt-16">
-          <p className="text-gray-500 dark:text-gray-400 text-lg">
+      {/* ✅ Loader / Empty / Data */}
+      {loading ? (
+        <div className="flex justify-center items-center h-60">
+           <div className="flex items-center justify-center ">
+      <div className="h-16 w-16 animate-spin rounded-full border-4 dark:border-t-white border-gray-500 border-gray-300 border-t-black" />
+    </div>
+        </div>
+      ) : applications.length === 0 ? (
+        <div className="text-center w-full mt-12">
+          <p className="text-gray-500 w-full whitespace-nowrap dark:text-gray-400 text-lg">
             No applications submitted yet.
           </p>
         </div>

@@ -7,7 +7,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import {
   AiOutlineHome,
   AiOutlineTeam,
-  AiOutlineShop,
+
   AiOutlineTag,
   AiOutlineSolution,
   AiOutlineMail,
@@ -28,7 +28,7 @@ export default function Navbar() {
     { name: "Home", href: "/", icon: <AiOutlineHome className="inline mr-2" /> },
     { name: "Brands", href: "/brand", icon: <AiOutlineTag className="inline mr-2" /> },
     { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
-    { name: "Businesses", href: "/admin", icon: <AiOutlineShop className="inline mr-2" /> },
+  
     {
       name: "Partner Opportunity",
       href: "/partner",

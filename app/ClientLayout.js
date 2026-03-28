@@ -26,7 +26,8 @@ export default function ClientLayout({ children }) {
     pathname === "/apply" ||
     pathname === "/planning" ||
     pathname === "/partner" ||
-    pathname === "/coporate" 
+    pathname === "/coporate" ||
+    pathname === "/privacy" 
   const showFooter = 
         pathname === "/" ||
     pathname === "/about" ||
@@ -37,7 +38,8 @@ export default function ClientLayout({ children }) {
     pathname === "/apply" ||
     pathname === "/planning" ||
     pathname === "/partner" ||
-    pathname === "/coporate" 
+    pathname === "/coporate" ||
+      pathname === "/privacy" 
   return (
     <>
       {showNavbar && <Navbar />}
