@@ -28,7 +28,7 @@ export default function Navbar() {
     { name: "Home", href: "/", icon: <AiOutlineHome className="inline mr-2" /> },
     { name: "Brands", href: "/brand", icon: <AiOutlineTag className="inline mr-2" /> },
     { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
-  
+
     {
       name: "Partner Opportunity",
       href: "/partner",
@@ -40,9 +40,8 @@ export default function Navbar() {
   return (
     <nav
       onBlur={() => setIsOpen(false)}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-white"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-white"
+        }`}
     >
       <div className="py-4 mx-auto px-5 sm:px-6 lg:px-10 flex justify-between items-center">
         <Link href="/" className="flex items-center flex-shrink-0 gap-2 md:gap-4">
@@ -118,9 +117,8 @@ export default function Navbar() {
 
       {/* Mobile Sidebar */}
       <div
-        className={`absolute top-0 min-h-screen left-0 z-[100] w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`absolute top-0 min-h-screen left-0 z-[100] w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#00e6ff]/20">
           <Link
