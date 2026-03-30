@@ -7,7 +7,6 @@ import { HiMenu, HiX } from "react-icons/hi";
 import {
   AiOutlineHome,
   AiOutlineTeam,
-
   AiOutlineTag,
   AiOutlineSolution,
   AiOutlineMail,
@@ -28,24 +27,20 @@ export default function Navbar() {
     { name: "Home", href: "/", icon: <AiOutlineHome className="inline mr-2" /> },
     { name: "Brands", href: "/brand", icon: <AiOutlineTag className="inline mr-2" /> },
     { name: "About Us", href: "/about", icon: <AiOutlineTeam className="inline mr-2" /> },
-
-    {
-      name: "Partner Opportunity",
-      href: "/partner",
-      icon: <AiOutlineLink className="inline mr-2" />,
-    },
+    { name: "Partner Opportunity", href: "/partner", icon: <AiOutlineLink className="inline mr-2" /> },
     { name: "Careers", href: "/career", icon: <AiOutlineSolution className="inline mr-2" /> },
   ];
 
   return (
     <nav
       onBlur={() => setIsOpen(false)}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-white"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-sm shadow-md" : "bg-white"
+      }`}
     >
       <div className="py-4 mx-auto px-5 sm:px-6 lg:px-10 flex justify-between items-center">
+        {/* Logo */}
         <Link href="/" className="flex items-center flex-shrink-0 gap-2 md:gap-4">
-          {/* SVG Icon */}
           <svg
             width="36"
             height="36"
@@ -67,7 +62,6 @@ export default function Navbar() {
             />
           </svg>
 
-          {/* Text */}
           <div className="flex flex-col leading-tight">
             <span className="text-2xl md:text-3xl font-black tracking-[-1px] text-black">
               HOORAB
@@ -79,7 +73,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-7 lg:gap-9">
+        <div className="hidden md:flex items-center gap-4 lg:gap-6">
           {links.map((link) => (
             <Link
               key={link.name}
@@ -91,6 +85,23 @@ export default function Navbar() {
             </Link>
           ))}
 
+          {/* Desktop Login Button */}
+          <Link
+            href="/login"
+            className="relative text-center px-4 py-2 rounded-lg font-semibold 
+            text-[#139aff] border border-[#139aff]/40 overflow-hidden
+            transition-all duration-300
+            before:absolute before:inset-0 before:bg-gradient-to-r 
+            before:from-[#00e6ff] before:to-[#139aff] 
+            before:opacity-0 hover:before:opacity-100 
+            before:transition before:duration-300"
+          >
+            <span className="relative z-10 hover:text-white transition-colors duration-300">
+              Login
+            </span>
+          </Link>
+
+          {/* Get in Touch */}
           <Link
             href="/contact"
             className="ml-2 text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 flex items-center shadow-sm hover:shadow"
@@ -117,8 +128,9 @@ export default function Navbar() {
 
       {/* Mobile Sidebar */}
       <div
-        className={`absolute top-0 min-h-screen left-0 z-[100] w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`absolute top-0 min-h-screen left-0 z-[100] w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#00e6ff]/20">
           <Link
@@ -126,7 +138,6 @@ export default function Navbar() {
             href="/"
             className="flex items-center flex-shrink-0 gap-2 md:gap-4"
           >
-            {/* SVG Icon */}
             <svg
               width="36"
               height="36"
@@ -148,7 +159,6 @@ export default function Navbar() {
               />
             </svg>
 
-            {/* Text */}
             <div className="flex flex-col leading-tight">
               <span className="text-2xl md:text-3xl font-black tracking-[-1px] text-black">
                 HOORAB
@@ -173,9 +183,27 @@ export default function Navbar() {
             </Link>
           ))}
 
+          {/* Mobile Login Button */}
+          <Link
+            href="/login"
+            onClick={() => setIsOpen(false)}
+            className="relative text-center px-4 py-3 rounded-lg font-semibold 
+            text-[#139aff] border border-[#139aff]/40 overflow-hidden
+            transition-all duration-300
+            before:absolute before:inset-0 before:bg-gradient-to-r 
+            before:from-[#00e6ff] before:to-[#139aff] 
+            before:opacity-0 hover:before:opacity-100 
+            before:transition before:duration-300"
+          >
+            <span className="relative z-10 hover:text-white transition-colors duration-300">
+              Login
+            </span>
+          </Link>
+
+          {/* Get in Touch */}
           <Link
             href="/contact"
-            className="mt-6 text-white font-semibold px-6 py-3 rounded-lg transition-all flex items-center justify-center text-base shadow-sm"
+            className=" text-white font-semibold px-6 py-3 rounded-lg transition-all flex items-center justify-center text-base shadow-sm"
             style={{
               background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
             }}
