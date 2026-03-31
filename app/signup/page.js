@@ -3,16 +3,43 @@
 import { useState } from "react";
 import { Mail, Lock } from "lucide-react";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import Loader from "../component/Loader";
 
 export default function SignUp() {
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(form);
+    setLoading(true);
+    try {
+      const response= await fetch('/api/usersignup/',{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(form)
+      })
+      const data=await response.json();
+      if(data.success){
+        toast.success("User signed up successfully!");
+        setForm({ email: "", password: "" });
+      }else{
+        toast.error(data.message || "Failed to sign up. Please try again.");
+      }
+      
+    } catch (error) {
+        console.error(error);
+        toast.error("Something went wrong. Please try again.");
+      
+    }
+    finally{
+      setLoading(false);
+    }
   };
 
   return (
@@ -71,15 +98,20 @@ export default function SignUp() {
           </div>
 
           {/* Button */}
-          <motion.button
-            whileHover={{ y: -1 }}
-            whileTap={{ scale: 0.98 }}
-            type="submit"
-            className="w-full py-3 rounded-lg text-white font-medium 
-            bg-[#139aff] hover:bg-[#0f8ae6] transition shadow-sm"
-          >
-            Sign Up
-          </motion.button>
+     <motion.button
+  whileHover={!loading ? { y: -1 } : {}}
+  whileTap={!loading ? { scale: 0.98 } : {}}
+  type="submit"
+  disabled={loading}
+  className={`w-full py-3 rounded-lg text-white font-medium transition shadow-sm
+  ${
+    loading
+      ? "bg-gray-400 cursor-not-allowed"
+      : "bg-gradient-to-r from-[#00e6ff] to-[#139aff] hover:from-[#139aff] hover:to-[#00e6ff]"
+  }`}
+>
+  {loading ? <Loader/> : "Sign Up"}
+</motion.button>
         </form>
 
         {/* Divider */}

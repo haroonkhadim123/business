@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Lock } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Login() {
@@ -9,6 +9,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,21 +55,31 @@ export default function Login() {
           </div>
 
           {/* Password */}
-          <div className="relative group">
-            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#00e6ff]" size={18} />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              value={form.password}
-              onChange={(e) =>
-                setForm({ ...form, password: e.target.value })
-              }
-              className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 
-              focus:outline-none focus:border-[#00e6ff] focus:ring-2 focus:ring-[#00e6ff]/20
-              placeholder:text-gray-400 text-gray-800 transition"
-            />
-          </div>
+    <div className="relative group">
+  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#00e6ff]" size={18} />
+
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Password"
+    required
+    value={form.password}
+    onChange={(e) =>
+      setForm({ ...form, password: e.target.value })
+    }
+    className="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 
+    focus:outline-none focus:border-[#00e6ff] focus:ring-2 focus:ring-[#00e6ff]/20
+    placeholder:text-gray-400 text-gray-800 transition"
+  />
+
+  {/* 👁 Eye Icon */}
+  <button
+    type="button"
+    onClick={() => setShowPassword(!showPassword)}
+    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#00e6ff]"
+  >
+    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+  </button>
+</div>
 
        
 

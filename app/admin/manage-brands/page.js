@@ -53,15 +53,11 @@ export default function ManageBrands() {
       </h1>
 
       {/* ✅ Loader */}
-      {loading ? (
-        <div className="flex justify-center items-center h-40">
-         <div className="flex justify-center items-center h-40">
-<div className="flex justify-center items-center h-60">
-    <div className="flex items-center justify-center ">
-      <div className="h-16 w-16 animate-spin rounded-full border-4 dark:border-t-white border-gray-500 border-gray-300 border-t-black" />
+       {loading ? (
+          <div className="flex justify-center items-center h-60 ">
+             <div className="flex items-center justify-center ">
+      <div className="h-16 w-16 animate-spin rounded-full border-4 dark:border-t-white dark:border-gray-500 border-gray-300 border-t-black" />
     </div>
-</div>
-</div>
         </div>
       ) : brands.length === 0 ? (
         /* ✅ No Data */
