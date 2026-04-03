@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
+import toast from "react-hot-toast";
 
 
 import {
@@ -18,7 +19,7 @@ import {
 } from "lucide-react";
 
 export default function AdminLayout({ children }) {
-  
+
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,10 +27,10 @@ export default function AdminLayout({ children }) {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900/40 antialiased">
-      
+
       {/* Top Navbar */}
       <header className="fixed top-0 left-0 right-0 p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm z-50 px-5 md:px-8 flex items-center justify-between">
-        
+
         <div className="flex items-center gap-5 md:gap-6">
           {/* Hamburger */}
           <button
@@ -39,51 +40,48 @@ export default function AdminLayout({ children }) {
             <Menu size={26} />
           </button>
 
-    <span className="font-semibold text-gray-800 dark:text-gray-100">
-                    <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
-  <svg
-    width="36"
-    height="36"
-    viewBox="0 0 128 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="md:w-10 md:h-10"
-  >
-    {/* Use currentColor for fill and stroke */}
-    <path
-      d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-      fill="currentColor"
-      stroke="currentColor"
-      strokeWidth="4"
-    />
-    <path
-      d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
-      fill="currentColor"
-      opacity="0.1"
-    />
-  </svg>
+          <span className="font-semibold text-gray-800 dark:text-gray-100">
+            <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 128 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="md:w-10 md:h-10"
+              >
+                {/* Use currentColor for fill and stroke */}
+                <path
+                  d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
+                  fill="currentColor"
+                  opacity="0.1"
+                />
+              </svg>
 
-  <div className="flex flex-col leading-tight">
-    <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
-      HOORAB
-    </span>
-    <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
-      Business Cooperative Solutions
-    </span>
-  </div>
-</Link>
-                  </span>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
+                  HOORAB
+                </span>
+                <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
+                  Business Cooperative Solutions
+                </span>
+              </div>
+            </Link>
+          </span>
         </div>
 
-        {/* Logout */}
-     import { signOut } from "next-auth/react";
-import { LogOut } from "lucide-react";
-import toast from "react-hot-toast";
 
-<button
+
+    <button
   onClick={() => {
-    toast.success("Logged out successfully!"); // Show toast
-    signOut({ callbackUrl: "/" }); // Then redirect
+    toast.success("Logged out successfully!");
+    signOut({ callbackUrl: "/" });
   }}
   className="flex items-center gap-2 text-sm font-bold text-white bg-red-500 p-3 rounded-2xl justify-center hover:bg-red-700 transition"
 >
@@ -114,42 +112,42 @@ import toast from "react-hot-toast";
               className="fixed top-0 left-0 z-50 w-72 h-full bg-white dark:bg-gray-800 shadow-2xl"
             >
               <div className="flex flex-col h-full">
-                
+
                 {/* Top */}
                 <div className="p-5 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
                   <span className="font-semibold text-gray-800 dark:text-gray-100">
                     <Link href="/admin" className="flex dark:text-white items-center gap-3 md:gap-4">
-  <svg
-    width="36"
-    height="36"
-    viewBox="0 0 128 100"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="md:w-10 md:h-10"
-  >
-    {/* Use currentColor for fill and stroke */}
-    <path
-      d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-      fill="currentColor"
-      stroke="currentColor"
-      strokeWidth="4"
-    />
-    <path
-      d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
-      fill="currentColor"
-      opacity="0.1"
-    />
-  </svg>
+                      <svg
+                        width="36"
+                        height="36"
+                        viewBox="0 0 128 100"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="md:w-10 md:h-10"
+                      >
+                        {/* Use currentColor for fill and stroke */}
+                        <path
+                          d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
+                          fill="currentColor"
+                          opacity="0.1"
+                        />
+                      </svg>
 
-  <div className="flex flex-col leading-tight">
-    <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
-      HOORAB
-    </span>
-    <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
-      Business Cooperative Solutions
-    </span>
-  </div>
-</Link>
+                      <div className="flex flex-col leading-tight">
+                        <span className="text-xl md:text-2xl font-black tracking-tight text-black dark:text-white">
+                          HOORAB
+                        </span>
+                        <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide">
+                          Business Cooperative Solutions
+                        </span>
+                      </div>
+                    </Link>
                   </span>
                   <button onClick={closeSidebar} className="text-gray-700 dark:text-gray-200 hover:text-black dark:hover:text-white transition">
                     <X size={26} />
