@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
+
+
 import {
   LayoutDashboard,
   Briefcase,
@@ -15,6 +18,8 @@ import {
 } from "lucide-react";
 
 export default function AdminLayout({ children }) {
+  
+  const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeSidebar = () => setIsOpen(false);
@@ -71,10 +76,20 @@ export default function AdminLayout({ children }) {
         </div>
 
         {/* Logout */}
-        <button className="flex items-center gap-2 text-sm font-bold text-white bg-red-500 p-3 rounded-2xl  justify-center hover:bg-red-700 transition">
-          <LogOut size={18} />
-          <span className="hidden md:block">Logout</span>
-        </button>
+     import { signOut } from "next-auth/react";
+import { LogOut } from "lucide-react";
+import toast from "react-hot-toast";
+
+<button
+  onClick={() => {
+    toast.success("Logged out successfully!"); // Show toast
+    signOut({ callbackUrl: "/" }); // Then redirect
+  }}
+  className="flex items-center gap-2 text-sm font-bold text-white bg-red-500 p-3 rounded-2xl justify-center hover:bg-red-700 transition"
+>
+  <LogOut size={18} />
+  <span className="hidden md:block">Logout</span>
+</button>
       </header>
 
       {/* Sidebar */}

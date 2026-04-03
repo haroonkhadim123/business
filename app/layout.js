@@ -2,6 +2,7 @@ import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
 import { Toaster } from "react-hot-toast";
+import SessionWrapper from "./component/SessionWrapper";
 
 
 /* ================= PREMIUM CORPORATE FONTS ================= */
@@ -73,11 +74,13 @@ export default function RootLayout({ children }) {
         className={`${poppins.variable} ${inter.variable} antialiased bg-[#0B1120] text-white`}
       >
         {/* ================= NAVBAR ================= */}
+        <SessionWrapper>
   
 <ClientLayout>
         {/* ================= PAGE CONTENT ================= */}
         {children}
         </ClientLayout>
+        </SessionWrapper>
         
 
 

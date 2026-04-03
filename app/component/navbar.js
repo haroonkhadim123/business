@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 import { HiMenu, HiX } from "react-icons/hi";
 import {
@@ -14,6 +15,7 @@ import {
 } from "react-icons/ai";
 
 export default function Navbar() {
+    const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -86,7 +88,7 @@ export default function Navbar() {
           ))}
 
           {/* Desktop Login Button */}
-          <Link
+         {!session && ( <Link
             href="/login"
             className="relative text-center px-4 py-2 rounded-lg font-semibold 
             text-[#139aff] border border-[#139aff]/40 overflow-hidden
@@ -99,7 +101,21 @@ export default function Navbar() {
             <span className="relative z-10 hover:text-white transition-colors duration-300">
               Login
             </span>
-          </Link>
+          </Link>)}
+             {session && ( <span
+           
+            className="relative text-center px-4 py-2 rounded-lg font-semibold 
+            text-[#139aff] border border-[#139aff]/40 overflow-hidden
+            transition-all duration-300
+            before:absolute before:inset-0 before:bg-gradient-to-r 
+            before:from-[#00e6ff] before:to-[#139aff] 
+            before:opacity-0 hover:before:opacity-100 cursor-pointer
+            before:transition before:duration-300"
+          >
+            <span  onClick={() => signOut({ callbackUrl: "/" })} className="relative z-10 hover:text-white transition-colors duration-300">
+              Logout
+            </span>
+          </span>)}
 
           {/* Get in Touch */}
           <Link
@@ -184,7 +200,7 @@ export default function Navbar() {
           ))}
 
           {/* Mobile Login Button */}
-          <Link
+       {!session && (   <Link
             href="/login"
             onClick={() => setIsOpen(false)}
             className="relative text-center px-4 py-3 rounded-lg font-semibold 
@@ -198,7 +214,22 @@ export default function Navbar() {
             <span className="relative z-10 hover:text-white transition-colors duration-300">
               Login
             </span>
-          </Link>
+          </Link>)}
+          {session && (   <span
+        
+            onClick={() => setIsOpen(false)}
+            className="relative text-center px-4 py-3 rounded-lg font-semibold 
+            text-[#139aff] border border-[#139aff]/40 overflow-hidden
+            transition-all duration-300
+            before:absolute before:inset-0 before:bg-gradient-to-r 
+            before:from-[#00e6ff] before:to-[#139aff] 
+            before:opacity-0 hover:before:opacity-100 
+            before:transition before:duration-300"
+          >
+            <span className="relative z-10 hover:text-white transition-colors duration-300">
+              Login
+            </span>
+          </span>)}
 
           {/* Get in Touch */}
           <Link
