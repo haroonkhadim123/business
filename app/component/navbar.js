@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 import { HiMenu, HiX } from "react-icons/hi";
 import {
@@ -13,6 +13,7 @@ import {
   AiOutlineMail,
   AiOutlineLink,
 } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 export default function Navbar() {
     const { data: session, status } = useSession();
