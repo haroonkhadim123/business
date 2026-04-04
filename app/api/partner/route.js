@@ -21,17 +21,7 @@ export async function POST(req) {
       );
     }
 
-    // Check for duplicate email (better message)
-    const existingPartner = await Partner.findOne({ email: body.email });
-    if (existingPartner) {
-      return NextResponse.json(
-        { 
-          success: false, 
-          message: "A partner application with this email already exists." 
-        },
-        { status: 409 }   // 409 Conflict is more appropriate
-      );
-    }
+  
 
     // Create new partner application
     const partner = await Partner.create(body);

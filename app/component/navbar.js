@@ -103,25 +103,20 @@ export default function Navbar() {
               Login
             </span>
           </Link>)}
-          {session && (
-  <span
-    onClick={async () => {
-      toast.success("Logged out successfully!");
-      await signOut();
-    }}
-    className="relative text-center px-4 py-2 rounded-lg font-semibold 
-               text-[#139aff] border border-[#139aff]/40 overflow-hidden
-               transition-all duration-300 cursor-pointer
-               before:absolute before:inset-0 before:bg-gradient-to-r 
-               before:from-[#00e6ff] before:to-[#139aff] 
-               before:opacity-0 hover:before:opacity-100 
-               before:transition before:duration-300"
-  >
-    <span className="relative z-10 hover:text-white transition-colors duration-300">
-      Logout
-    </span>
-  </span>
-)}
+  {session && ( <Link
+            href="/admin"
+            className="relative text-center px-4 py-2 rounded-lg font-semibold 
+            text-[#139aff] border border-[#139aff]/40 overflow-hidden
+            transition-all duration-300
+            before:absolute before:inset-0 before:bg-gradient-to-r 
+            before:from-[#00e6ff] before:to-[#139aff] 
+            before:opacity-0 hover:before:opacity-100 
+            before:transition before:duration-300"
+          >
+            <span className="relative z-10 hover:text-white transition-colors duration-300">
+              Admin
+            </span>
+          </Link>)}
 
           {/* Get in Touch */}
           <Link
@@ -221,27 +216,21 @@ export default function Navbar() {
               Login
             </span>
           </Link>)}
-        {session && (
-  <span
-    onClick={async () => {
-      toast.success("Logged out successfully!");
-      setIsOpen(false);
-      await signOut();           // ← Important: await signOut
-    }}
-    className="relative text-center px-4 py-3 rounded-lg font-semibold 
-               text-[#139aff] border border-[#139aff]/40 overflow-hidden
-               transition-all duration-300 cursor-pointer
-               before:absolute before:inset-0 before:bg-gradient-to-r 
-               before:from-[#00e6ff] before:to-[#139aff] 
-               before:opacity-0 hover:before:opacity-100 
-               before:transition before:duration-300"
-  >
-    <span className="relative z-10 hover:text-white transition-colors duration-300">
-      Logout
-    </span>
-  </span>
-)}
-
+     {!session && (   <Link
+            href="/admin"
+            onClick={() => setIsOpen(false)}
+            className="relative text-center px-4 py-3 rounded-lg font-semibold 
+            text-[#139aff] border border-[#139aff]/40 overflow-hidden
+            transition-all duration-300
+            before:absolute before:inset-0 before:bg-gradient-to-r 
+            before:from-[#00e6ff] before:to-[#139aff] 
+            before:opacity-0 hover:before:opacity-100 
+            before:transition before:duration-300"
+          >
+            <span className="relative z-10 hover:text-white transition-colors duration-300">
+              Admin
+            </span>
+          </Link>)}
           {/* Get in Touch */}
           <Link
             href="/contact"
