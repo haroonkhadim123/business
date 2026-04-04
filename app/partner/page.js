@@ -111,7 +111,7 @@ export default function PartnerPage() {
     <>
       <PartnerHero />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 text-gray-800 py-20 px-4 md:px-6">
+      <div id="application-form" className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 text-gray-800 py-20 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
 
           {/* Hero + Cards remain unchanged */}
@@ -122,7 +122,7 @@ export default function PartnerPage() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden max-w-4xl mx-auto"
           >
-            <div className="px-4 py-12 md:px-16">
+            <div  className="px-4 py-12 md:px-16">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                 Partnership Application
               </h2>

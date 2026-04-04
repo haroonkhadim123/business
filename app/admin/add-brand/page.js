@@ -97,7 +97,7 @@ export default function AddBrand() {
               className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none transition
                 ${errors.brandname 
                   ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
+                  : "border-gray-300 text-gray-600 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
             />
           </div>
           {errors.brandname && <p className="text-red-500 text-sm">{errors.brandname}</p>}
@@ -118,7 +118,7 @@ export default function AddBrand() {
               className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none transition
                 ${errors.website 
                   ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
+                  : "border-gray-300 text-gray-600 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
             />
           </div>
           {errors.website && <p className="text-red-500 text-sm">{errors.website}</p>}
@@ -139,7 +139,7 @@ export default function AddBrand() {
               className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none transition resize-none
                 ${errors.description 
                   ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
+                  : "border-gray-300 text-gray-600 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
             />
           </div>
           {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}

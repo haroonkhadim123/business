@@ -1,10 +1,9 @@
 export const metadata = {
-  title: "HOORAB GROUP | Login",
-  description: "Sign in to your HOORAB GROUP account to access your dashboard, applications, and partnership portal.",
-  keywords: ["login", "sign in", "hoorab group", "partner portal", "career portal"],
-  robots: "noindex, nofollow",   // Optional: Prevent search engines from indexing login page
+  title: "HOORAB GROUP | About Us ",
+  description:
+    "Learn about our corporate consultancy firm, our mission, vision, and leadership team with 25+ years of experience.",
 };
 
-export default function LoginLayout({ children }) {
+export default function AboutLayout({ children }) {
   return children;
 }

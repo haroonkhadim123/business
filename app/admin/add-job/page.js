@@ -90,7 +90,7 @@ export default function AddJob() {
               className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none transition
                 ${errors.jobtitle 
                   ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
+                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 text-gray-600 dark:bg-gray-700 dark:text-gray-100"}`}
             />
           </div>
           {errors.jobtitle && <p className="text-red-500 text-sm">{errors.jobtitle}</p>}
@@ -113,7 +113,7 @@ export default function AddJob() {
               className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none transition
                 ${errors.joblocation 
                   ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
+                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 text-gray-600 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
             />
           </div>
           {errors.joblocation && <p className="text-red-500 text-sm">{errors.joblocation}</p>}
@@ -131,13 +131,13 @@ export default function AddJob() {
               className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none transition appearance-none
                 ${errors.jobtype 
                   ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
+                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 text-gray-600 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
             >
-              <option value="" className="dark:bg-gray-700 dark:text-gray-100">Select Type</option>
-              <option value="Full Time" className="dark:bg-gray-700 dark:text-gray-100">Full Time</option>
-              <option value="Part Time" className="dark:bg-gray-700 dark:text-gray-100">Part Time</option>
-              <option value="Remote" className="dark:bg-gray-700 dark:text-gray-100">Remote</option>
-              <option value="Internship" className="dark:bg-gray-700 dark:text-gray-100">Internship</option>
+              <option value="" className="dark:bg-gray-700 dark:text-gray-100 text-gray-600">Select Type</option>
+              <option value="Full Time" className="dark:bg-gray-700 dark:text-gray-100 text-gray-600">Full Time</option>
+              <option value="Part Time" className="dark:bg-gray-700 dark:text-gray-100 text-gray-600">Part Time</option>
+              <option value="Remote" className="dark:bg-gray-700 dark:text-gray-100 text-gray-600">Remote</option>
+              <option value="Internship" className="dark:bg-gray-700 dark:text-gray-100 text-gray-600">Internship</option>
             </select>
           </div>
           {errors.jobtype && <p className="text-red-500 text-sm">{errors.jobtype}</p>}
@@ -157,7 +157,7 @@ export default function AddJob() {
               className={`w-full pl-10 pr-4 py-3 border rounded-xl focus:outline-none transition resize-none
                 ${errors.jobdescription 
                   ? "border-red-500 focus:ring-red-500" 
-                  : "border-gray-300 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
+                  : "border-gray-300 dark:border-gray-600 text-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-gray-100"}`}
             />
           </div>
           {errors.jobdescription && <p className="text-red-500 text-sm">{errors.jobdescription}</p>}
