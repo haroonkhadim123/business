@@ -33,8 +33,8 @@ export async function POST(req) {
     // ================= Send Admin Notification Email =================
     try {
       await resend.emails.send({
-       from: "Contact Form <onboarding@resend.dev>", // Your verified sender
-        to: "haroonkhadim971@gmail.com",                  // Admin email
+      from: "Contact Form <info@hoorabgroup.com>",
+  to: ["info@hoorabgroup.com"],                 
         subject: 'New Job Application Received ',
         html: `
           <h2>New Application Received</h2>

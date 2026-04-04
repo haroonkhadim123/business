@@ -81,7 +81,7 @@ export default function ApplyPage() {
       const res = await fetch("https://api.cloudinary.com/v1_1/dyr4xwyhf/raw/upload", { method: "POST", body: formData });
       const data = await res.json();
       setform((prev) => ({ ...prev, cv: data.secure_url }));
-      toast.success("File uploaded successfully!");
+    
     } catch {
       toast.error("CV upload failed");
     } finally {
@@ -157,12 +157,100 @@ export default function ApplyPage() {
           </motion.div>
 
           {/* CV Upload */}
-          <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="border border-dashed border-[#139aff]/40 rounded-xl p-6 text-center transition">
-            <Upload className="mx-auto text-[#139aff] mb-2" size={28} />
-            <p className="text-sm text-[#139aff] mb-2">Upload your Resume (PDF, DOC, DOCX)</p>
-            <input type="file" accept=".pdf,.doc,.docx" onChange={handleCVUpload} className="w-full text-gray-700" />
-            {error.cv && <p className="text-red-500 text-sm mt-1">{error.cv}</p>}
-          </motion.div>
+         {/* Improved Professional CV Upload */}
+{/* Improved Professional CV Upload with Faster View */}
+{/* Professional CV Upload - Mobile Friendly + Fast View */}
+<motion.div 
+  variants={fadeUp} 
+  whileHover={{ scale: 1.02 }} 
+  className="border-2 border-dashed border-gray-300 hover:border-[#00e6ff] rounded-2xl p-6 md:p-8 text-center transition-all duration-300 bg-gray-50"
+>
+  <div className="flex flex-col items-center">
+    {/* Icon */}
+    <div className="w-16 h-16 bg-[#00e6ff]/10 rounded-2xl flex items-center justify-center mb-5">
+      <Upload className="text-[#00e6ff]" size={34} />
+    </div>
+
+    <h3 className="text-xl font-semibold text-gray-900 mb-1">Attach Your Resume</h3>
+    <p className="text-gray-500 text-sm mb-6 px-4">
+      PDF, DOC, or DOCX files only • Maximum 10MB
+    </p>
+
+    {!form.cv ? (
+      // Upload Button
+      <label className="cursor-pointer w-full max-w-xs">
+        <div className="px-8 py-4 bg-white hover:bg-[#00e6ff]/5 border-2 border-gray-300 hover:border-[#00e6ff] rounded-2xl font-medium text-gray-700 flex items-center justify-center gap-3 transition-all shadow-sm">
+          <Upload size={22} />
+          <span>Choose Resume File</span>
+        </div>
+        <input 
+          type="file" 
+          accept=".pdf,.doc,.docx" 
+          onChange={handleCVUpload} 
+          className="hidden" 
+        />
+      </label>
+    ) : (
+      // After Upload - Mobile Optimized
+      <div className="w-full max-w-md mx-auto bg-white border border-green-200 rounded-2xl p-5 shadow-sm">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+          {/* File Icon */}
+          <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            <FileText className="text-green-600" size={26} />
+          </div>
+
+          {/* File Name */}
+          <div className="flex-1 min-w-0 text-center sm:text-left">
+            <p className="font-medium text-gray-800 truncate">
+              {decodeURIComponent(form.cv.split('/').pop().split('?')[0])}
+            </p>
+            <p className="text-green-600 text-sm font-medium">✓ Uploaded successfully</p>
+          </div>
+
+          {/* Buttons - Stacked on mobile, side by side on larger screens */}
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <button
+              type="button"
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = form.cv;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+              className="px-6 py-3 text-sm bg-[#00e6ff] hover:bg-[#00d4e6] text-white font-medium rounded-xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95"
+            >
+              👁 View CV
+            </button>
+            
+            <button
+              type="button"
+              onClick={() => {
+                setform((prev) => ({ ...prev, cv: "" }));
+                seterror((prev) => ({ ...prev, cv: "" }));
+              }}
+              className="px-6 py-3 text-sm border border-red-200 text-red-600 hover:bg-red-50 rounded-xl transition active:scale-95"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Error */}
+    {error.cv && (
+      <p className="text-red-500 text-sm mt-4 font-medium px-4">{error.cv}</p>
+    )}
+
+    {/* Uploading */}
+    {uploading && (
+      <p className="text-[#00e6ff] text-sm mt-3 animate-pulse">Uploading your file...</p>
+    )}
+  </div>
+</motion.div>
 
           {/* Submit */}
           <motion.button type="submit" disabled={uploading || loader} whileHover={{ scale: uploading || loader ? 1 : 1.05 }} whileTap={{ scale: uploading || loader ? 1 : 0.95 }}
