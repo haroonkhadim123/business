@@ -97,11 +97,9 @@ const handleCVUpload = async (e) => {
 
   setUploading(true);
   const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", "unsigned_upload");
-  formData.append("folder", "nextjs_products");
-  // ✅ Add resource_type as 'raw' for PDFs and documents
-  formData.append("resource_type", "raw");
+formData.append("file", file);
+formData.append("upload_preset", "resume_upload");  // Preset already has folder
+formData.append("resource_type", "raw");
 
   try {
     const res = await fetch("https://api.cloudinary.com/v1_1/dyr4xwyhf/raw/upload", { 
