@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useSession, signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+
+
 
 import {
   FaFileAlt,
@@ -28,17 +28,15 @@ const CartesianGrid = dynamic(() => import("recharts").then(m => m.CartesianGrid
 const Legend = dynamic(() => import("recharts").then(m => m.Legend), { ssr: false });
 
 export default function DashboardPage() {
-  const router= useRouter();
-    const { data: session, status } = useSession();
+
+  
 
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-   useEffect(() => {
- if (!session) router.push("/");
-  }, []);
+
 
   const stats = [
     {

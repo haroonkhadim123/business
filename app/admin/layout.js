@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 
 import {
@@ -19,11 +21,15 @@ import {
 } from "lucide-react";
 
 export default function AdminLayout({ children }) {
+  const router=useRouter();
 
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeSidebar = () => setIsOpen(false);
+     useEffect(() => {
+ if (!session) router.push("/");
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900/40 antialiased">

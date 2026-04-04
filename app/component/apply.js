@@ -78,7 +78,7 @@ export default function ApplyPage() {
     formData.append("folder", "nextjs_products");
 
     try {
-      const res = await fetch("https://api.cloudinary.com/v1_1/dyr4xwyhf/raw/upload", { method: "POST", body: formData });
+      const res = await fetch("https://api.cloudinary.com/v1_1/dyr4xwyhf/auto/upload", { method: "POST", body: formData });
       const data = await res.json();
       setform((prev) => ({ ...prev, cv: data.secure_url }));
     
@@ -209,21 +209,14 @@ export default function ApplyPage() {
 
           {/* Buttons - Stacked on mobile, side by side on larger screens */}
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <button
-              type="button"
-              onClick={() => {
-                const link = document.createElement("a");
-                link.href = form.cv;
-                link.target = "_blank";
-                link.rel = "noopener noreferrer";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
+            <Link
+              href={form.cv}
+          target="_blank"
+          rel="noopener noreferrer"
               className="px-6 py-3 text-sm bg-[#00e6ff] hover:bg-[#00d4e6] text-white font-medium rounded-xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95"
             >
               👁 View CV
-            </button>
+            </Link>
             
             <button
               type="button"

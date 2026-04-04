@@ -103,6 +103,11 @@ export default function Navbar() {
             </span>
           </Link>)}
              {session && ( <span
+                 onClick={() => {
+              toast.success("Logged out successfully!");
+              signOut();
+           
+            }}
            
             className="relative text-center px-4 py-2 rounded-lg font-semibold 
             text-[#139aff] border border-[#139aff]/40 overflow-hidden
@@ -112,7 +117,7 @@ export default function Navbar() {
             before:opacity-0 hover:before:opacity-100 cursor-pointer
             before:transition before:duration-300"
           >
-            <span  onClick={() => signOut({ callbackUrl: "/" })} className="relative z-10 hover:text-white transition-colors duration-300">
+            <span   className="relative z-10 hover:text-white transition-colors duration-300">
               Logout
             </span>
           </span>)}
@@ -217,7 +222,11 @@ export default function Navbar() {
           </Link>)}
           {session && (   <span
         
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              toast.success("Logged out successfully!");
+              signOut();
+              setIsOpen(false);
+            }}
             className="relative text-center px-4 py-3 rounded-lg font-semibold 
             text-[#139aff] border border-[#139aff]/40 overflow-hidden
             transition-all duration-300
@@ -227,7 +236,7 @@ export default function Navbar() {
             before:transition before:duration-300"
           >
             <span className="relative z-10 hover:text-white transition-colors duration-300">
-              Login
+              Logout
             </span>
           </span>)}
 
