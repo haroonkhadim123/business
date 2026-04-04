@@ -84,42 +84,56 @@ const handlesubmit = async (e) => {
   }
   // No finally block needed here
 };
-  const handleCVUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
+const handleCVUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  const allowedExtensions = ["pdf", "doc", "docx"];
+  const fileExt = file.name.split(".").pop().toLowerCase();
+  if (!allowedExtensions.includes(fileExt)) {
+    seterror((prev) => ({ ...prev, cv: "Only PDF, DOC or DOCX files are allowed." }));
+    return;
+  } else seterror((prev) => ({ ...prev, cv: "" }));
+
+  setUploading(true);
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "unsigned_upload");
+  formData.append("folder", "nextjs_products");
+  // ✅ Add resource_type as 'raw' for PDFs and documents
+  formData.append("resource_type", "raw");
+
+  try {
+    const res = await fetch("https://api.cloudinary.com/v1_1/dyr4xwyhf/raw/upload", { 
+      method: "POST", 
+      body: formData 
+    });
     
-    const allowedExtensions = ["pdf", "doc", "docx"];
-    const fileExt = file.name.split(".").pop().toLowerCase();
-    if (!allowedExtensions.includes(fileExt)) {
-      seterror((prev) => ({ ...prev, cv: "Only PDF, DOC or DOCX files are allowed." }));
-      return;
-    } else seterror((prev) => ({ ...prev, cv: "" }));
-
-    setUploading(true);
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", "unsigned_upload");
-    formData.append("folder", "nextjs_products");
-
-
-    try {
-      const res = await fetch("https://api.cloudinary.com/v1_1/dyr4xwyhf/auto/upload", { 
-        method: "POST", 
-        body: formData 
-      });
-      const data = await res.json();
-      setform((prev) => ({ 
-        ...prev, 
-        cv: data.secure_url,
-        originalFileName: file.name // Store the original file name
-      }));
-    } catch {
-      toast.error("CV upload failed");
-    } finally {
-      setUploading(false);
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.error("Cloudinary Error:", errorData);
+      throw new Error(errorData.error?.message || "Upload failed");
     }
-  };
-
+    
+    const data = await res.json();
+    
+    // ✅ For raw uploads, the URL format is different
+    const secureUrl = data.secure_url;
+    
+    setform((prev) => ({ 
+      ...prev, 
+      cv: secureUrl,
+      originalFileName: file.name
+    }));
+    
+    toast.success("CV uploaded successfully!");
+  } catch (error) {
+    console.error("Upload error:", error);
+    toast.error("CV upload failed. Please try again.");
+  } finally {
+    setUploading(false);
+  }
+};
   const pageFade = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.8 } } };
   const cardAnimation = { hidden: { opacity: 0, y: 60, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease: "easeOut" } } };
   const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.15 } } };
