@@ -216,7 +216,7 @@ export default function Navbar() {
               Login
             </span>
           </Link>)}
-     {!session && (   <Link
+     {session && (   <Link
             href="/admin"
             onClick={() => setIsOpen(false)}
             className="relative text-center px-4 py-3 rounded-lg font-semibold 
