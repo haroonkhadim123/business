@@ -85,10 +85,10 @@ export default function AdminLayout({ children }) {
 
 
     <button
-  onClick={() => {
-    toast.success("Logged out successfully!");
-    signOut({ callbackUrl: "/" });
-  }}
+    onClick={async () => {
+      toast.success("Logged out successfully!");
+      await signOut({callbackUrl:'/'});
+    }}
   className="flex items-center gap-2 text-sm font-bold text-white bg-red-500 p-3 rounded-2xl justify-center hover:bg-red-700 transition"
 >
   <LogOut size={18} />
