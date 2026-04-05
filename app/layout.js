@@ -20,11 +20,11 @@ const inter = Inter({
 
 /* ================= SEO METADATA ================= */
 export const metadata = {
-  metadataBase: new URL("https://maingroup.co.uk"),
+  metadataBase: new URL("https://hoorabgroup.com"),
 
   title: {
     default: "HOORAB Group | Retail & Wholesale Excellence",
-    template: "%s | Main Group",
+    template: "%s | HOORAB Group",
   },
 
   description:
@@ -35,11 +35,11 @@ export const metadata = {
     "Wholesale Distribution UK",
     "B2B Supply Chain",
     "Private Label Sourcing",
-    "Main Group UK",
+    "HOORAB Group UK",
     "Retail & Wholesale Europe",
   ],
 
-  authors: [{ name: "Main Group" }],
+  authors: [{ name: "HOORAB Group" }],
   creator: "HOORAB Group",
   publisher: "HOORAB Group",
 
@@ -47,8 +47,8 @@ export const metadata = {
     title: "HOORAB GROUP | Retail & Wholesale Excellence",
     description:
       "Strategic retail and wholesale operations across international markets.",
-    url: "https://maingroup.co.uk",
-    siteName: "Main Group",
+    url: "https://hoorabgroup.com",
+    siteName: "HOORAB Group",
     locale: "en_GB",
     type: "website",
   },
@@ -91,12 +91,12 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Main Group",
-              url: "https://maingroup.co.uk",
-              logo: "https://maingroup.co.uk/logo.png",
+              name: "HOORAB Group",
+              url: "https://hoorabgroup.com",
+              logo: "https://hoorabgroup.com/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
-                email: "hello@maingroup.co.uk",
+                email: "hello@hoorabgroup.com",
                 contactType: "customer service",
               },
             }),
@@ -107,4 +107,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

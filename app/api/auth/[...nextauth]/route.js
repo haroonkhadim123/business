@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import usersignup from "@/models/usersignup";
+import UserSignup from "@/models/usersignup";
 import bcrypt from "bcryptjs";
-import dbConnect from "@/lib/db"; // your Mongoose connection
+import connectDB from "@/lib/db";
 
 export const authOptions = {
   providers: [
@@ -12,45 +12,46 @@ export const authOptions = {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
-
       async authorize(credentials) {
-        await dbConnect(); // connect to MongoDB
-
-        // find user by email
-        const user = await usersignup.findOne({ email: credentials.email }).select("+password");
+        await connectDB();
+        
+        const user = await UserSignup.findOne({ email: credentials.email }).select("+password");
+        
         if (!user) return null;
-
-        // verify password
+        
         const isValid = await bcrypt.compare(credentials.password, user.password);
+        
         if (!isValid) return null;
-
+        
         return {
           id: user._id.toString(),
           name: user.name,
           email: user.email,
-          role: user.role  
+          role: user.role,
         };
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.role = user.role;
+      if (user) {
+        token.role = user.role;
+        token.id = user.id;
+      }
       return token;
     },
-
     async session({ session, token }) {
-      session.user.role = token.role;
+      if (session.user) {
+        session.user.role = token.role;
+        session.user.id = token.id;
+      }
       return session;
-    }
+    },
   },
-
   session: { strategy: "jwt" },
-
   pages: {
-    signIn: "/login", // custom login page
+    signIn: "/login",
   },
-
   secret: process.env.NEXTAUTH_SECRET,
 };
 

@@ -195,7 +195,7 @@ export default function AboutPage() {
     </div>
   </div>
 </section>
-<WhyChooseUs/>
+
 
       {/* ================= TIMELINE ================= */}
       <section className="py-24 bg-[#0B1120]">
@@ -232,6 +232,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <WhyChooseUs/>
 
       {/* ================= TEAM SECTION ================= */}
       <LeadershipSection/>

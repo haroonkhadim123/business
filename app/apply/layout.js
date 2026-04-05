@@ -14,19 +14,17 @@ export const metadata = {
     "HOORAB GROUP Application Form",
   ],
   alternates: {
-    canonical: "http://localhost:3000/apply", // replace with live domain later
+    canonical: "https://hoorabgroup.com/apply",
   },
   openGraph: {
     title: "HOORAB GROUP | Apply Now",
     description:
       "Submit your application to join HOORAB GROUP's team in Saudi Arabia. Explore career opportunities and grow your professional journey.",
-    url: "http://localhost:3000/apply",
+    url: "https://hoorabgroup.com/apply",
     siteName: "HOORAB GROUP",
-    
     locale: "en_SA",
     type: "website",
   },
-
 };
 
 // ----------------------
