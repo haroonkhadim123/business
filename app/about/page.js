@@ -207,9 +207,9 @@ export default function AboutPage() {
           <div className="space-y-12 relative before:absolute before:inset-0 before:left-1/2 before:w-1 before:bg-[#00e6ff]/30 before:-translate-x-1/2 max-md:before:hidden">
             {[
               { year: "2024", text: "Company Founded" },
-              { year: "2010", text: "Expanded to National Operations" },
-              { year: "2018", text: "Reached 10000+ Corporate Clients" },
-              { year: "2024", text: "Awarded Business Excellence Recognition" },
+              { year: "2024", text: "Expanded to National Operations" },
+              { year: "2025", text: "Reached 10000+ Corporate Clients" },
+              { year: "2026", text: "Awarded Business Excellence Recognition" },
             ].map((item, i) => (
               <motion.div
                 key={i}
