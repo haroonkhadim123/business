@@ -7,13 +7,13 @@ import {
   animate,
 } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Briefcase, Radio, Users, Star } from "lucide-react";
+import { Package, Handshake, Boxes, Users } from "lucide-react";
 
 const stats = [
-  { number: 199, label: "SUCCESSFUL PROJECTS", icon: <Briefcase className="w-10 h-10 text-[#00e6ff]" /> },
-  { number: 300, label: "MEDIA ACTIVITIES", icon: <Radio className="w-10 h-10 text-[#00e6ff]" /> },
-  { number: 699, label: "SKILLED EXPERTS", icon: <Users className="w-10 h-10 text-[#00e6ff]" /> },
-  { number: 120, label: "HAPPY CLIENTS", icon: <Star className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 50000, label: "ORDERS FULFILLED", icon: <Package className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 100, label: "BUSINESS PARTNERS", icon: <Handshake className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 20, label: "PRODUCT LINES SUPPORTED", icon: <Boxes className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 10000, label: "SATISFIED CUSTOMERS", icon: <Users className="w-10 h-10 text-[#00e6ff]" /> },
 ];
 
 function Counter({ value }) {

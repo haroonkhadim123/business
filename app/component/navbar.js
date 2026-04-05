@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
 import { HiMenu, HiX } from "react-icons/hi";
@@ -16,7 +17,8 @@ import {
 import toast from "react-hot-toast";
 
 export default function Navbar() {
-    const { data: session, status } = useSession();
+  const { data: session, status } = useSession();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -33,6 +35,11 @@ export default function Navbar() {
     { name: "Partner Opportunity", href: "/partner", icon: <AiOutlineLink className="inline mr-2" /> },
     { name: "Careers", href: "/career", icon: <AiOutlineSolution className="inline mr-2" /> },
   ];
+
+  const isActive = (href) => {
+    if (href === "/") return pathname === href;
+    return pathname.startsWith(href);
+  };
 
   return (
     <nav
@@ -81,7 +88,12 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-gray-800 hover:text-[#139aff] font-medium transition-colors duration-200 flex items-center text-base"
+              className={`font-medium transition-colors duration-200 flex items-center text-base
+                ${isActive(link.href) 
+                  ? "text-[#139aff] font-bold" 
+                  : "text-gray-800 hover:text-[#139aff]"
+                }
+              `}
             >
               {link.icon}
               {link.name}
@@ -89,39 +101,48 @@ export default function Navbar() {
           ))}
 
           {/* Desktop Login Button */}
-         {!session && ( <Link
-            href="/login"
-            className="relative text-center px-4 py-2 rounded-lg font-semibold 
-            text-[#139aff] border border-[#139aff]/40 overflow-hidden
-            transition-all duration-300
-            before:absolute before:inset-0 before:bg-gradient-to-r 
-            before:from-[#00e6ff] before:to-[#139aff] 
-            before:opacity-0 hover:before:opacity-100 
-            before:transition before:duration-300"
-          >
-            <span className="relative z-10 hover:text-white transition-colors duration-300">
-              Login
-            </span>
-          </Link>)}
-  {session && ( <Link
-            href="/admin"
-            className="relative text-center px-4 py-2 rounded-lg font-semibold 
-            text-[#139aff] border border-[#139aff]/40 overflow-hidden
-            transition-all duration-300
-            before:absolute before:inset-0 before:bg-gradient-to-r 
-            before:from-[#00e6ff] before:to-[#139aff] 
-            before:opacity-0 hover:before:opacity-100 
-            before:transition before:duration-300"
-          >
-            <span className="relative z-10 hover:text-white transition-colors duration-300">
-              Admin
-            </span>
-          </Link>)}
+          {!session && (
+            <Link
+              href="/login"
+              className={`relative text-center px-4 py-2 rounded-lg font-semibold 
+                border border-[#139aff]/40 overflow-hidden transition-all duration-300
+                before:absolute before:inset-0 before:bg-gradient-to-r 
+                before:from-[#00e6ff] before:to-[#139aff] 
+                before:opacity-0 hover:before:opacity-100 
+                before:transition before:duration-300
+                ${isActive("/login") ? "before:opacity-100 text-white" : "text-[#139aff]"}
+              `}
+            >
+              <span className="relative z-10 hover:text-white transition-colors duration-300">
+                Login
+              </span>
+            </Link>
+          )}
+          
+          {session && (
+            <Link
+              href="/admin"
+              className={`relative text-center px-4 py-2 rounded-lg font-semibold 
+                border border-[#139aff]/40 overflow-hidden transition-all duration-300
+                before:absolute before:inset-0 before:bg-gradient-to-r 
+                before:from-[#00e6ff] before:to-[#139aff] 
+                before:opacity-0 hover:before:opacity-100 
+                before:transition before:duration-300
+                ${isActive("/admin") ? "before:opacity-100 text-white" : "text-[#139aff]"}
+              `}
+            >
+              <span className="relative z-10 hover:text-white transition-colors duration-300">
+                Admin
+              </span>
+            </Link>
+          )}
 
           {/* Get in Touch */}
           <Link
             href="/contact"
-            className="ml-2 text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 flex items-center shadow-sm hover:shadow"
+            className={`ml-2 text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 flex items-center shadow-sm hover:shadow
+              ${isActive("/contact") ? "ring-2 ring-white ring-offset-2 ring-offset-[#139aff]" : ""}
+            `}
             style={{
               background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
             }}
@@ -192,7 +213,12 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-gray-800 hover:text-[#139aff] font-medium text-lg transition-colors flex items-center"
+              className={`font-medium text-lg transition-colors flex items-center
+                ${isActive(link.href) 
+                  ? "text-[#139aff] font-bold" 
+                  : "text-gray-800 hover:text-[#139aff]"
+                }
+              `}
               onClick={() => setIsOpen(false)}
             >
               {link.icon}
@@ -201,40 +227,50 @@ export default function Navbar() {
           ))}
 
           {/* Mobile Login Button */}
-       {!session && (   <Link
-            href="/login"
-            onClick={() => setIsOpen(false)}
-            className="relative text-center px-4 py-3 rounded-lg font-semibold 
-            text-[#139aff] border border-[#139aff]/40 overflow-hidden
-            transition-all duration-300
-            before:absolute before:inset-0 before:bg-gradient-to-r 
-            before:from-[#00e6ff] before:to-[#139aff] 
-            before:opacity-0 hover:before:opacity-100 
-            before:transition before:duration-300"
-          >
-            <span className="relative z-10 hover:text-white transition-colors duration-300">
-              Login
-            </span>
-          </Link>)}
-     {session && (   <Link
-            href="/admin"
-            onClick={() => setIsOpen(false)}
-            className="relative text-center px-4 py-3 rounded-lg font-semibold 
-            text-[#139aff] border border-[#139aff]/40 overflow-hidden
-            transition-all duration-300
-            before:absolute before:inset-0 before:bg-gradient-to-r 
-            before:from-[#00e6ff] before:to-[#139aff] 
-            before:opacity-0 hover:before:opacity-100 
-            before:transition before:duration-300"
-          >
-            <span className="relative z-10 hover:text-white transition-colors duration-300">
-              Admin
-            </span>
-          </Link>)}
+          {!session && (
+            <Link
+              href="/login"
+              onClick={() => setIsOpen(false)}
+              className={`relative text-center px-4 py-3 rounded-lg font-semibold 
+                border border-[#139aff]/40 overflow-hidden transition-all duration-300
+                before:absolute before:inset-0 before:bg-gradient-to-r 
+                before:from-[#00e6ff] before:to-[#139aff] 
+                before:opacity-0 hover:before:opacity-100 
+                before:transition before:duration-300
+                ${isActive("/login") ? "before:opacity-100 text-white" : "text-[#139aff]"}
+              `}
+            >
+              <span className="relative z-10 hover:text-white transition-colors duration-300">
+                Login
+              </span>
+            </Link>
+          )}
+          
+          {session && (
+            <Link
+              href="/admin"
+              onClick={() => setIsOpen(false)}
+              className={`relative text-center px-4 py-3 rounded-lg font-semibold 
+                border border-[#139aff]/40 overflow-hidden transition-all duration-300
+                before:absolute before:inset-0 before:bg-gradient-to-r 
+                before:from-[#00e6ff] before:to-[#139aff] 
+                before:opacity-0 hover:before:opacity-100 
+                before:transition before:duration-300
+                ${isActive("/admin") ? "before:opacity-100 text-white" : "text-[#139aff]"}
+              `}
+            >
+              <span className="relative z-10 hover:text-white transition-colors duration-300">
+                Admin
+              </span>
+            </Link>
+          )}
+          
           {/* Get in Touch */}
           <Link
             href="/contact"
-            className=" text-white font-semibold px-6 py-3 rounded-lg transition-all flex items-center justify-center text-base shadow-sm"
+            className={`text-white font-semibold px-6 py-3 rounded-lg transition-all flex items-center justify-center text-base shadow-sm
+              ${isActive("/contact") ? "ring-2 ring-white ring-offset-2 ring-offset-[#139aff]" : ""}
+            `}
             style={{
               background: "linear-gradient(90deg, #00e6ff 0%, #139aff 100%)",
             }}

@@ -10,6 +10,9 @@ import StatsSection from "../component/stat";
 import Aboutbanner from "../component/aboutbanner";
 import CallToAction from "../component/work";
 import { Target, Eye } from "lucide-react";
+import ServicesSection from "../component/service";
+import WhyChooseUs from "../component/choose";
+import LeadershipSection from "../component/leaders";
 
 
 export default function AboutPage() {
@@ -47,7 +50,7 @@ export default function AboutPage() {
       <main className="bg-[#0B1120] text-white overflow-hidden">
 
         {/* ================= COMPANY INTRO ================= */}
-     <section className="py-24 md:py-32 bg-white text-gray-900">
+ <section className="py-24 md:py-32 bg-white text-gray-900">
   <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
     
     {/* Image */}
@@ -60,7 +63,7 @@ export default function AboutPage() {
     >
       <Image
         src="/about-company.jpg"
-        alt="Our team collaborating in a modern office"
+        alt="HOORAB GROUP retail and wholesale solutions"
         width={600}
         height={500}
         className="object-cover w-full h-[520px]"
@@ -81,42 +84,40 @@ export default function AboutPage() {
         About Our Company
       </p>
 
-      {/* Heading with gradient underline */}
-   <h2 className="text-4xl md:text-5xl font-bold mt-2 leading-tight text-gray-900">
-  Building Strong Corporate Foundations{' '}
-  <span className="text-[#00e6ff]">Since 2000</span>
-</h2>
+      {/* Heading with gradient */}
+      <h2 className="text-4xl md:text-5xl font-bold mt-2 leading-tight text-gray-900">
+        HOORAB GROUP{' '}
+        <span className="text-[#00e6ff]">Growing Business</span>
+      </h2>
 
       {/* Paragraphs */}
       <p className="text-gray-700 mt-8 leading-relaxed text-lg">
-        We are a <span className="font-semibold text-[#139aff]">leading corporate consultancy firm</span> helping businesses
-        achieve sustainable growth, operational excellence, and long-term success. With over 25 years of experience,
-        we deliver strategic planning, financial advisory, and innovative transformation solutions.
+        HOORAB GROUP is a growing business company focused on providing reliable <span className="font-semibold text-[#139aff]">retail, wholesale, sourcing, and distribution solutions</span> across diverse markets. We work with a strong commitment to quality, professionalism, and long-term business relationships.
       </p>
 
       <p className="text-gray-700 mt-6 leading-relaxed text-lg">
-        Our commitment is to empower organizations with <span className="font-semibold text-[#00e6ff]">clarity, efficiency,</span> 
-        and a lasting competitive advantage.
+        Our goal is to connect businesses with dependable products, efficient supply solutions, and trusted commercial support that helps them grow with confidence in competitive markets.
       </p>
 
-      {/* Decorative Icon or line */}
-      <div className="mt-8 w-24 h-1 rounded-full bg-gradient-to-r from-[#00e6ff] to-[#139aff] mx-auto"></div>
+      {/* Decorative line */}
+      <div className="mt-8 w-24 h-1 rounded-full bg-gradient-to-r from-[#00e6ff] to-[#139aff]"></div>
     </motion.div>
   </div>
 </section>
+<ServicesSection/>
 
       {/* ================= MISSION & VISION ================= */}
-     <section className="py-24 bg-[#0B1120]">
+  <section className="py-24 bg-[#0B1120]">
   <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12">
     {[
       {
         title: "Our Mission",
-        desc: "To deliver innovative and strategic business solutions that enable our clients to grow, compete, and lead in dynamic markets.",
+        desc: "To provide reliable retail and wholesale solutions that support business growth through quality products, dependable service, and strong commercial relationships.",
         icon: Target,
       },
       {
         title: "Our Vision",
-        desc: "To become a globally recognized consultancy firm known for integrity, excellence, and sustainable business transformation.",
+        desc: "To become a trusted name in retail, wholesale, sourcing, and distribution by building long-term partnerships and delivering excellence across every area of our business.",
         icon: Eye,
       },
     ].map((item, i) => {
@@ -194,6 +195,7 @@ export default function AboutPage() {
     </div>
   </div>
 </section>
+<WhyChooseUs/>
 
       {/* ================= TIMELINE ================= */}
       <section className="py-24 bg-[#0B1120]">
@@ -204,9 +206,9 @@ export default function AboutPage() {
 
           <div className="space-y-12 relative before:absolute before:inset-0 before:left-1/2 before:w-1 before:bg-[#00e6ff]/30 before:-translate-x-1/2 max-md:before:hidden">
             {[
-              { year: "2000", text: "Company Founded" },
+              { year: "2024", text: "Company Founded" },
               { year: "2010", text: "Expanded to National Operations" },
-              { year: "2018", text: "Reached 100+ Corporate Clients" },
+              { year: "2018", text: "Reached 10000+ Corporate Clients" },
               { year: "2024", text: "Awarded Business Excellence Recognition" },
             ].map((item, i) => (
               <motion.div
@@ -232,39 +234,7 @@ export default function AboutPage() {
       </section>
 
       {/* ================= TEAM SECTION ================= */}
-      <section className="py-24 bg-white text-gray-900">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-      <h2 className="text-4xl md:text-5xl font-bold mb-16 leading-tight text-gray-900">
-  Meet Our <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"> Leadership</span>
-</h2>
-
-          <div className="grid md:grid-cols-3 gap-12">
-            {teamMembers.map((member, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                viewport={{ once: true }}
-                className="bg-gray-50 p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
-              >
-                <div className="relative mx-auto w-48 h-48 rounded-full overflow-hidden border-4 border-gray-200 shadow-md">
-                  <Image
-                    src={member.img}
-                    alt={`${member.name} - ${member.role}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h3 className="mt-8 text-2xl font-bold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-                  {member.name}
-                </h3>
-                <p className="text-gray-600 mt-2 text-lg">{member.role}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <LeadershipSection/>
         {/* ================= STATS & CTA ================= */}
         <StatsSection />
         <CallToAction />

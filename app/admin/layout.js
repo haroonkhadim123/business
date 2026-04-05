@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
 
 import {
   LayoutDashboard,
@@ -21,15 +21,16 @@ import {
 } from "lucide-react";
 
 export default function AdminLayout({ children }) {
-  const router=useRouter();
-
+  const router = useRouter();
   const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeSidebar = () => setIsOpen(false);
-     useEffect(() => {
- if (!session) router.push("/");
-  }, []);
+  
+  useEffect(() => {
+    if(status==='loading') return;
+    if (!session) router.push("/");
+  }, [session, status, router]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900/40 antialiased">
@@ -56,7 +57,6 @@ export default function AdminLayout({ children }) {
                 xmlns="http://www.w3.org/2000/svg"
                 className="md:w-10 md:h-10"
               >
-                {/* Use currentColor for fill and stroke */}
                 <path
                   d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
                   fill="currentColor"
@@ -82,18 +82,16 @@ export default function AdminLayout({ children }) {
           </span>
         </div>
 
-
-
-    <button
-    onClick={async () => {
-      toast.success("Logged out successfully!");
-      await signOut({callbackUrl:'/'});
-    }}
-  className="flex items-center gap-2 text-sm font-bold text-white bg-red-500 p-3 rounded-2xl justify-center hover:bg-red-700 transition"
->
-  <LogOut size={18} />
-  <span className="hidden md:block">Logout</span>
-</button>
+        <button
+          onClick={async () => {
+            toast.success("Logged out successfully!");
+            await signOut({ callbackUrl: '/' });
+          }}
+          className="flex items-center gap-2 text-sm font-bold text-white bg-red-500 p-3 rounded-2xl justify-center hover:bg-red-700 transition"
+        >
+          <LogOut size={18} />
+          <span className="hidden md:block">Logout</span>
+        </button>
       </header>
 
       {/* Sidebar */}
@@ -131,7 +129,6 @@ export default function AdminLayout({ children }) {
                         xmlns="http://www.w3.org/2000/svg"
                         className="md:w-10 md:h-10"
                       >
-                        {/* Use currentColor for fill and stroke */}
                         <path
                           d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
                           fill="currentColor"
@@ -177,6 +174,8 @@ export default function AdminLayout({ children }) {
 }
 
 function SidebarLinks({ closeSidebar }) {
+  const pathname = usePathname();
+  
   const links = [
     { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
     { href: "/admin/add-job", label: "Add Job", icon: PlusCircle },
@@ -186,19 +185,34 @@ function SidebarLinks({ closeSidebar }) {
     { href: "/admin/view-application", label: "View Applications", icon: View },
   ];
 
+  const isActive = (href) => {
+    if (href === "/admin") return pathname === href;
+    return pathname.startsWith(href);
+  };
+
   return (
     <nav className="space-y-2">
-      {links.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          onClick={closeSidebar}
-          className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white transition-all duration-200"
-        >
-          <item.icon size={20} strokeWidth={1.8} />
-          <span>{item.label}</span>
-        </Link>
-      ))}
+      {links.map((item) => {
+        const Icon = item.icon;
+        const active = isActive(item.href);
+        
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={closeSidebar}
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
+              ${active 
+                ? "bg-gradient-to-r from-[#00e6ff]/10 to-[#139aff]/10 text-[#139aff] font-semibold border-l-4 border-[#139aff]" 
+                : "text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-black dark:hover:text-white"
+              }
+            `}
+          >
+            <Icon size={20} strokeWidth={1.8} className={active ? "text-[#139aff]" : ""} />
+            <span className={active ? "font-semibold" : ""}>{item.label}</span>
+          </Link>
+        );
+      })}
     </nav>
   );
 }

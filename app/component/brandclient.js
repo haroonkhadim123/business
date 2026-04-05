@@ -52,7 +52,11 @@ export default function BrandsClient() {
         ) : brands.length === 0 ? (
           <p className="text-gray-500 mt-16">No brands available</p>
         ) : (
-          <div className="grid md:grid-cols-3 gap-10 mt-16">
+          <div className={`grid gap-10 mt-16 ${
+            brands.length === 1 
+              ? "flex justify-center items-center" 
+              : "md:grid-cols-2 lg:grid-cols-3"
+          }`}>
             {brands.map((brand, index) => (
               <motion.div
                 key={brand._id}
@@ -61,7 +65,9 @@ export default function BrandsClient() {
                 transition={{ delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 relative"
+                className={`bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 relative ${
+                  brands.length === 1 ? "w-full max-w-md mx-auto" : ""
+                }`}
                 style={{
                   borderImageSlice: 1,
                   borderImageSource: "linear-gradient(to right, #00e6ff, #139aff)"

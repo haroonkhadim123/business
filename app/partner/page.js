@@ -8,8 +8,10 @@ import Link from "next/link";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Loader from "../component/Loader";
+import { useRouter } from "next/navigation";
 
 export default function PartnerPage() {
+  const router = useRouter();
   const [form, setform] = useState({
     companyName: '',
     contactPerson: '',
@@ -37,75 +39,71 @@ export default function PartnerPage() {
     }));
   };
 
-  const handlesubmit = async (e) => {
-    e.preventDefault();
+const handlesubmit = async (e) => {
+  e.preventDefault();
 
-    let newErrors = {};
+  let newErrors = {};
 
-    // Validation for ALL fields (now including City, Branches, Website)
-    if (!form.companyName.trim()) newErrors.companyName = "Company name is required.";
-    if (!form.contactPerson.trim()) newErrors.contactPerson = "Contact person is required.";
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
-    if (!form.email.trim()) newErrors.email = "Business email is required.";
-    else if (!emailRegex.test(form.email.trim())) newErrors.email = "Please enter a valid email address.";
+  // Validation for ALL fields
+  if (!form.companyName.trim()) newErrors.companyName = "Company name is required.";
+  if (!form.contactPerson.trim()) newErrors.contactPerson = "Contact person is required.";
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+  if (!form.email.trim()) newErrors.email = "Business email is required.";
+  else if (!emailRegex.test(form.email.trim())) newErrors.email = "Please enter a valid email address.";
 
-    if (!form.phone || form.phone.length < 6) newErrors.phone = "Valid phone number is required.";
-    
-    if (!form.country.trim()) newErrors.country = "Country is required.";
-    if (!form.city.trim()) newErrors.city = "City is required.";                    // ← Added
-    if (!form.brand) newErrors.brand = "Please select a brand.";
-    if (!form.businessType) newErrors.businessType = "Please select business type.";
-    
-    if (!form.branches || form.branches === "") newErrors.branches = "Number of branches is required.";  // ← Added
-    else if (isNaN(form.branches) || Number(form.branches) < 0) 
-      newErrors.branches = "Please enter a valid number of branches.";
+  if (!form.phone || form.phone.length < 6) newErrors.phone = "Valid phone number is required.";
+  
+  if (!form.country.trim()) newErrors.country = "Country is required.";
+  if (!form.city.trim()) newErrors.city = "City is required.";
+  if (!form.brand) newErrors.brand = "Please select a brand.";
+  if (!form.businessType) newErrors.businessType = "Please select business type.";
+  
+  if (!form.branches || form.branches === "") newErrors.branches = "Number of branches is required.";
+  else if (isNaN(form.branches) || Number(form.branches) < 0) 
+    newErrors.branches = "Please enter a valid number of branches.";
 
-    if (!form.website.trim()) newErrors.website = "Website or social media link is required.";  // ← Added
-    else if (!form.website.startsWith("http")) 
-      newErrors.website = "Please enter a valid website URL (starting with http/https).";
+  if (!form.website.trim()) newErrors.website = "Website or social media link is required.";
+  else if (!form.website.startsWith("http")) 
+    newErrors.website = "Please enter a valid website URL (starting with http/https).";
 
-    if (!form.partnershipType) newErrors.partnershipType = "Please select partnership type.";
+  if (!form.partnershipType) newErrors.partnershipType = "Please select partnership type.";
 
-    if (!form.introduction.trim()) newErrors.introduction = "Business introduction is required.";
-    else if (form.introduction.trim().length < 20) 
-      newErrors.introduction = "Introduction must be at least 20 characters long.";
+  if (!form.introduction.trim()) newErrors.introduction = "Business introduction is required.";
+  else if (form.introduction.trim().length < 30) 
+    newErrors.introduction = "Introduction must be at least 30 characters long.";
 
-    if (!form.isConfirmed) newErrors.isConfirmed = "You must confirm the declaration.";
+  if (!form.isConfirmed) newErrors.isConfirmed = "You must confirm the declaration.";
 
-    seterror(newErrors);
+  seterror(newErrors);
 
-    if (Object.keys(newErrors).length > 0) return;
+  if (Object.keys(newErrors).length > 0) return;
 
-    setloader(true);
+  setloader(true);
 
-    try {
-      const res = await fetch("/api/partner", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+  try {
+    const res = await fetch("/api/partner", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (data.success) {
-        toast.success("Partnership application submitted successfully!");
-
-        setform({
-          companyName: "", contactPerson: "", email: "", phone: "", country: "", city: "",
-          brand: "", businessType: "", branches: "", website: "", partnershipType: "",
-          introduction: "", isConfirmed: false,
-        });
-        seterror({});
-      } else {
-        toast.error(data.message || "Something went wrong");
-      }
-    } catch (err) {
-      toast.error("Failed to submit application. Please try again.");
-    } finally {
-      setloader(false);
+     if (data.error) {
+      toast.error("Error in submitting your application. Please try again.");
+      setloader(false); // Only stop loader on error
+    } else {
+      // ✅ Redirect to success page WITHOUT clearing form
+      // The component will unmount, so no need to clear form here
+      router.push("/successapplication");
+      return; // ✅ IMPORTANT: Stop further execution
     }
-  };
+  } catch (err) {
+    toast.error("Failed to submit application. Please try again.");
+    setloader(false);
+  }
+};
 
   return (
     <>

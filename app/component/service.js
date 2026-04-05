@@ -2,37 +2,37 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, ClipboardCheck, Settings } from "lucide-react";
+import { Package, Truck, Globe } from "lucide-react";
 import Link from "next/link";
 
 const services = [
   {
-    title: "Corporate Strategy",
-    desc: "We help organizations define long-term vision, strategic direction, and sustainable competitive advantage.",
-    icon: <Briefcase className="w-8 h-8" />,
-    Link: "/coporate",
+    title: "Wholesale Supply Solutions",
+    desc: "Delivering dependable bulk supply services with competitive pricing, consistent quality, and efficient product availability for retailers, resellers, and commercial partners.",
+    icon: <Package className="w-8 h-8" />,
+    Link: "/wholesale-supply",
   },
   {
-    title: "Business Planning",
-    desc: "Comprehensive business plans designed to drive measurable growth and operational excellence.",
-    icon: <ClipboardCheck className="w-8 h-8" />,
-    Link: "/planning",
+    title: "Retail Distribution Services",
+    desc: "Supporting business growth through reliable distribution channels, smooth market delivery, and strategic product placement across retail networks.",
+    icon: <Truck className="w-8 h-8" />,
+    Link: "/retail-distribution",
   },
   {
-    title: "Process Optimization",
-    desc: "Improving efficiency, reducing costs, and transforming operations through modern methodologies.",
-    icon: <Settings className="w-8 h-8" />,
-    Link: "/process",
+    title: "Sourcing & Trading Solutions",
+    desc: "Connecting businesses with trusted suppliers, quality products, and profitable trading opportunities to ensure long-term value and operational success.",
+    icon: <Globe className="w-8 h-8" />,
+    Link: "/sourcing-trading",
   },
 ];
 
 export default function ServicesSection() {
- const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="relative bg-[#f8fdff] py-28 overflow-hidden hide-scrollbar">
       {/* Background Text */}
-      <h1 className="absolute top-10 left-1/2 -translate-x-1/2 text-[120px] font-bold text-[#139aff] opacity-10 select-none">
+      <h1 className="absolute top-10 left-1/2 -translate-x-1/2 text-[70px] md:text-[120px] font-bold text-[#139aff] opacity-10 select-none">
         Services
       </h1>
 
@@ -51,7 +51,7 @@ export default function ServicesSection() {
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mt-4">
             High Quality{" "}
             <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-              Corporate Solutions
+              Wholesale & Retail Solutions
             </span>
           </h2>
         </motion.div>

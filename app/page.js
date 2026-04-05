@@ -92,73 +92,72 @@ useEffect(() => {
       </motion.div>
     </motion.div>
 
-    {/* RIGHT SIDE CONTENT */}
-    <motion.div
-      initial={{ opacity: 0, x: 80 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-    >
-      <p className="uppercase tracking-widest text-[#139aff] font-semibold">
-        About Our Company
-      </p>
+   {/* RIGHT SIDE CONTENT */}
+<motion.div
+  initial={{ opacity: 0, x: 80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+>
+  <p className="uppercase tracking-widest text-[#139aff] font-semibold">
+    Why Choose Us
+  </p>
 
-      <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mt-4">
-        Delivering Strategic Solutions for{" "}
-        <span className="text-[#139aff]">Corporate Growth</span>
-      </h2>
+  <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mt-4">
+    Driving Growth Through{" "}
+    <span className="text-[#139aff]">Retail & Wholesale Excellence</span>
+  </h2>
 
-      <p className="text-gray-600 mt-6 leading-relaxed">
-        We are a trusted corporate consultancy firm dedicated to helping
-        businesses grow, innovate, and lead in competitive markets. Our expert
-        team provides strategic planning, operational excellence, and
-        sustainable growth solutions.
-      </p>
+  <p className="text-gray-600 mt-6 leading-relaxed">
+    We are a trusted business company specializing in retail and wholesale solutions across diverse markets. Our focus is on delivering quality products, reliable supply, and strong business partnerships that help our clients grow and succeed in competitive industries.
+  </p>
 
-      {/* Features List */}
-      <div className="mt-8 space-y-4">
-        {[
-          "24/7 Professional Support",
-          "Experienced Corporate Advisors",
-          "Innovative Business Strategies",
-        ].map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3"
-          >
-            <div className="w-3 h-3 bg-[#00e6ff] rounded-full shadow-sm"></div>
-            <p className="text-gray-700">{item}</p>
-          </motion.div>
-        ))}
-      </div>
+  <p className="text-gray-600 mt-4 leading-relaxed">
+    With a commitment to professionalism, consistency, and customer satisfaction, we support businesses with efficient distribution, dependable service, and tailored commercial solutions designed for long-term success.
+  </p>
 
-      {/* Call Box */}
+  {/* Features List */}
+  <div className="mt-8 space-y-4">
+    {[
+      "Trusted Retail & Wholesale Partner",
+      "Reliable Product Supply & Distribution",
+      "Professional Customer Support",
+      "Strong Business Network & Market Reach",
+    ].map((item, index) => (
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
+        key={index}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.2 }}
         viewport={{ once: true }}
-        className="flex items-center gap-6 mt-10"
+        className="flex items-center gap-3"
       >
-        <div className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] p-5 rounded-xl text-white text-lg shadow-lg">
-          <Mail />
-        </div>
-
-        <div>
-          <p className="text-gray-500">Mail Our Corporate Desk</p>
-          <h3 className="text-xl font-bold text-gray-900">
-            info@hoorabgroup.com
-          </h3>
-        </div>
+        <div className="w-3 h-3 bg-[#00e6ff] rounded-full shadow-sm"></div>
+        <p className="text-gray-700">{item}</p>
       </motion.div>
+    ))}
+  </div>
 
-   
-   
-    </motion.div>
+  {/* Call Box */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.8 }}
+    viewport={{ once: true }}
+    className="flex items-center gap-6 mt-10"
+  >
+    <div className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] p-5 rounded-xl text-white text-lg shadow-lg">
+      <Mail />
+    </div>
+
+    <div>
+      <p className="text-gray-500">Contact Our Business Desk</p>
+      <h3 className="text-xl font-bold text-gray-900">
+        info@hoorabgroup.com
+      </h3>
+    </div>
+  </motion.div>
+</motion.div>
   </div>
 </section>
   

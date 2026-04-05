@@ -22,11 +22,11 @@ export default function ClientLayout({ children }) {
     pathname === "/brand" ||
     pathname === "/contact" ||
     pathname === "/career" ||
-    pathname === "/process" ||
+   pathname === "/sourcing-trading" ||
     pathname === "/apply" ||
-    pathname === "/planning" ||
+    pathname === "/retail-distribution" ||
     pathname === "/partner" ||
-    pathname === "/coporate" ||
+     pathname === "/wholesale-supply" ||
     pathname === "/privacy" 
   const showFooter = 
         pathname === "/" ||
@@ -34,11 +34,11 @@ export default function ClientLayout({ children }) {
     pathname === "/brand" ||
     pathname === "/contact" ||
     pathname === "/career" ||
-    pathname === "/process" ||
+    pathname === "/sourcing-trading" ||
     pathname === "/apply" ||
-    pathname === "/planning" ||
+    pathname === "/wholesale-supply" ||
     pathname === "/partner" ||
-    pathname === "/coporate" ||
+    pathname === "/retail-distribution" ||
       pathname === "/privacy" 
   return (
     <>

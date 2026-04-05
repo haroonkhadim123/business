@@ -6,22 +6,34 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const reviews = [
   {
-    name: "William Henry",
-    designation: "Designer at Vertex Agency",
-    text: "I can't recommend The Gourmet Haven enough. It's a place for special occasions, date nights, or whenever you're in the mood for a culinary adventure. The combination of exceptional service, exquisite cuisine, and elegant ambiance creates an unforgettable dining experience.",
+    name: "Business Partner",
+    designation: "Strategic Alliance",
+    text: "HOORAB GROUP has been a reliable business partner, providing consistent service, quality products, and professional communication throughout our collaboration.",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "Sarah Johnson",
-    designation: "Marketing Director at CreativeHub",
-    text: "Absolutely stunning experience every time! The attention to detail in both presentation and flavor is unmatched. Perfect for impressing clients or celebrating milestones. Will definitely return again and again.",
+    name: "Wholesale Client",
+    designation: "Bulk Supply Partner",
+    text: "We appreciate their strong commitment to quality, timely delivery, and smooth coordination. Their team is professional, responsive, and dependable.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    name: "Retail Partner",
+    designation: "Distribution Network",
+    text: "Working with HOORAB GROUP has been a positive experience. Their ability to manage supply and distribution efficiently has added real value to our business.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "Michael Chen",
-    designation: "CEO at TechNova Solutions",
-    text: "One of the best fine dining spots in the city. The fusion of flavors and professional staff made our anniversary dinner truly special. Highly recommended for anyone seeking a premium culinary journey.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    name: "Corporate Client",
+    designation: "Strategic Partner",
+    text: "HOORAB GROUP stands out for its professionalism, trustworthy service, and dedication to building long-term business relationships.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    name: "Commercial Partner",
+    designation: "Retail & Wholesale",
+    text: "Their reliable support, quality-focused approach, and efficient operations make them a trusted name in retail and wholesale services.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -55,11 +67,11 @@ export default function Testimonials() {
           <h2 className="text-4xl md:text-5xl font-bold mb-3">
             OUR{" "}
             <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-              TESTIMONIAL
+              TESTIMONIALS
             </span>
           </h2>
           <h3 className="text-2xl md:text-3xl font-semibold text-gray-300">
-            Our Client Reviews
+            What Our Partners Say
           </h3>
         </div>
 

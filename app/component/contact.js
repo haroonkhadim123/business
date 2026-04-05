@@ -74,7 +74,7 @@ export default function ContactUs() {
                 <div>
                   <p className="text-sm text-gray-500 font-medium">Our Location</p>
                   <p className="text-2xl font-semibold text-gray-900 group-hover:text-[#139aff]">
-                    London Office: London, United Kingdom
+                    HQ: London, United Kingdom
                   </p>
                 </div>
               </motion.div>

@@ -12,25 +12,25 @@ const features = [
   {
     title: "Global Supply Network",
     description:
-      "Strong international sourcing network ensuring timely and efficient delivery worldwide.",
+      "A strong international sourcing and supply network that supports efficient product movement and dependable delivery across multiple markets.",
     icon: <Globe className="w-10 h-10 text-[#139aff]" />,
   },
   {
     title: "Reliable Partnerships",
     description:
-      "Long-term collaborations built on trust, transparency, and performance excellence.",
+      "Building long-term business relationships through trust, transparency, professionalism, and consistent performance.",
     icon: <Handshake className="w-10 h-10 text-[#139aff]" />,
   },
   {
     title: "Scalable Distribution",
     description:
-      "Flexible logistics and scalable distribution systems to support business growth.",
+      "Flexible distribution solutions designed to support business expansion, product availability, and smooth market reach.",
     icon: <TrendingUp className="w-10 h-10 text-[#139aff]" />,
   },
   {
     title: "Quality Assurance",
     description:
-      "Strict quality control processes to ensure premium standards across all operations.",
+      "Maintaining high standards through careful product selection, reliable sourcing, and a strong focus on consistency and quality.",
     icon: <ShieldCheck className="w-10 h-10 text-[#139aff]" />,
   },
 ];
@@ -65,8 +65,7 @@ export default function WhyChooseUs() {
           </h2>
 
           <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            Delivering excellence through innovation, strategic partnerships,
-            and world-class operational standards.
+            Delivering trusted retail and wholesale solutions through strong supply networks, reliable partnerships, and a commitment to operational excellence.
           </p>
         </motion.div>
 

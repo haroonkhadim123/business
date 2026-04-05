@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Headphones, ArrowRight } from "lucide-react";
+import { Package, Truck, Globe, ArrowRight, Shield, Clock, Handshake } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,7 +15,7 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.2 } },
 };
 
-export default function BusinessConsultancy() {
+export default function GlobalRetailWholesale() {
   return (
     <main className="min-h-screen bg-white">
       <section className="relative pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden">
@@ -33,40 +33,52 @@ export default function BusinessConsultancy() {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900"
               >
-                JUST A CONSULTANCY
+                GLOBAL RETAIL &
                 <br />
-                <span className="text-[#139aff]">Business Goal</span>
+                <span className="text-[#139aff]">WHOLESALE SOLUTIONS</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-xl md:text-2xl text-gray-700 font-medium"
               >
-                We know how to manage business globally
+                Driving Business Forward
               </motion.p>
 
               {/* Features */}
               <div className="space-y-8">
                 <motion.div variants={fadeInUp} className="flex items-start gap-4">
                   <div className="p-3 bg-[#00e6ff]/20 rounded-lg">
-                    <Users className="w-8 h-8 text-[#139aff]" />
+                    <Package className="w-8 h-8 text-[#139aff]" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Best Business Consulting</h3>
+                    <h3 className="text-xl font-semibold">Professional Supply Network</h3>
                     <p className="text-gray-600 mt-1">
-                      Fusce condimentum mattis placerat odio donec lacus porta torquent, mauris gravida rutrum
+                      We work with trusted supply channels to deliver quality products, dependable service, and efficient commercial support.
                     </p>
                   </div>
                 </motion.div>
 
                 <motion.div variants={fadeInUp} className="flex items-start gap-4">
                   <div className="p-3 bg-[#00e6ff]/20 rounded-lg">
-                    <Headphones className="w-8 h-8 text-[#139aff]" />
+                    <Truck className="w-8 h-8 text-[#139aff]" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">24/7 Customer Support</h3>
+                    <h3 className="text-xl font-semibold">Retail & Wholesale Distribution</h3>
                     <p className="text-gray-600 mt-1">
-                      Fusce condimentum mattis placerat odio donec lacus porta torquent, mauris gravida rutrum
+                      Our solutions are designed to support retailers, resellers, and business partners with strong market access and reliable delivery.
+                    </p>
+                  </div>
+                </motion.div>
+
+                <motion.div variants={fadeInUp} className="flex items-start gap-4">
+                  <div className="p-3 bg-[#00e6ff]/20 rounded-lg">
+                    <Handshake className="w-8 h-8 text-[#139aff]" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold">Long-Term Business Partnerships</h3>
+                    <p className="text-gray-600 mt-1">
+                      We believe in building lasting relationships through professionalism, consistency, and customer-focused service.
                     </p>
                   </div>
                 </motion.div>
@@ -99,7 +111,7 @@ export default function BusinessConsultancy() {
                 <div className="relative w-full h-[320px] sm:h-[420px] lg:h-[500px]">
                   <Image
                     src={'/mainteam.jpg'}
-                    alt="Team discussion"
+                    alt="Global Retail & Wholesale Solutions"
                     fill
                     className="rounded-2xl shadow-2xl object-cover"
                     priority
@@ -110,7 +122,7 @@ export default function BusinessConsultancy() {
                 <div className="absolute -bottom-6 -right-4 sm:-bottom-10 sm:-right-8 lg:-bottom-12 lg:-right-10 z-20 w-3/5 sm:w-2/5 lg:w-3/5 max-w-[220px] sm:max-w-[280px] lg:max-w-none aspect-[4/3] border-4 sm:border-6 lg:border-8 border-white rounded-2xl shadow-2xl overflow-hidden">
                   <Image
                     src={'/smallteam.jpg'}
-                    alt="Team meeting"
+                    alt="Business partnership"
                     fill
                     className="object-cover"
                   />

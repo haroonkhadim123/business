@@ -13,7 +13,7 @@ export default function Footer() {
   const socialIcons = [
     { icon: <AiFillFacebook />, href: "#" },
     { icon: <AiFillInstagram />, href: "#" },
-    { icon: <AiFillLinkedin />, href: "#" },
+    { icon: <AiFillLinkedin />, href: "https://www.linkedin.com/company/hoorab-group-of-companies-ltd/?viewAsMember=true" },
     { icon: <AiFillTwitterCircle />, href: "#" },
   ];
 
@@ -66,9 +66,7 @@ export default function Footer() {
           </Link>
 
           <p className="text-gray-500 leading-relaxed text-sm">
-            Providing professional corporate services with multiple business
-            divisions, sustainable growth strategies, and a cooperative
-            structure.
+         Providing professional wholesale & retail services with reliable supply, strong partnerships, and operational excellence.
           </p>
 
           {/* Social Icons */}
@@ -124,7 +122,7 @@ export default function Footer() {
           </h3>
 
           <p className="text-gray-600">
-            London Office: London, United Kingdom
+            HQ: London, United Kingdom
           </p>
 
           <p className="text-gray-600">

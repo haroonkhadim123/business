@@ -38,7 +38,7 @@ export default function AboutBanner() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-           className="uppercase tracking-[6px] font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
+          className="uppercase tracking-[6px] font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent"
         >
           Who We Are
         </motion.p>
@@ -50,7 +50,10 @@ export default function AboutBanner() {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="text-3xl md:text-5xl font-bold mt-6 leading-tight text-white"
         >
-          About Our <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">Corporate Journey</span>
+          Reliable Retail,{" "}
+          <span className="bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+            Wholesale & Distribution
+          </span>
         </motion.h1>
 
         {/* Description */}
@@ -60,8 +63,7 @@ export default function AboutBanner() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-gray-200 mt-6 text-lg leading-relaxed max-w-3xl mx-auto"
         >
-          We are committed to innovation, excellence, and long-term value creation. 
-          Our journey reflects dedication, strategic growth, and impactful partnerships.
+          HOORAB GROUP is committed to delivering quality products, dependable supply, and strong business support through professional retail, wholesale, sourcing, and distribution services.
         </motion.p>
 
         {/* Breadcrumb */}
