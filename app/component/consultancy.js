@@ -52,7 +52,7 @@ export default function GlobalRetailWholesale() {
                     <Package className="w-8 h-8 text-[#139aff]" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Professional Supply Network</h3>
+                    <h3 className="text-xl text-black font-semibold">Professional Supply Network</h3>
                     <p className="text-gray-600 mt-1">
                       We work with trusted supply channels to deliver quality products, dependable service, and efficient commercial support.
                     </p>
@@ -64,7 +64,7 @@ export default function GlobalRetailWholesale() {
                     <Truck className="w-8 h-8 text-[#139aff]" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Retail & Wholesale Distribution</h3>
+                    <h3 className="text-xl text-black font-semibold">Retail & Wholesale Distribution</h3>
                     <p className="text-gray-600 mt-1">
                       Our solutions are designed to support retailers, resellers, and business partners with strong market access and reliable delivery.
                     </p>
@@ -76,7 +76,7 @@ export default function GlobalRetailWholesale() {
                     <Handshake className="w-8 h-8 text-[#139aff]" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold">Long-Term Business Partnerships</h3>
+                    <h3 className="text-xl text-black font-semibold">Long-Term Business Partnerships</h3>
                     <p className="text-gray-600 mt-1">
                       We believe in building lasting relationships through professionalism, consistency, and customer-focused service.
                     </p>
