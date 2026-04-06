@@ -3,7 +3,7 @@ Hoorab Group Website
 The Hoorab Group Website is a modern, scalable, and production-ready web platform built to digitally represent a cooperative business. It delivers a seamless and user-friendly experience with a strong focus on performance, security, and maintainability.
 The architecture is designed to support real-world use cases, ensuring scalability and flexibility for future enhancements.
 🚀 Live Demo
-👉 https://hoorabgroup.com⁠�
+👉 https://www.hoorabgroup.com
 ✨ Features
 🔐 Secure Authentication
 Session-based authentication using NextAuth
