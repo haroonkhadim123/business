@@ -81,3 +81,4 @@ export async function DELETE(req) {
     return NextResponse.json({ success: false, message: "Internal Server Error", error: error.message });
   }
 }
+// UPDATE BRAND

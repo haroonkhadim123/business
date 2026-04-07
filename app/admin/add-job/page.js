@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, MapPin, Clock, FileText, Send } from "lucide-react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import toast from "react-hot-toast";
 import Loader from "@/app/component/Loader";
 
@@ -65,6 +65,23 @@ export default function AddJob() {
       setloader(false);
     }
   };
+    useEffect(() => {
+    const stored = localStorage.getItem("editJob");
+  
+    if (stored) {
+      const data = JSON.parse(stored);
+  
+      setform({
+        jobtitle: data.jobtitle || "",
+        joblocation: data.joblocation || "",
+        jobtype: data.jobtype || "",
+        jobdescription: data.jobdescription || "",
+      });
+  
+      // clear after use
+      localStorage.removeItem("editJob");
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 md:py-12 px-4">
@@ -120,7 +137,7 @@ export default function AddJob() {
                     onChange={handlechange}
                     placeholder="e.g., Senior Software Engineer"
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200
-                      bg-gray-50 dark:bg-gray-700 text-gray-600
+                      bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-200
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
                       placeholder:text-gray-400 dark:placeholder:text-gray-500
                       ${errors.jobtitle 
@@ -150,7 +167,7 @@ export default function AddJob() {
                     onChange={handlechange}
                     placeholder="e.g., Dubai, UAE / Remote"
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200
-                      bg-gray-50 text-gray-600 dark:bg-gray-700
+                      bg-gray-50 text-gray-600 dark:bg-gray-700 dark:text-gray-200
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
                       placeholder:text-gray-400 dark:placeholder:text-gray-500
                       ${errors.joblocation 
@@ -178,9 +195,9 @@ export default function AddJob() {
                     value={form.jobtype}
                     onChange={handlechange}
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200 appearance-none
-                      bg-gray-50 dark:bg-gray-700
+                      bg-gray-50 dark:bg-gray-700 
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
-                      text-gray-700 dark:text-gray-300
+                      text-gray-600 dark:text-gray-200
                       ${errors.jobtype 
                         ? "border-red-500 focus:border-red-500" 
                         : "border-gray-200 dark:border-gray-600 focus:border-[#139aff]"
@@ -220,7 +237,7 @@ export default function AddJob() {
                     rows="6"
                     placeholder="• Responsibilities&#10;• Requirements&#10;• Qualifications&#10;• Benefits"
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200 resize-none
-                      bg-gray-50 dark:bg-gray-700 text-gray-600
+                      bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-200
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
                       placeholder:text-gray-400 dark:placeholder:text-gray-500
                       ${errors.jobdescription 

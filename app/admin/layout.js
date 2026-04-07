@@ -29,7 +29,7 @@ export default function AdminLayout({ children }) {
   
   useEffect(() => {
     if(status==='loading') return;
-    if (!session) router.push("/");
+    if (!session || session.user.role !== 'admin') router.push("/");
   }, [session, status, router]);
 
   return (

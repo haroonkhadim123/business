@@ -57,22 +57,23 @@ export default function SignUp() {
 
   return (
      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-gray-100 px-4 relative">
-     {/* Back to Home Button - Responsive for both desktop and mobile */}
-     <Link 
-       href="/" 
-       className="fixed md:absolute top-4 left-4 z-20 bg-white/80 backdrop-blur-sm md:bg-transparent px-3 py-2 md:px-2 md:py-0 rounded-lg md:rounded-none shadow-sm md:shadow-none text-[#139aff] hover:text-[#00e6ff] transition-all duration-300 flex items-center gap-2 text-sm md:text-base font-medium hover:translate-x-[-2px] group"
-     >
-       <svg 
-         className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:-translate-x-1" 
-         fill="none" 
-         stroke="currentColor" 
-         viewBox="0 0 24 24"
-       >
-         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-       </svg>
-       <span className="hidden sm:inline">Back to Home</span>
-       <span className="sm:hidden">Back</span>
-     </Link>
+      
+      {/* Back to Home Button - Improved for both desktop and mobile */}
+      <Link 
+        href="/" 
+        className="fixed top-4 left-4 z-20 bg-white/90 backdrop-blur-sm md:bg-white/80 rounded-lg px-4 py-2.5 shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 text-sm md:text-base font-medium text-[#139aff] hover:text-[#00e6ff] hover:translate-x-[-2px] group border border-gray-100 md:border-none"
+      >
+        <svg 
+          className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:-translate-x-1" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <span className="hidden sm:inline">Back to Home</span>
+        <span className="sm:hidden">Home</span>
+      </Link>
       
       {/* Animated Background Decor */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -212,20 +213,19 @@ export default function SignUp() {
               )}
             </motion.button>
           </form>
+          
           <div className="mt-6 pt-6 border-t border-gray-200">
-  <p className="text-center text-gray-600 text-sm">
-    Alraedy have an account?{" "}
-    <Link 
-      href="/login" 
-      className="text-[#139aff] font-semibold hover:text-[#00e6ff] transition-colors duration-200 inline-flex items-center gap-1"
-    >
-      <UserPlus size={16} />
-      Login in
-    </Link>
-  </p>
-</div>
-
-   
+            <p className="text-center text-gray-600 text-sm">
+              Already have an account?{" "}
+              <Link 
+                href="/login" 
+                className="text-[#139aff] font-semibold hover:text-[#00e6ff] transition-colors duration-200 inline-flex items-center gap-1"
+              >
+                <UserPlus size={16} />
+                Login in
+              </Link>
+            </p>
+          </div>
 
           {/* Footer Note */}
           <motion.p

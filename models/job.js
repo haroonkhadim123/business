@@ -28,8 +28,10 @@ const jobSchema = new mongoose.Schema(
     // Optional (recommended)
     status: {
       type: String,
-      enum: ["open", "closed"],
-      default: "open",
+      enum: ["Open", "Closed"],
+      default: "Open",
+      required: true,        // ← add this
+  trim: true,
     },
 
     postedAt: {

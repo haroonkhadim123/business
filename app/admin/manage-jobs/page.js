@@ -1,16 +1,57 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Trash2, Briefcase, MapPin, Clock, Plus } from "lucide-react";
+import { Trash2, Briefcase, MapPin, Clock, Plus, Pencil } from "lucide-react";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ManageJobs() {
+  const router = useRouter();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
+
+
+
+  const handleEdit = async (job) => {
+
+
+    try {
+      setDeletingId(job._id);
+
+      // delete first
+      const res = await fetch("/api/job", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: job._id }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success("Redirecting to edit...");
+
+        // store old data in localStorage
+        localStorage.setItem("editJob", JSON.stringify(job));
+
+        // remove from UI
+
+
+        // redirect
+        router.push('/admin/add-job');
+        setJobs((prev) => prev.filter((b) => b._id !== job._id));
+      } else {
+        toast.error("Edit failed");
+      }
+    } catch (error) {
+      toast.error("Error editing brand");
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -91,7 +132,7 @@ export default function ManageJobs() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 md:py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -113,7 +154,7 @@ export default function ManageJobs() {
                 View, update status, and manage your job postings
               </p>
             </div>
-            
+
             <Link
               href="/admin/add-job"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#00e6ff] to-[#139aff] text-white px-5 py-2.5 rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
@@ -218,10 +259,10 @@ export default function ManageJobs() {
                 className="group relative"
               >
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e6ff] to-[#139aff] rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-300"></div>
-                
+
                 <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 dark:border-gray-700">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    
+
                     {/* Job Info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 mb-2">
@@ -232,7 +273,7 @@ export default function ManageJobs() {
                           {capitalize(job.jobtitle)}
                         </h3>
                       </div>
-                      
+
                       <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 ml-13">
                         {job.joblocation && (
                           <div className="flex items-center gap-1">
@@ -257,47 +298,59 @@ export default function ManageJobs() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex items-center gap-2">
-                      {job.status !== "Open" && (
-                        <button
-                          onClick={() => updateStatus(job._id, "Open")}
-                          disabled={updatingId === job._id}
-                          className="px-4 py-2 rounded-lg text-sm font-medium bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-400 dark:hover:bg-green-900/50 transition-all duration-200"
-                        >
-                          {updatingId === job._id ? (
-                            <div className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
-                          ) : (
-                            "Open"
-                          )}
-                        </button>
-                      )}
-                      
-                      {job.status !== "Closed" && (
-                        <button
-                          onClick={() => updateStatus(job._id, "Closed")}
-                          disabled={updatingId === job._id}
-                          className="px-4 py-2 rounded-lg text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50 transition-all duration-200"
-                        >
-                          {updatingId === job._id ? (
-                            <div className="w-4 h-4 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-                          ) : (
-                            "Close"
-                          )}
-                        </button>
-                      )}
-                      
-                      <button
-                        onClick={() => handleDelete(job._id)}
-                        disabled={deletingId === job._id}
-                        className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200"
-                      >
-                        {deletingId === job._id ? (
-                          <div className="w-5 h-5 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-                        ) : (
-                          <Trash2 size={18} />
-                        )}
-                      </button>
-                    </div>
+{/* Action Buttons */}
+<div className="flex items-center gap-2">
+
+  {/* Status Toggle Button - Ek hi button dikhega */}
+  {job.status === "Open" ? (
+    <button
+      onClick={() => updateStatus(job._id, "Closed")}
+      disabled={updatingId === job._id}
+      className="px-5 py-2 rounded-lg text-sm font-medium bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 transition-all duration-200 flex items-center gap-2"
+    >
+      {updatingId === job._id ? (
+        <div className="w-4 h-4 border-2 border-red-500 border-t-transparent rounded-full animate-spin" />
+      ) : (
+        <>
+          <span>Close</span>
+        </>
+      )}
+    </button>
+  ) : (
+    <button
+      onClick={() => updateStatus(job._id, "Open")}
+      disabled={updatingId === job._id}
+      className="px-5 py-2 rounded-lg text-sm font-medium bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-900/30 dark:text-green-400 transition-all duration-200 flex items-center gap-2"
+    >
+      {updatingId === job._id ? (
+        <div className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin" />
+      ) : (
+        <>
+          <span>Open</span>
+        </>
+      )}
+    </button>
+  )}
+
+  {/* DELETE BUTTON */}
+  <button
+    onClick={() => handleDelete(job._id)}
+    disabled={deletingId === job._id}
+    className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200"
+  >
+    <Trash2 size={18} />
+  </button>
+
+  {/* EDIT BUTTON */}
+  <button
+    onClick={() => handleEdit(job)}
+    className="p-2 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
+    disabled={deletingId === job._id}   // optional: edit bhi disable jab delete ho raha ho
+  >
+    <Pencil size={18} />
+  </button>
+
+</div>
                   </div>
 
                   {/* Job Description Preview */}

@@ -5,8 +5,11 @@ import { Trash2, Building2, Globe, AlertCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { Pencil } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function ManageBrands() {
+  const router = useRouter();
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
@@ -52,6 +55,42 @@ export default function ManageBrands() {
       setDeletingId(null);
     }
   };
+  const handleEdit = async (brand) => {
+
+
+  try {
+    setDeletingId(brand._id);
+
+    // delete first
+    const res = await fetch("/api/brand", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: brand._id }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      toast.success("Redirecting to edit...");
+
+      // store old data in localStorage
+      localStorage.setItem("editBrand", JSON.stringify(brand));
+
+      // remove from UI
+
+
+      // redirect
+      router.push('/admin/add-brand');
+            setBrands((prev) => prev.filter((b) => b._id !== brand._id));
+    } else {
+      toast.error("Edit failed");
+    }
+  } catch (error) {
+    toast.error("Error editing brand");
+  } finally {
+    setDeletingId(null);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 md:py-12 px-4">
@@ -198,17 +237,28 @@ export default function ManageBrands() {
                     </div>
 
                     {/* Delete Button */}
-                    <button
-                      onClick={() => handleDelete(brand._id)}
-                      disabled={deletingId === brand._id}
-                      className="ml-3 p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200 flex-shrink-0"
-                    >
-                      {deletingId === brand._id ? (
-                        <div className="w-5 h-5 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-                      ) : (
-                        <Trash2 size={18} />
-                      )}
-                    </button>
+                 <div className="flex items-center gap-2 ml-3">
+  {/* Edit Button */}
+  <button
+    onClick={() => handleEdit(brand)}
+    className="p-2 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200"
+  >
+    <Pencil size={18} />
+  </button>
+
+  {/* Delete Button */}
+  <button
+    onClick={() => handleDelete(brand._id)}
+    disabled={deletingId === brand._id}
+    className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-200"
+  >
+    {deletingId === brand._id ? (
+      <div className="w-5 h-5 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+    ) : (
+      <Trash2 size={18} />
+    )}
+  </button>
+</div>
                   </div>
                 </div>
               </motion.div>

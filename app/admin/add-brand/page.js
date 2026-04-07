@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Tag, Globe, FileText, Plus, Building2 } from "lucide-react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Loader from "@/app/component/Loader";
 import toast from "react-hot-toast";
 
@@ -72,6 +72,22 @@ export default function AddBrand() {
       setloader(false);
     }
   };
+  useEffect(() => {
+  const stored = localStorage.getItem("editBrand");
+
+  if (stored) {
+    const data = JSON.parse(stored);
+
+    setform({
+      brandname: data.brandname || "",
+      website: data.website || "",
+      description: data.description || "",
+    });
+
+    // clear after use
+    localStorage.removeItem("editBrand");
+  }
+}, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 md:py-12 px-4">
@@ -127,7 +143,7 @@ export default function AddBrand() {
                     value={form.brandname}
                     placeholder="e.g., ZYLLIC,HDDS,HOORAB"
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200
-                      bg-gray-50 dark:bg-gray-700 text-gray-600
+                      bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-600
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
                       placeholder:text-gray-400 dark:placeholder:text-gray-500
                       ${errors.brandname 
@@ -159,7 +175,7 @@ export default function AddBrand() {
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200
                       bg-gray-50 dark:bg-gray-700
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
-                      placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-600
+                      placeholder:text-gray-400 dark:text-gray-200 dark:placeholder:text-gray-500 text-gray-600
                       ${errors.website 
                         ? "border-red-500 focus:border-red-500" 
                         : "border-gray-200 dark:border-gray-600 focus:border-[#139aff]"
@@ -190,7 +206,7 @@ export default function AddBrand() {
                     value={form.description}
                     placeholder="Write a short description about the brand, its products, and key highlights..."
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200 resize-none
-                      bg-gray-50 dark:bg-gray-700
+                      bg-gray-50 dark:bg-gray-700 dark:text-gray-200
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
                       placeholder:text-gray-400 dark:placeholder:text-gray-500 text-gray-600
                       ${errors.description 

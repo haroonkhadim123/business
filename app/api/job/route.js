@@ -10,7 +10,7 @@ export async function POST(req) {
     await dbConnect();
     const body = await req.json();
 
-    const { jobtitle,joblocation,jobtype,jobdescription } = body;
+    const { jobtitle,joblocation,jobtype,jobdescription,status = "Open" } = body;
 
 
 
@@ -37,7 +37,7 @@ if (alreadyexist) {
       joblocation,
       jobtype,
       jobdescription,
-      status:'open',
+  status: status || "Open",
     });
 
 
