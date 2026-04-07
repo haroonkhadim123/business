@@ -70,20 +70,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <head>
-        {/* ================= GOOGLE SITE VERIFICATION ================= */}
-     <meta name="google-site-verification" content="3J3RC_FFdINL_2nqoHE2CdjSECiG6XavdwIAnah5CTY" />
-      </head>
       <body
         className={`${poppins.variable} ${inter.variable} antialiased bg-[#0B1120] text-white`}
       >
         {/* ================= NAVBAR ================= */}
         <SessionWrapper>
-          <ClientLayout>
-            {/* ================= PAGE CONTENT ================= */}
-            {children}
-          </ClientLayout>
+  
+<ClientLayout>
+        {/* ================= PAGE CONTENT ================= */}
+        {children}
+        </ClientLayout>
         </SessionWrapper>
+        
+
 
         {/* ================= STRUCTURED DATA (SEO BOOST) ================= */}
         <script
@@ -103,7 +102,7 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-        <Toaster position="top-right" reverseOrder={false} />
+         <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
   );
