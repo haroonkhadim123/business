@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FileText, User, Mail, Phone, MapPin } from "lucide-react";
+import { FileText, User, Mail } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import PhoneInput from "react-phone-input-2";
@@ -221,45 +221,10 @@ export default function ContactPage() {
           {/* ================= INFO ================= */}
         <motion.div variants={slideRight} className="space-y-8">
 
-  <motion.div whileHover={{ y: -6 }} className="bg-white  p-8 rounded-3xl shadow-xl space-y-6 transition-colors duration-300">
-
-    {/* Location */}
-    <motion.div variants={fadeUp} className="flex items-center gap-4">
-      <MapPin className="text-gray-500 " size={28} />
-      <div className="text-gray-900 ">
-        <p className="font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-          London Office
-        </p>
-        <p>123 Corporate St., London, United Kingdom</p>
-      </div>
-    </motion.div>
-
-    {/* Phone */}
-    <motion.div variants={fadeUp} className="flex items-center gap-4">
-      <Phone className="text-gray-500 " size={28} />
-      <div className="text-gray-900 ">
-        <p className="font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-          +966 50 123 4567
-        </p>
-        <p>Mon - Fri, 9:00am - 6:00pm</p>
-      </div>
-    </motion.div>
-
-    {/* Email */}
-    <motion.div variants={fadeUp} className="flex items-center gap-4">
-      <Mail className="text-gray-500 " size={28} />
-      <div className="text-gray-900 ">
-        <p className="font-semibold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-          info@hoorabgroup.com
-        </p>
-        <p>We respond within 24 hours</p>
-      </div>
-    </motion.div>
-
-  </motion.div>
+ 
 
   {/* Map */}
-  <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="rounded-3xl overflow-hidden shadow-xl h-[400px] border-2 border-gradient-to-r from-[#00e6ff] to-[#139aff]">
+  <motion.div variants={fadeUp} whileHover={{ scale: 1.02 }} className="rounded-3xl overflow-hidden shadow-xl h-[400px]  border-2 border-gradient-to-r from-[#00e6ff] to-[#139aff]">
     <iframe
       className="w-full h-full border-0"
       src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
