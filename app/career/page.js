@@ -21,17 +21,17 @@ export const metadata = {
     "Corporate Jobs in KSA",
   ],
   alternates: {
-    canonical: "http://localhost:3000/career",
+    canonical: "https://hoorabgroup.com/career",
   },
   openGraph: {
     title: "HOORAB GROUP | Careers – Join Our Team",
     description:
       "Explore exciting career opportunities at HOORAB GROUP in Saudi Arabia and apply today.",
-    url: "http://localhost:3000/career",
+    url: "https://hoorabgroup.com/career",
     siteName: "HOORAB GROUP",
     images: [
       {
-        url: "about-hero.jpg",
+        url: "https://hoorabgroup.com/about-hero.jpg",
         width: 1200,
         height: 630,
         alt: "HOORAB GROUP Careers",
@@ -44,8 +44,9 @@ export const metadata = {
     card: "summary_large_image",
     title: "HOORAB GROUP | Careers – Join Our Team",
     description: "Join HOORAB GROUP in Saudi Arabia and build your professional future.",
-    images: ["about-hero.jpg"],
+    images: ["https://hoorabgroup.com/about-hero.jpg"],
   },
+  robots: "index, follow",
 };
 
 export default function CareerPage() {
@@ -59,13 +60,26 @@ export default function CareerPage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "HOORAB GROUP",
-            url: "http://localhost:3000",
-        
+            url: "https://hoorabgroup.com",
+            logo: "https://hoorabgroup.com/logo.png",
+            sameAs: [
+              "https://www.facebook.com/hoorabgroup",
+              "https://www.twitter.com/hoorabgroup",
+              "https://www.instagram.com/hoorabgroup",
+              "https://www.linkedin.com/company/hoorabgroup"
+            ],
             address: {
               "@type": "PostalAddress",
               addressCountry: "SA",
+              addressRegion: "Riyadh",
+              addressLocality: "Riyadh",
             },
-         
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "customer service",
+              email: "careers@hoorabgroup.com",
+              availableLanguage: ["English", "Arabic"],
+            },
           }),
         }}
       />
