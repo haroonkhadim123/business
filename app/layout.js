@@ -3,6 +3,8 @@ import "./globals.css";
 import ClientLayout from "./ClientLayout";
 import { Toaster } from "react-hot-toast";
 import SessionWrapper from "./component/SessionWrapper";
+import NetworkLoader from "./component/NetworkLoader";
+
 
 
 /* ================= PREMIUM CORPORATE FONTS ================= */
@@ -73,6 +75,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.variable} ${inter.variable} antialiased bg-[#0B1120] text-white`}
       >
+        <NetworkLoader />
         {/* ================= NAVBAR ================= */}
         <SessionWrapper>
   

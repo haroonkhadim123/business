@@ -8,7 +8,7 @@ export async function POST(req) {
   try {
     await dbConnect();
     const body = await req.json();
-    const { brandname,website,description } = body;
+    const { brandname,website,description,image } = body;
 
  
 const alreadybrand=await Brand.findOne({brandname:brandname});
@@ -20,6 +20,7 @@ if(alreadybrand){
     const creatbrand = await Brand.create({
    brandname,
    website,
+   image,
     description,
     });
 

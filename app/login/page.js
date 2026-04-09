@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Mail, Lock, Eye, EyeOff, LogIn, Key,UserPlus } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, LogIn, Key } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -313,18 +313,7 @@ export default function Login() {
               </button>
             </form>
             
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <p className="text-center text-gray-600 text-sm">
-                Don't have an account?{" "}
-                <Link 
-                  href="/signup" 
-                  className="text-[#139aff] font-semibold hover:text-[#00e6ff] transition-colors duration-200 inline-flex items-center gap-1"
-                >
-                  <UserPlus size={16} />
-                  Sign up
-                </Link>
-              </p>
-            </div>
+          
           </motion.div>
         ) : (
           <motion.div

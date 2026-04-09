@@ -1,25 +1,37 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   AiFillFacebook,
   AiFillInstagram,
   AiFillLinkedin,
   AiFillTwitterCircle,
+ 
 } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { useSession, signOut } from "next-auth/react";
+import toast from "react-hot-toast";
 
 export default function Footer() {
-  const socialIcons = [
-    { icon: <AiFillFacebook />, href: "#" },
-    { icon: <AiFillInstagram />, href: "#" },
-    { icon: <AiFillLinkedin />, href: "https://www.linkedin.com/company/hoorab-group-of-companies-ltd/?viewAsMember=true" },
-    { icon: <AiFillTwitterCircle />, href: "#" },
-  ];
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  // Handle Logout
+  const handleLogout = async () => {
+    try {
+      await signOut({ redirect: false });
+      toast.success("Logged out successfully!");
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      toast.error("Something went wrong while logging out");
+    }
   };
 
   return (
@@ -66,24 +78,54 @@ export default function Footer() {
           </Link>
 
           <p className="text-gray-500 leading-relaxed text-sm">
-         Providing professional wholesale & retail services with reliable supply, strong partnerships, and operational excellence.
+            Providing professional wholesale & retail services with reliable supply, strong partnerships, and operational excellence.
           </p>
 
-          {/* Social Icons */}
+          {/* Social Icons - Individual */}
           <div className="flex gap-4 mt-2">
-            {socialIcons.map((item, i) => (
-              <motion.a
-                key={i}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full text-gray-500 hover:text-white bg-gray-100 hover:bg-gradient-to-r hover:from-[#00e6ff] hover:to-[#139aff] transition-all shadow-sm hover:shadow-md"
-                whileHover={{ scale: 1.15 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {item.icon}
-              </motion.a>
-            ))}
+            <motion.a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full text-gray-500 hover:text-white bg-gray-100 hover:bg-gradient-to-r hover:from-[#00e6ff] hover:to-[#139aff] transition-all shadow-sm hover:shadow-md"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AiFillFacebook size={20} />
+            </motion.a>
+
+            <motion.a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full text-gray-500 hover:text-white bg-gray-100 hover:bg-gradient-to-r hover:from-[#00e6ff] hover:to-[#139aff] transition-all shadow-sm hover:shadow-md"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AiFillInstagram size={20} />
+            </motion.a>
+
+            <motion.a
+              href="https://www.linkedin.com/company/hoorab-group-of-companies-ltd/?viewAsMember=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full text-gray-500 hover:text-white bg-gray-100 hover:bg-gradient-to-r hover:from-[#00e6ff] hover:to-[#139aff] transition-all shadow-sm hover:shadow-md"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AiFillLinkedin size={20} />
+            </motion.a>
+
+            <motion.a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full text-gray-500 hover:text-white bg-gray-100 hover:bg-gradient-to-r hover:from-[#00e6ff] hover:to-[#139aff] transition-all shadow-sm hover:shadow-md"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <AiFillTwitterCircle size={20} />
+            </motion.a>
           </div>
         </motion.div>
 
@@ -93,45 +135,75 @@ export default function Footer() {
             Quick Links
           </h3>
           <ul className="space-y-2 text-gray-600">
-            {[
-              { name: "Home", link: "/" },
-              { name: "Brands", link: "/brand" },
-              { name: "About Us", link: "/about" },
-              
-              { name: "Partner", link: "/partner" },
-              { name: "Careers", link: "/career" },
-              { name: "Contact", link: "/contact" },
-              { name: "Privacy Policy", link: "/privacy" },
-            ].map((item, i) => (
-              <li key={i}>
-                <Link
-                  href={item.link}
-                  className="hover:text-[#00e6ff] transition"
-                >
-                  {item.name}
+            <li>
+              <Link href="/" className="hover:text-[#00e6ff] transition">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/brand" className="hover:text-[#00e6ff] transition">
+                Brands
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="hover:text-[#00e6ff] transition">
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/partner" className="hover:text-[#00e6ff] transition">
+                Partner
+              </Link>
+            </li>
+            <li>
+              <Link href="/career" className="hover:text-[#00e6ff] transition">
+                Careers
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-[#00e6ff] transition">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-[#00e6ff] transition">
+                Privacy Policy
+              </Link>
+            </li>
+            {!session && (
+              <li>
+                <Link href="/login" className="hover:text-[#00e6ff] transition">
+                  Admin Login
                 </Link>
               </li>
-            ))}
+            )}
+            {session && (
+              <li>
+                <span onClick={handleLogout} className="hover:text-[#00e6ff] cursor-pointer transition">
+                  Log Out
+                </span>
+              </li>
+            )}
           </ul>
         </motion.div>
 
-        {/* ================= Contact Info ================= */}
+        {/* ================= Contact & Admin Section ================= */}
         <motion.div variants={fadeUp} className="space-y-4">
           <h3 className="text-xl font-semibold mb-4 text-[#139aff]">
             Contact Us
           </h3>
 
           <p className="text-gray-600">
-            HQ: London, United Kingdom
+           <strong> Headquarters:</strong> London, United Kingdom
           </p>
 
           <p className="text-gray-600">
-            Email:{" "}
+            <strong>Email:{" "}</strong>
             <span className="text-[#00e6ff] font-medium">
               info@hoorabgroup.com
             </span>
           </p>
-
+          
           <iframe
             className="w-full h-40 rounded-lg border border-gray-200 shadow-sm mt-2"
             src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
@@ -141,13 +213,31 @@ export default function Footer() {
         </motion.div>
       </motion.div>
 
-      {/* ================= Bottom ================= */}
+      {/* ================= Company Registration Info ================= */}
       <motion.div
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="mt-12 border-t border-gray-200 pt-6 text-center text-sm text-gray-500"
+        className="mt-12 pt-6 border-t border-gray-200"
+      >
+        <div className="text-center space-y-2">
+          <p className="text-sm font-semibold text-gray-700">
+            HOORAB GROUP OF <span className="text-[#139aff]"> COMPANIES LTD</span>
+          </p>
+          <p className="text-xs text-gray-500">
+            Registered in England and Wales | Company No: 15800546
+          </p>
+        </div>
+      </motion.div>
+
+      {/* ================= Bottom Copyright ================= */}
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mt-6 pt-4 border-t border-gray-200 text-center text-sm text-gray-500"
       >
         &copy; {new Date().getFullYear()}{" "}
         <span className="text-[#139aff] font-semibold">HOORAB GROUP</span>. All

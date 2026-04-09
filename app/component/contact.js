@@ -72,10 +72,13 @@ export default function ContactUs() {
                   <MapPin size={28} />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">Our Location</p>
-                  <p className="text-2xl font-semibold text-gray-900 group-hover:text-[#139aff]">
-                    HQ: London, United Kingdom
-                  </p>
+                  
+                <div>
+  <p className="text-sm font-medium text-gray-500 mb-1">Headquarters</p>
+  <p className="text-2xl font-semibold text-gray-900 group-hover:text-[#139aff] transition-colors duration-300">
+    London, United Kingdom
+  </p>
+</div>
                 </div>
               </motion.div>
 

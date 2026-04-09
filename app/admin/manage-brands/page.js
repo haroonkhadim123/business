@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function ManageBrands() {
   const router = useRouter();
@@ -208,9 +209,23 @@ export default function ManageBrands() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-4 flex-1">
                       {/* Brand Icon */}
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#00e6ff]/10 to-[#139aff]/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Building2 className="w-6 h-6 text-[#139aff]" />
-                      </div>
+                       <div className="flex justify-center mb-4">
+        <div className="relative w-24 h-24 rounded-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 border-4 border-white dark:border-gray-700 shadow-lg">
+          {brand.image ? (
+            <Image
+              src={brand.image}
+              alt={brand.brandname}
+              fill
+              className="object-cover"
+              sizes="96px"
+            />
+          ) : (
+            <div className="w-full h-full bg-[#00e6ff]/10 flex items-center justify-center">
+              <Building2 className="w-12 h-12 text-[#139aff]" />
+            </div>
+          )}
+        </div>
+      </div>
                       
                       {/* Brand Info */}
                       <div className="flex-1">

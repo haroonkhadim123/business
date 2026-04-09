@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
+
 
 import { HiMenu, HiX } from "react-icons/hi";
 import {
@@ -14,10 +14,10 @@ import {
   AiOutlineMail,
   AiOutlineLink,
 } from "react-icons/ai";
-import toast from "react-hot-toast";
+
 
 export default function Navbar() {
-  const { data: session, status } = useSession();
+
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -101,44 +101,9 @@ export default function Navbar() {
           ))}
 
           {/* Desktop Login Button */}
-          {!session && (
-            <Link
-              href="/login"
-              className={`relative text-center px-4 py-2 rounded-lg font-semibold 
-                border border-[#139aff]/40 overflow-hidden transition-all duration-300
-                before:absolute before:inset-0 before:bg-gradient-to-r 
-                before:from-[#00e6ff] before:to-[#139aff] 
-                before:opacity-0 hover:before:opacity-100 
-                before:transition before:duration-300
-                ${isActive("/login") ? "before:opacity-100 text-white" : "text-[#139aff]"}
-              `}
-            >
-              <span className="relative z-10 hover:text-white transition-colors duration-300">
-                Login
-              </span>
-            </Link>
-          )}
+       
           
-          {session && (
-            <span
-            onClick={async () => {
-            toast.success("Logged out successfully!");
-            await signOut({ callbackUrl: '/' });
-          }}
-              className={`relative text-center px-4 py-2 rounded-lg font-semibold 
-                border border-[#139aff]/40 overflow-hidden transition-all duration-300
-                before:absolute before:inset-0 before:bg-gradient-to-r 
-                before:from-[#00e6ff] before:to-[#139aff] 
-                before:opacity-0 hover:before:opacity-100 
-                before:transition before:duration-300 cursor-pointer
-                ${isActive("/admin") ? "before:opacity-100 text-white" : "text-[#139aff]"}
-              `}
-            >
-              <span className="relative z-10 hover:text-white transition-colors duration-300">
-                Logout
-              </span>
-            </span>
-          )}
+        
 
           {/* Get in Touch */}
           <Link
@@ -229,48 +194,9 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* Mobile Login Button */}
-          {!session && (
-            <Link
-              href="/login"
-              onClick={() => setIsOpen(false)}
-              className={`relative text-center px-4 py-3 rounded-lg font-semibold 
-                border border-[#139aff]/40 overflow-hidden transition-all duration-300
-                before:absolute before:inset-0 before:bg-gradient-to-r 
-                before:from-[#00e6ff] before:to-[#139aff] 
-                before:opacity-0 hover:before:opacity-100 
-                before:transition before:duration-300
-                ${isActive("/login") ? "before:opacity-100 text-white" : "text-[#139aff]"}
-              `}
-            >
-              <span className="relative z-10 hover:text-white transition-colors duration-300">
-                Login
-              </span>
-            </Link>
-          )}
+      
           
-          {session && (
-            <span
-         
-               onClick={async () => {
-                setIsOpen(false);
-            toast.success("Logged out successfully!");
-            await signOut({ callbackUrl: '/' });
-          }}
-              className={`relative text-center px-4 py-3 rounded-lg font-semibold 
-                border border-[#139aff]/40 overflow-hidden transition-all duration-300
-                before:absolute before:inset-0 before:bg-gradient-to-r 
-                before:from-[#00e6ff] before:to-[#139aff] 
-                before:opacity-0 hover:before:opacity-100 
-                before:transition before:duration-300
-                ${isActive("/admin") ? "before:opacity-100 text-white" : "text-[#139aff]"}
-              `}
-            >
-              <span className="relative z-10 hover:text-white transition-colors duration-300">
-                Logout
-              </span>
-            </span>
-          )}
+       
           
           {/* Get in Touch */}
           <Link

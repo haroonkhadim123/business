@@ -1,15 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Tag, Globe, FileText, Plus, Building2 } from "lucide-react";
-import { useState,useEffect } from "react";
+import { Tag, Globe, FileText, Plus, Building2, Image, Upload, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import Loader from "@/app/component/Loader";
 import toast from "react-hot-toast";
 
 export default function AddBrand() {
-  const [form, setform] = useState({ brandname: "", website: "", description: "" });
+  const [form, setform] = useState({ brandname: "", website: "", description: "", image: "" });
   const [loader, setloader] = useState(false);
   const [errors, setErrors] = useState({});
+  const [imagePreview, setImagePreview] = useState("");
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const fileInputRef = useRef(null);
 
   const validate = () => {
     let newErrors = {};
@@ -33,6 +36,10 @@ export default function AddBrand() {
       newErrors.description = "Description must be at least 10 characters";
     }
 
+    if (!form.image.trim()) {
+      newErrors.image = "Brand image is required";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -42,6 +49,67 @@ export default function AddBrand() {
     // Clear error when user starts typing
     if (errors[e.target.name]) {
       setErrors({ ...errors, [e.target.name]: "" });
+    }
+  };
+
+  // Image upload handler
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'];
+    if (!validTypes.includes(file.type)) {
+      toast.error('Please upload a valid image file (JPEG, PNG, WEBP, GIF, SVG)');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image size should be less than 5MB');
+      return;
+    }
+
+    // Create preview
+    const previewUrl = URL.createObjectURL(file);
+    setImagePreview(previewUrl);
+    setUploadingImage(true);
+
+    // Upload to Cloudinary
+    const uploadData = new FormData();
+    uploadData.append("file", file);
+    uploadData.append("upload_preset", "unsigned_upload");
+    uploadData.append("folder", "nextjs_products");
+
+    try {
+      const response = await fetch("https://api.cloudinary.com/v1_1/dyr4xwyhf/image/upload", {
+        method: 'POST',
+        body: uploadData
+      });
+
+      const data = await response.json();
+      
+      if (data.secure_url) {
+        setform({ ...form, image: data.secure_url });
+        toast.success('Image uploaded successfully!');
+      } else {
+        throw new Error('Upload failed');
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast.error('Failed to upload image');
+      setImagePreview("");
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  // Remove image
+  const handleRemoveImage = () => {
+    setform({ ...form, image: "" });
+    setImagePreview("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   };
 
@@ -63,8 +131,12 @@ export default function AddBrand() {
       if (data.error) toast.error(data.message);
       else {
         toast.success("Brand added successfully!");
-        setform({ brandname: "", website: "", description: "" });
+        setform({ brandname: "", website: "", description: "", image: "" });
+        setImagePreview("");
         setErrors({});
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
       }
     } catch (error) {
       toast.error("Something went wrong while adding new brand");
@@ -72,22 +144,35 @@ export default function AddBrand() {
       setloader(false);
     }
   };
+  
   useEffect(() => {
-  const stored = localStorage.getItem("editBrand");
+    const stored = localStorage.getItem("editBrand");
 
-  if (stored) {
-    const data = JSON.parse(stored);
+    if (stored) {
+      const data = JSON.parse(stored);
 
-    setform({
-      brandname: data.brandname || "",
-      website: data.website || "",
-      description: data.description || "",
-    });
+      setform({
+        brandname: data.brandname || "",
+        website: data.website || "",
+        description: data.description || "",
+        image: data.image || "",
+      });
+      
+      if (data.image) {
+        setImagePreview(data.image);
+      }
 
-    // clear after use
-    localStorage.removeItem("editBrand");
-  }
-}, []);
+      // clear after use
+      localStorage.removeItem("editBrand");
+    }
+
+    // Cleanup preview URL
+    return () => {
+      if (imagePreview && imagePreview.startsWith('blob:')) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 md:py-12 px-4">
@@ -141,7 +226,7 @@ export default function AddBrand() {
                     onChange={handlechange}
                     name="brandname"
                     value={form.brandname}
-                    placeholder="e.g., ZYLLIC,HDDS,HOORAB"
+                    placeholder="e.g., ZYLLIC, HDDS, HOORAB"
                     className={`w-full px-4 py-3.5 rounded-xl border transition-all duration-200
                       bg-gray-50 dark:bg-gray-700 dark:text-gray-200 text-gray-600
                       focus:outline-none focus:ring-4 focus:ring-[#139aff]/20
@@ -192,6 +277,80 @@ export default function AddBrand() {
                 </p>
               </div>
 
+              {/* Brand Image Upload */}
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                  <Image size={16} className="text-[#139aff]" />
+                  Brand Image
+                </label>
+                
+                {/* Image Preview and Upload Area */}
+                <div className="relative">
+                  {imagePreview ? (
+                    <div className="relative inline-block">
+                      <div className="relative group">
+                        <img 
+                          src={imagePreview} 
+                          alt="Brand preview" 
+                          className="w-32 h-32 object-cover rounded-xl border-2 border-[#139aff] shadow-lg"
+                        />
+                        <div className="absolute inset-0 bg-black/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => fileInputRef.current?.click()}
+                            className="p-1.5 bg-white rounded-lg hover:bg-gray-100 transition"
+                            title="Change image"
+                          >
+                            <Upload size={16} className="text-[#139aff]" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={handleRemoveImage}
+                            className="p-1.5 bg-white rounded-lg hover:bg-gray-100 transition"
+                            title="Remove image"
+                          >
+                            <X size={16} className="text-red-500" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div 
+                      onClick={() => fileInputRef.current?.click()}
+                      className="w-32 h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-[#139aff] transition-colors bg-gray-50 dark:bg-gray-700"
+                    >
+                      <Upload size={24} className="text-gray-400 dark:text-gray-500" />
+                      <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">Upload</span>
+                    </div>
+                  )}
+                  
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="hidden"
+                  />
+                </div>
+                
+                {uploadingImage && (
+                  <div className="flex items-center gap-2 mt-2">
+                    <Loader />
+                    <span className="text-sm text-gray-500">Uploading image...</span>
+                  </div>
+                )}
+                
+                {errors.image && (
+                  <p className="text-red-500 text-sm flex items-center gap-1 mt-2">
+                    <span className="text-xs">⚠️</span> {errors.image}
+                  </p>
+                )}
+                
+                <p className="text-xs text-gray-400 dark:text-gray-500">
+                  Upload brand logo or image (Max 5MB). Supports JPG, PNG, WEBP, GIF, SVG
+                </p>
+              </div>
+
               {/* Description */}
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
@@ -233,17 +392,17 @@ export default function AddBrand() {
                 whileHover={!loader ? { scale: 1.02 } : {}}
                 whileTap={!loader ? { scale: 0.98 } : {}}
                 type="submit"
-                disabled={loader}
+                disabled={loader || uploadingImage}
                 className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg
-                  ${loader 
+                  ${(loader || uploadingImage) 
                     ? "bg-gray-400 cursor-not-allowed text-white" 
                     : "bg-gradient-to-r from-[#00e6ff] to-[#139aff] hover:shadow-xl text-white"
                   }`}
               >
-                {loader ? (
+                {(loader || uploadingImage) ? (
                   <>
                     <Loader />
-                    <span>Adding Brand...</span>
+                    <span>{uploadingImage ? "Uploading Image..." : "Adding Brand..."}</span>
                   </>
                 ) : (
                   <>

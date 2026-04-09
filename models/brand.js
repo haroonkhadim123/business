@@ -18,7 +18,10 @@ const brandSchema = new mongoose.Schema(
         "Please enter a valid URL",
       ],
     },
-
+    image: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: [true, "Description is required"],
