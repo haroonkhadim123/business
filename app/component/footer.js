@@ -127,6 +127,16 @@ export default function Footer() {
               <AiFillTwitterCircle size={20} />
             </motion.a>
           </div>
+            {/* Company Registration */}
+<div className="mt-4 pt-3 border-t border-gray-200">
+  <p className="text-xs text-gray-600 leading-relaxed">
+    <span className="font-semibold text-gray-800">
+      HOORAB GROUP OF <span className="text-[#139aff]">COMPANIES LTD</span>
+    </span>
+    <br />
+    <span className="text-gray-500">Registered in England and Wales | Company No: 15800546</span>
+  </p>
+</div>
         </motion.div>
 
         {/* ================= Quick Links ================= */}
@@ -187,49 +197,35 @@ export default function Footer() {
           </ul>
         </motion.div>
 
-        {/* ================= Contact & Admin Section ================= */}
-        <motion.div variants={fadeUp} className="space-y-4">
-          <h3 className="text-xl font-semibold mb-4 text-[#139aff]">
-            Contact Us
-          </h3>
+  {/* ================= Contact & Admin Section ================= */}
+<motion.div variants={fadeUp} className="space-y-4">
+  <h3 className="text-xl font-semibold mb-4 text-[#139aff]">
+    Contact Us
+  </h3>
 
-          <p className="text-gray-600">
-           <strong> Headquarters:</strong> London, United Kingdom
-          </p>
+  <p className="text-gray-600">
+    <strong>Headquarters:</strong> London, United Kingdom
+  </p>
 
-          <p className="text-gray-600">
-            <strong>Email:{" "}</strong>
-            <span className="text-[#00e6ff] font-medium">
-              info@hoorabgroup.com
-            </span>
-          </p>
-          
-          <iframe
-            className="w-full h-40 rounded-lg border border-gray-200 shadow-sm mt-2"
-            src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
-            loading="lazy"
-            style={{ border: 0 }}
-          ></iframe>
-        </motion.div>
+  <p className="text-gray-600">
+    <strong>Email: </strong>
+    <span className="text-[#00e6ff] font-medium">
+      info@hoorabgroup.com
+    </span>
+  </p>
+  
+  <iframe
+    className="w-full h-40 rounded-lg border border-gray-200 shadow-sm mt-2"
+    src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
+    loading="lazy"
+    style={{ border: 0 }}
+  ></iframe>
+
+
+</motion.div>
       </motion.div>
 
-      {/* ================= Company Registration Info ================= */}
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="mt-12 pt-6 border-t border-gray-200"
-      >
-        <div className="text-center space-y-2">
-          <p className="text-sm font-semibold text-gray-700">
-            HOORAB GROUP OF <span className="text-[#139aff]"> COMPANIES LTD</span>
-          </p>
-          <p className="text-xs text-gray-500">
-            Registered in England and Wales | Company No: 15800546
-          </p>
-        </div>
-      </motion.div>
+     
 
       {/* ================= Bottom Copyright ================= */}
       <motion.div

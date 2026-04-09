@@ -1,0 +1,11 @@
+# robots.txt for HOORAB GROUP
+User-Agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://hoorabgroup.com/sitemap.xml
+
+# Disable admin pages
+Disallow: /api/
+Disallow: /admin/
+Disallow: /login/
