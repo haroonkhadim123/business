@@ -16,11 +16,13 @@ export default function AboutBanner() {
         className="absolute inset-0"
       >
         <Image
-          src="/about-hero.jpg"
+          src="/about-hero.webp"
           alt="About Us Background"
           fill
           priority
           className="object-cover"
+                sizes="100vw"
+              quality={75} 
         />
       </motion.div>
 

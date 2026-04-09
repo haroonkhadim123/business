@@ -40,57 +40,63 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
     {/* LEFT SIDE IMAGES */}
     <motion.div
-      initial={{ opacity: 0, x: -80 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="relative"
-    >
-      {/* Main Image */}
-      <div className="rounded-3xl overflow-hidden shadow-2xl ring-1 ring-[#00e6ff]/10">
-        <Image
-          src="/image1.jpg"
-          alt="Corporate Team"
-          width={600}
-          height={500}
-          className="object-cover w-full h-[520px]"
-        />
-      </div>
+  initial={{ opacity: 0, x: -80 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.6 }}  // ✅ Reduced from 0.8
+  viewport={{ once: true, amount: 0.2 }}  // ✅ Trigger earlier
+  className="relative"
+>
+  {/* Main Image */}
+  <div className="rounded-3xl overflow-hidden shadow-2xl ring-1 ring-[#00e6ff]/10">
+    <Image
+      src="/image1.webp"  // ✅ Convert to WebP
+      alt="HOORAB GROUP Corporate Team - Professional retail and wholesale team"
+      width={600}
+      height={500}
+      className="object-cover w-full h-auto"  // ✅ Changed from fixed height
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+      quality={85}
+      priority={true}  // ✅ Above the fold image
+    />
+  </div>
 
-      {/* Experience Card */}
-      <motion.div
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        viewport={{ once: true }}
-        className="absolute top-10 -left-10 bg-gradient-to-br from-[#139aff] to-[#00e6ff] text-white p-8 rounded-2xl shadow-xl"
-      >
-        <h2 className="text-4xl font-bold">
-          <motion.span>{rounded}</motion.span>+
-        </h2>
-        <p className="mt-2 text-white/90">Years of Excellence</p>
-      </motion.div>
+  {/* Experience Card - Optimized Animation */}
+  <motion.div
+    initial={{ scale: 0 }}
+    whileInView={{ scale: 1 }}
+    transition={{ delay: 0.3, duration: 0.5 }}  // ✅ Reduced delay
+    viewport={{ once: true }}
+    className="absolute top-10 -left-10 bg-gradient-to-br from-[#139aff] to-[#00e6ff] text-white p-6 md:p-8 rounded-2xl shadow-xl"
+  >
+    <h2 className="text-3xl md:text-4xl font-bold">
+      <motion.span>{rounded}</motion.span>+
+    </h2>
+    <p className="mt-2 text-white/90 text-sm md:text-base">Years of Excellence</p>
+  </motion.div>
 
-      {/* Small Floating Image */}
-      <motion.div
-        animate={{ y: [0, -30, 0] }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "easeInOut",
-        }}
-        className="absolute -bottom-12 right-10 bg-white p-3 rounded-2xl shadow-2xl ring-1 ring-[#139aff]/15"
-      >
-        <Image
-          src="/about2.jpg"
-          alt="Business Meeting"
-          width={220}
-          height={160}
-          className="rounded-xl object-cover"
-        />
-      </motion.div>
-    </motion.div>
+  {/* Small Floating Image - Optimized */}
+  <motion.div
+    animate={{ y: [0, -20, 0] }}  // ✅ Reduced movement range
+    transition={{
+      duration: 4,  // ✅ Slightly faster
+      repeat: Infinity,
+      repeatType: "loop",
+      ease: "easeInOut",
+    }}
+    className="absolute -bottom-12 right-5 md:right-10 bg-white p-2 md:p-3 rounded-2xl shadow-2xl ring-1 ring-[#139aff]/15"
+  >
+    <Image
+      src="/about2.webp"  // ✅ Convert to WebP
+      alt="Business meeting at HOORAB GROUP"
+      width={220}
+      height={160}
+      className="rounded-xl object-cover"
+      sizes="(max-width: 768px) 150px, 220px"  // ✅ Fixed size
+      quality={75}
+      loading="lazy"  // ✅ Lazy load - not priority
+    />
+  </motion.div>
+</motion.div>
 
    {/* RIGHT SIDE CONTENT */}
 <motion.div

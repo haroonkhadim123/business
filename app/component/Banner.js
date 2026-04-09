@@ -11,7 +11,7 @@ import "swiper/css/effect-fade";
 
 const slides = [
   {
-    src: "/banner1.jpg",
+    src: "/banner1.webp",
     title: "Retail & Wholesale Excellence",
     subtitle:
       "HOORAB GROUP operates multiple brands across retail, wholesale and global distribution markets.",
@@ -27,7 +27,7 @@ const slides = [
     link: "/contact",
   },
   {
-    src: "/banner2.jpg",
+    src: "/banner2.webp",
     title: "Quality. Reliability. Growth.",
     subtitle:
       "Delivering long-term value through supply chain excellence and trusted partnerships worldwide.",
@@ -62,6 +62,8 @@ export default function Banner() {
           fill
           className="object-cover"
           priority={index === 0}
+                sizes="100vw"
+              quality={75} 
         />
       </motion.div>
 

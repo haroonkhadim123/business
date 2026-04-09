@@ -38,15 +38,18 @@ export default function LeadershipSection() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/ceo.jpg"
-                  alt="CEO of HOORAB GROUP"
-                  width={600}
-                  height={700}
-                  className="object-cover w-full h-[500px]"
-                />
-              </div>
+           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+  <Image
+    src="/ceo.jpg"
+    alt="CEO of HOORAB GROUP"
+    width={600}
+    height={700}
+    className="object-cover"  // ✅ Remove w-full h-[500px] from here
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+    quality={85}  // ✅ Better quality for important image
+    priority={true}  // ✅ CEO image is important - load early
+  />
+</div>
               {/* Quote Icon Overlay */}
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-[#00e6ff] to-[#139aff] p-4 rounded-full shadow-xl">
                 <Quote className="w-8 h-8 text-white" />
@@ -131,14 +134,16 @@ export default function LeadershipSection() {
                 whileHover={{ y: -10 }}
                 className="bg-gray-50 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300"
               >
-                <div className="relative mx-auto w-48 h-48 rounded-full overflow-hidden border-4 border-[#00e6ff]/30 shadow-md">
-                  <Image
-                    src={member.img}
-                    alt={`${member.name} - ${member.role}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+              <div className="relative mx-auto w-48 h-48 rounded-full overflow-hidden border-4 border-[#00e6ff]/30 shadow-md">
+  <Image
+    src={member.img}
+    alt={`${member.name} - ${member.role}`}
+    fill
+    className="object-cover"
+    sizes="192px"  // ✅ Fixed size - circle is always 192px (w-48 = 12rem = 192px)
+    quality={80}   // ✅ Changed from 75 to 80 for better quality on small images
+  />
+</div>
                 <h3 className="mt-8 text-2xl font-bold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
                   {member.name}
                 </h3>

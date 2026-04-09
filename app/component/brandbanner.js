@@ -21,6 +21,8 @@ export default function BrandHero() {
           fill
           priority
           className="object-cover"
+          sizes="100vw"
+              quality={75}
         />
       </motion.div>
 
