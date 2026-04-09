@@ -5,7 +5,8 @@ import { Toaster } from "react-hot-toast";
 import SessionWrapper from "./component/SessionWrapper";
 import NetworkLoader from "./component/NetworkLoader";
 
-
+// ❌ Remove this import from here
+// import { usePathname } from 'next/navigation';
 
 /* ================= PREMIUM CORPORATE FONTS ================= */
 const poppins = Poppins({
@@ -22,7 +23,11 @@ const inter = Inter({
 
 /* ================= SEO METADATA ================= */
 export const metadata = {
-  metadataBase: new URL("https://hoorabgroup.com"), // ✅ Added www
+  metadataBase: new URL("https://hoorabgroup.com"), // ✅ Using main domain (no www)
+  
+  alternates: {
+    canonical: '/', // This will automatically use the current path
+  },
 
   title: {
     default: "HOORAB Group | Retail & Wholesale Excellence",
@@ -49,7 +54,7 @@ export const metadata = {
     title: "HOORAB GROUP | Retail & Wholesale Excellence",
     description:
       "Strategic retail and wholesale operations across international markets.",
-    url: "https://hoorabgroup.com", // ✅ Added www
+    url: "https://hoorabgroup.com", // ✅ Main domain
     siteName: "HOORAB Group",
     locale: "en_GB",
     type: "website",
@@ -70,10 +75,13 @@ export const metadata = {
 
 /* ================= ROOT LAYOUT ================= */
 export default function RootLayout({ children }) {
+  // ❌ Remove this line - you can't use usePathname() here
+  // const pathname = usePathname(); 
+  
   return (
     <html lang="en" data-scroll-behavior="smooth">
-       <head>
-        {/* ✅ Google Tag Manager - Head Script */}
+      <head>
+        {/* Google Tag Manager - Head Script */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -85,33 +93,30 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
+        
+        {/* ✅ Canonical tag removed from here - handled by metadata.alternates above */}
       </head>
       <body
         className={`${poppins.variable} ${inter.variable} antialiased bg-[#0B1120] text-white`}
       >
-       
-<noscript>
-  <iframe 
-    src="https://www.googletagmanager.com/ns.html?id=GTM-PW42MT3J"
-    height="0" 
-    width="0" 
-    style={{ display: "none", visibility: "hidden" }}
-  ></iframe>
-</noscript>
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PW42MT3J"
+            height="0" 
+            width="0" 
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
 
         <NetworkLoader />
-        {/* ================= NAVBAR ================= */}
-        <SessionWrapper>
-  
-<ClientLayout>
-        {/* ================= PAGE CONTENT ================= */}
-        {children}
-        </ClientLayout>
-        </SessionWrapper>
         
+        <SessionWrapper>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </SessionWrapper>
 
-
-        {/* ================= STRUCTURED DATA (SEO BOOST) ================= */}
+        {/* Structured Data (SEO BOOST) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -119,8 +124,8 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "HOORAB Group",
-              url: "https://hoorabgroup.com", // ✅ Added www
-              logo: "https://hoorabgroup.com/logo.png", // ✅ Added www
+              url: "https://hoorabgroup.com", // ✅ Main domain
+              logo: "https://hoorabgroup.com/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
                 email: "hello@hoorabgroup.com",
@@ -129,7 +134,7 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-         <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
   );
