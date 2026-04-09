@@ -3,7 +3,7 @@
 // Agar aapke paas API hai brands fetch karne ke liye
 async function getAllBrands() {
   try {
-    const response = await fetch('https://hoorabgroup.com/api/brand', {
+    const response = await fetch('https://www.hoorabgroup.com/api/brand',  {
       next: { revalidate: 3600 } // Cache for 1 hour
     });
     const data = await response.json();
