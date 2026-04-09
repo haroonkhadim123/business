@@ -1,4 +1,5 @@
 // app/sitemap.js
+export const dynamic = 'force-static';
 export default async function sitemap() {
   const baseUrl = 'https://hoorabgroup.com'; // WITHOUT www
   
