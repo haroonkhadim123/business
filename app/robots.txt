@@ -3,7 +3,7 @@ User-Agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.hoorabgroup.com/sitemap.xml
+Sitemap: https://hoorabgroup.com/sitemap.xml
 
 # Disable admin pages
 Disallow: /api/

@@ -1,11 +1,16 @@
-// app/sitemap.js - With Dynamic Brands
+// app/sitemap.js - For hoorabgroup.com (without www)
 
-// Agar aapke paas API hai brands fetch karne ke liye
+// Fetch brands from API
 async function getAllBrands() {
   try {
-    const response = await fetch('https://www.hoorabgroup.com/api/brand',  {
+    const response = await fetch('https://hoorabgroup.com/api/brand', {
       next: { revalidate: 3600 } // Cache for 1 hour
     });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     const data = await response.json();
     return data.applybrand || [];
   } catch (error) {
@@ -16,7 +21,7 @@ async function getAllBrands() {
 
 export default async function sitemap() {
   const brands = await getAllBrands();
-  const baseUrl = 'https://www.hoorabgroup.com';
+  const baseUrl = 'https://hoorabgroup.com'; // WITHOUT www
 
   // Static pages
   const staticPages = [
@@ -72,7 +77,10 @@ export default async function sitemap() {
     priority: 0.7,
   }));
 
-  // Admin pages - NOT INCLUDED intentionally
-  // Sirf public pages return karo
+  // Return all public pages
   return [...staticPages, ...brandPages];
 }
+
+// Optional: For better performance
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;

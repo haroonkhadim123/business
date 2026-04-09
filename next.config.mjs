@@ -22,7 +22,7 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        destination: 'https://www.hoorabgroup.com/:path*',
+        destination: 'https://hoorabgroup.com/:path*',
         permanent: true,
         has: [
           {

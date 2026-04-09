@@ -22,7 +22,7 @@ const inter = Inter({
 
 /* ================= SEO METADATA ================= */
 export const metadata = {
-  metadataBase: new URL("https://www.hoorabgroup.com"), // ✅ Added www
+  metadataBase: new URL("https://hoorabgroup.com"), // ✅ Added www
 
   title: {
     default: "HOORAB Group | Retail & Wholesale Excellence",
@@ -49,7 +49,7 @@ export const metadata = {
     title: "HOORAB GROUP | Retail & Wholesale Excellence",
     description:
       "Strategic retail and wholesale operations across international markets.",
-    url: "https://www.hoorabgroup.com", // ✅ Added www
+    url: "https://hoorabgroup.com", // ✅ Added www
     siteName: "HOORAB Group",
     locale: "en_GB",
     type: "website",
@@ -119,8 +119,8 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "HOORAB Group",
-              url: "https://www.hoorabgroup.com", // ✅ Added www
-              logo: "https://www.hoorabgroup.com/logo.png", // ✅ Added www
+              url: "https://hoorabgroup.com", // ✅ Added www
+              logo: "https://hoorabgroup.com/logo.png", // ✅ Added www
               contactPoint: {
                 "@type": "ContactPoint",
                 email: "hello@hoorabgroup.com",
