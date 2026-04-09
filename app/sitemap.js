@@ -16,47 +16,48 @@ async function getAllBrands() {
 
 export default async function sitemap() {
   const brands = await getAllBrands();
+  const baseUrl = 'https://www.hoorabgroup.com';
 
   // Static pages
   const staticPages = [
     {
-      url: 'https://hoorabgroup.com',
+      url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
-      url: 'https://hoorabgroup.com/brand',
+      url: `${baseUrl}/brand`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
-      url: 'https://hoorabgroup.com/about',
+      url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://hoorabgroup.com/partner',
+      url: `${baseUrl}/partner`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://hoorabgroup.com/career',
+      url: `${baseUrl}/career`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
     },
     {
-      url: 'https://hoorabgroup.com/contact',
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: 'https://hoorabgroup.com/privacy',
+      url: `${baseUrl}/privacy`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.4,
@@ -65,7 +66,7 @@ export default async function sitemap() {
 
   // Dynamic brand pages
   const brandPages = brands.map((brand) => ({
-    url: `https://hoorabgroup.com/brand/${brand._id}`,
+    url: `${baseUrl}/brand/${brand._id}`,
     lastModified: new Date(brand.updatedAt || Date.now()),
     changeFrequency: 'weekly',
     priority: 0.7,

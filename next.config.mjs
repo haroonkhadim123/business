@@ -6,15 +6,37 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
-      // Add Cloudinary support
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
       },
-      // Optional: If you're using Cloudinary with a subdomain
-    
+      // Add your own domain for optimized images
+      {
+        protocol: "https",
+        hostname: "www.hoorabgroup.com",
+      },
     ],
   },
+  // Add www redirect
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        destination: 'https://www.hoorabgroup.com/:path*',
+        permanent: true,
+        has: [
+          {
+            type: 'host',
+            value: 'hoorabgroup.com',
+          },
+        ],
+      },
+    ];
+  },
+  // Optional: Add trailing slash handling
+  trailingSlash: false,
+  // Optional: Compress images
+  compress: true,
 };
 
 export default nextConfig;
