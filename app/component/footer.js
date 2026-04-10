@@ -22,17 +22,7 @@ export default function Footer() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
-  // Handle Logout
-  const handleLogout = async () => {
-    try {
-      await signOut({ redirect: false });
-      toast.success("Logged out successfully!");
-      router.push("/");
-      router.refresh();
-    } catch (error) {
-      toast.error("Something went wrong while logging out");
-    }
-  };
+
 
   return (
     <footer className="relative bg-white text-gray-800 py-16 overflow-hidden border-t border-gray-200">
@@ -188,11 +178,11 @@ export default function Footer() {
               </li>
             )}
             {session && (
-              <li>
-                <span onClick={handleLogout} className="hover:text-[#00e6ff] cursor-pointer transition">
-                  Log Out
+              <Link href={'/admin'}>
+                <span  className="hover:text-[#00e6ff] cursor-pointer transition">
+               Dashboard
                 </span>
-              </li>
+              </Link>
             )}
           </ul>
         </motion.div>
