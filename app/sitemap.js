@@ -1,7 +1,7 @@
 // app/sitemap.js
 export const dynamic = 'force-static';
 export default async function sitemap() {
-  const baseUrl = 'https://hoorabgroup.com'; // WITHOUT www
+  const baseUrl = 'https://www.hoorabgroup.com'; 
   
   // Your static pages
   const staticPages = [
@@ -46,6 +46,25 @@ export default async function sitemap() {
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.4,
+    },
+    // New pages
+    {
+      url: `${baseUrl}/sourcing-trading`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/retail-distribution`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/wholesale-supply`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
   ];
   
