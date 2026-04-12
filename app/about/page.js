@@ -200,40 +200,86 @@ export default function AboutPage() {
 
 
       {/* ================= TIMELINE ================= */}
-      <section className="py-24 bg-[#0B1120]">
-        <div className="max-w-5xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-            Our Journey
-          </h2>
+ <section className="py-24 bg-[#0B1120]">
+  <div className="max-w-5xl mx-auto px-6">
+    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
+      Our Journey
+    </h2>
 
-          <div className="space-y-12 relative before:absolute before:inset-0 before:left-1/2 before:w-1 before:bg-[#00e6ff]/30 before:-translate-x-1/2 max-md:before:hidden">
-            {[
-              { year: "2024", text: "Company Founded" },
-              { year: "2024", text: "Expanded to National Operations" },
-              { year: "2025", text: "Reached 10000+ Corporate Clients" },
-              { year: "2026", text: "Awarded Business Excellence Recognition" },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -80 : 80 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className={`flex items-center gap-8 ${
-                  i % 2 === 0 ? "justify-end" : "justify-start"
-                } max-md:justify-center max-md:flex-col relative`}
-              >
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#00e6ff] to-[#139aff] text-transparent bg-clip-text px-6 py-3 rounded-full shadow-lg z-10">
+    <div className="relative">
+      {/* Professional Center Line - Gradient */}
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#00e6ff]/70 to-transparent -translate-x-1/2 max-md:hidden"></div>
+
+      <div className="relative space-y-8">
+        {[
+          { year: "2024", title: "Company Founded", desc: "Started operations with a vision to transform digital experiences" },
+          { year: "2024", title: "National Expansion", desc: "Successfully expanded operations across all major cities" },
+          { year: "2025", title: "10,000+ Clients", desc: "Reached milestone of serving ten thousand corporate clients" },
+          { year: "2026", title: "Excellence Award", desc: "Recognized for outstanding business growth and innovation" },
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className={`relative flex items-center gap-6 ${
+              i % 2 === 0 ? "justify-start" : "justify-end"
+            } max-md:justify-center`}
+          >
+            {/* Animated Connector Line (horizontal) */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              transition={{ duration: 0.5, delay: i * 0.1 + 0.2 }}
+              className={`absolute top-1/2 h-px bg-gradient-to-r from-[#00e6ff]/50 to-transparent ${
+                i % 2 === 0 ? "left-[120px] w-16" : "right-[120px] w-16"
+              } max-md:hidden`}
+            ></motion.div>
+
+            {/* Content Box */}
+            <motion.div
+              whileHover={{ scale: 1.02, x: i % 2 === 0 ? 5 : -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className={`group cursor-pointer ${
+                i % 2 === 0 ? "text-right" : "text-left"
+              } max-md:text-center`}
+            >
+              <div className="bg-[#0F172A]/40 backdrop-blur-sm px-6 py-4 rounded-xl border border-[#00e6ff]/10 hover:border-[#00e6ff]/30 transition-all duration-300">
+                <span className="text-3xl font-bold bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
                   {item.year}
-                </div>
-                <div className="text-gray-300 text-lg max-w-md max-md:text-center">
-                  {item.text}
-                </div>
+                </span>
+                <h3 className="text-white font-semibold text-lg mt-1">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm mt-1 max-w-md">
+                  {item.desc}
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Center Node with Glow */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-md:relative max-md:mb-4">
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                transition={{ duration: 0.3, delay: i * 0.1 }}
+                className="relative"
+              >
+                <div className="w-3 h-3 bg-[#00e6ff] rounded-full shadow-lg shadow-[#00e6ff]/50"></div>
+                <motion.div
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+                  className="absolute -inset-2 bg-[#00e6ff]/20 rounded-full"
+                ></motion.div>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
       <WhyChooseUs/>
 
       {/* ================= TEAM SECTION ================= */}
