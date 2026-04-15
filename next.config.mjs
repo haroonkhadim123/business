@@ -13,7 +13,7 @@ const nextConfig = {
       // Add your own domain for optimized images
       {
         protocol: "https",
-        hostname: "www.hoorabgroup.com",
+        hostname: "hoorabgroup.com",
       },
     ],
   },
@@ -22,7 +22,7 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        destination: 'https://hoorabgroup.com/:path*',
+        destination: 'https://www.hoorabgroup.com/:path*',
         permanent: true,
         has: [
           {
