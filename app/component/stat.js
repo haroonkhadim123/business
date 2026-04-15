@@ -10,13 +10,13 @@ import { useEffect, useState } from "react";
 import { Package, Handshake, Boxes, Users } from "lucide-react";
 
 const stats = [
-  { number: 50000, label: "ORDERS FULFILLED", icon: <Package className="w-10 h-10 text-[#00e6ff]" /> },
-  { number: 100, label: "BUSINESS PARTNERS", icon: <Handshake className="w-10 h-10 text-[#00e6ff]" /> },
-  { number: 20, label: "PRODUCT LINES SUPPORTED", icon: <Boxes className="w-10 h-10 text-[#00e6ff]" /> },
-  { number: 10000, label: "SATISFIED CUSTOMERS", icon: <Users className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 50000, label: "ORDERS FULFILLED", suffix: "k+", icon: <Package className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 100, label: "BUSINESS PARTNERS", suffix: "+", icon: <Handshake className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 20, label: "PRODUCT LINES SUPPORTED", suffix: "+", icon: <Boxes className="w-10 h-10 text-[#00e6ff]" /> },
+  { number: 10000, label: "SATISFIED CUSTOMERS", suffix: "k+", icon: <Users className="w-10 h-10 text-[#00e6ff]" /> },
 ];
 
-function Counter({ value }) {
+function Counter({ value, suffix }) {
   const count = useMotionValue(0);
   const [display, setDisplay] = useState(0);
 
@@ -33,9 +33,16 @@ function Counter({ value }) {
     setDisplay(Math.floor(latest));
   });
 
+  const formatDisplay = () => {
+    if (suffix === "k+") {
+      return `${(display / 1000).toFixed(0)}k+`;
+    }
+    return `${display}${suffix}`;
+  };
+
   return (
     <span className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-[#00e6ff] to-[#139aff] bg-clip-text text-transparent">
-      {display}+
+      {formatDisplay()}
     </span>
   );
 }
@@ -73,7 +80,7 @@ export default function StatsSection() {
                 </div>
 
                 <div className="mt-4">
-                  <Counter value={stat.number} />
+                  <Counter value={stat.number} suffix={stat.suffix} />
                 </div>
               </div>
 

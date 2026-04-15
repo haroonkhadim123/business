@@ -274,26 +274,17 @@ export default function ContactPage() {
           </div>
 
           {/* Saturday */}
-          <div className="flex justify-between items-center py-2 border-b border-gray-100">
+           <div className="flex justify-between items-center py-2">
             <div className="flex items-center gap-2">
-              <span className="text-gray-600 font-medium">Saturday</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-gray-900 font-semibold">10:00 AM</span>
-              <span className="text-gray-400">-</span>
-              <span className="text-gray-900 font-semibold">4:00 PM</span>
-            </div>
-          </div>
-
-          {/* Sunday */}
-          <div className="flex justify-between items-center py-2">
-            <div className="flex items-center gap-2">
-              <span className="text-gray-600 font-medium">Sunday</span>
+              <span className="text-gray-600 font-medium">Saturday & Sunday</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-red-500 font-semibold">Closed</span>
             </div>
           </div>
+
+          {/* Sunday */}
+        
         </div>
 
         {/* Status Badge */}
