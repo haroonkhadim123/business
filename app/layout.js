@@ -33,12 +33,12 @@ export const metadata = {
   },
 
   title: {
-    default: "HOORAB Group | Premier Retail & Wholesale Distribution UK, GCC & Europe",
-    template: "%s | HOORAB Group - Global Supply Chain Solutions",
+    default: "HOORAB GROUP | Premier Retail & Wholesale Distribution UK, GCC & Europe",
+    template: "%s | HOORAB GROUP - Global Supply Chain Solutions",
   },
 
   description:
-    "HOORAB Group is a leading retail and wholesale distribution company operating across UK, GCC and Europe. Specializing in B2B supply chain, private label sourcing, and global logistics with 50k+ orders fulfilled.",
+    "HOORAB GROUP is a leading retail and wholesale distribution company operating across UK, GCC and Europe. Specializing in B2B supply chain, private label sourcing, and global logistics with 50k+ orders fulfilled.",
 
   keywords: [
     "retail company UK",
@@ -46,16 +46,16 @@ export const metadata = {
     "B2B supply chain solutions",
     "private label sourcing",
     "global logistics provider",
-    "HOORAB Group",
+    "HOORAB GROUP",
     "retail wholesale Europe",
     "GCC distribution",
     "supply chain management UK",
     "bulk wholesale supplier",
   ],
 
-  authors: [{ name: "HOORAB Group", url: "https://www.hoorabgroup.com" }],
-  creator: "HOORAB Group",
-  publisher: "HOORAB Group",
+  authors: [{ name: "HOORAB GROUP", url: "https://www.hoorabgroup.com" }],
+  creator: "HOORAB GROUP",
+  publisher: "HOORAB GROUP",
   category: "Retail & Wholesale Distribution",
   
   robots: {
@@ -83,7 +83,7 @@ export const metadata = {
         url: "/og-image.jpg", // ✅ Create this image (1200x630px)
         width: 1200,
         height: 630,
-        alt: "HOORAB Group - Retail & Wholesale Excellence",
+        alt: "HOORAB GROUP - Retail & Wholesale Excellence",
       },
     ],
     locale: "en_GB",
@@ -94,17 +94,17 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "HOORAB Group | Global Supply Chain Solutions",
+    title: "HOORAB GROUP | Global Supply Chain Solutions",
     description: "Premier retail & wholesale distribution across UK, GCC & Europe",
     images: ["/twitter-image.jpg"], // ✅ Create this image (1200x600px)
 
   },
 
   // ✅ Additional SEO properties
-  applicationName: "HOORAB Group",
+  applicationName: "HOORAB GROUP",
   appleWebApp: {
     capable: true,
-    title: "HOORAB Group",
+    title: "HOORAB GROUP",
     statusBarStyle: "black-translucent",
   },
   formatDetection: {
