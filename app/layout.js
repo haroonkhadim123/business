@@ -4,7 +4,7 @@ import ClientLayout from "./ClientLayout";
 import { Toaster } from "react-hot-toast";
 import SessionWrapper from "./component/SessionWrapper";
 import NetworkLoader from "./component/NetworkLoader";
-import CookieBanner from "./component/cookieconsent";
+import CookiePreferencesModal from "./component/cookieconsent";
 
 /* ================= PREMIUM CORPORATE FONTS ================= */
 const poppins = Poppins({
@@ -336,7 +336,7 @@ export default function RootLayout({ children }) {
             {children}
           </ClientLayout>
         </SessionWrapper>
-        <CookieBanner/>
+        <CookiePreferencesModal />
 
         {/* Toast notifications */}
         <Toaster 

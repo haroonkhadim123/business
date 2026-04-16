@@ -1,122 +1,219 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function CookieBanner() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+const STORAGE_KEY = "cookie-preferences";
+
+export default function CookiePreferencesModal() {
+  const [open, setOpen] = useState(false);
+  const [preferences, setPreferences] = useState({
+    essential: true,
+    analytics: false,
+    marketing: false,
+  });
 
   useEffect(() => {
-    console.log("CookieBanner component mounted"); // ✅ Debug log
-    
-    const consent = localStorage.getItem("hoorab_cookie_consent");
-    console.log("Stored consent:", consent); // ✅ Debug log
-    
-    if (!consent) {
-      console.log("No consent found, showing banner"); // ✅ Debug log
-      setTimeout(() => {
-        setIsVisible(true);
-        setTimeout(() => setIsAnimating(true), 50);
-      }, 500);
-    } else {
-      console.log("Consent found, banner not shown"); // ✅ Debug log
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) {
+      setOpen(true);
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(saved);
+      setPreferences({
+        essential: true,
+        analytics: Boolean(parsed.analytics),
+        marketing: Boolean(parsed.marketing),
+      });
+    } catch {
+      setOpen(true);
     }
   }, []);
 
-  const acceptCookies = () => {
-    setIsAnimating(false);
-    setTimeout(() => {
-      localStorage.setItem("hoorab_cookie_consent", "accepted");
-      setIsVisible(false);
-    }, 300);
+  const savePreferences = (values) => {
+    const normalized = {
+      essential: true,
+      analytics: values.analytics,
+      marketing: values.marketing,
+    };
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+    setPreferences(normalized);
+    setOpen(false);
   };
 
-  const declineCookies = () => {
-    setIsAnimating(false);
-    setTimeout(() => {
-      localStorage.setItem("hoorab_cookie_consent", "declined");
-      setIsVisible(false);
-    }, 300);
+  const handleAcceptAll = () => {
+    savePreferences({
+      essential: true,
+      analytics: true,
+      marketing: true,
+    });
   };
 
-  if (!isVisible) {
-    console.log("Banner not visible"); // ✅ Debug log
-    return null;
-  }
+  const handleEssentialOnly = () => {
+    savePreferences({
+      essential: true,
+      analytics: false,
+      marketing: false,
+    });
+  };
 
-  console.log("Rendering banner"); // ✅ Debug log
+  const handleSave = () => {
+    savePreferences(preferences);
+  };
+
+  const updatePreference = (key, value) => {
+    if (key === "essential") return;
+    setPreferences((prev) => ({ ...prev, [key]: value }));
+  };
+
+  if (!open) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-[9999]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
       <div
-        className={`max-w-[350px] sm:max-w-[380px] w-[calc(100vw-32px)] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-gray-200 transition-all duration-300 ${
-          isAnimating ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-modal-title"
+        aria-describedby="cookie-modal-description"
+        className="w-full max-w-xl rounded-2xl border border-slate-200 bg-white shadow-2xl"
       >
-        {/* Rest of your JSX */}
-        <div className="flex items-center gap-3 p-4 pb-2 border-b border-gray-100">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md">
-            <span className="text-xl">🍪</span>
+        <div className="flex items-start justify-between border-b border-slate-200 px-6 py-5">
+          <div className="flex items-start gap-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 text-lg text-white shadow-sm">
+              🍪
+            </div>
+
+            <div>
+              <h2
+                id="cookie-modal-title"
+                className="text-xl font-semibold tracking-tight text-slate-900"
+              >
+                Cookie Preferences
+              </h2>
+              <p className="mt-1 text-sm text-slate-600">
+                Manage how cookies are used to improve your experience.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="text-gray-800 font-semibold text-base">Cookie Preferences</h3>
-            <p className="text-gray-500 text-xs">We value your privacy</p>
-          </div>
+
+          <button
+            type="button"
+            onClick={handleEssentialOnly}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            aria-label="Close cookie preferences"
+          >
+            ×
+          </button>
         </div>
 
-        <div className="p-4 space-y-3">
-          <p className="text-gray-600 text-sm leading-relaxed">
-            We use cookies to enhance your browsing experience, analyze site traffic, 
-            and personalize content. 
-            <Link 
-              href="/privacy" 
-              className="text-blue-600 hover:text-blue-700 transition-colors ml-1 font-medium inline-block"
-            >
-              Learn more →
-            </Link>
+        <div className="px-6 py-5">
+          <p
+            id="cookie-modal-description"
+            className="text-sm leading-6 text-slate-700"
+          >
+            We use cookies to operate the site, analyze traffic, and personalize
+            content. Essential cookies are always enabled because they are
+            required for core functionality.
           </p>
 
-          <div className="bg-gray-50 rounded-xl p-3 space-y-2">
-            <div className="flex justify-between items-center text-xs">
-              <span className="text-gray-600">Essential Cookies</span>
-              <span className="text-green-600 text-xs font-medium">Always Active</span>
-            </div>
-            <div className="flex justify-between items-center text-xs">
-              <span className="text-gray-600">Analytics Cookies</span>
-              <span className="text-amber-600 text-xs">Optional</span>
-            </div>
-            <div className="flex justify-between items-center text-xs">
-              <span className="text-gray-600">Marketing Cookies</span>
-              <span className="text-amber-600 text-xs">Optional</span>
-            </div>
+          <a
+            href="/privacy-policy"
+            className="mt-3 inline-block text-sm font-medium text-blue-700 transition hover:text-blue-800 hover:underline"
+          >
+            Learn more →
+          </a>
+
+          <div className="mt-6 space-y-4">
+            <PreferenceRow
+              title="Essential Cookies"
+              description="Required for security, accessibility, and core site functionality."
+              checked={true}
+              disabled={true}
+              badge="Always active"
+              onChange={() => {}}
+            />
+
+            <PreferenceRow
+              title="Analytics Cookies"
+              description="Help us understand usage and improve performance."
+              checked={preferences.analytics}
+              onChange={(checked) => updatePreference("analytics", checked)}
+            />
+
+            <PreferenceRow
+              title="Marketing Cookies"
+              description="Used to deliver relevant content and measure campaign effectiveness."
+              checked={preferences.marketing}
+              onChange={(checked) => updatePreference("marketing", checked)}
+            />
           </div>
         </div>
 
-        <div className="p-4 pt-0 flex gap-3">
+        <div className="flex flex-col gap-3 border-t border-slate-200 bg-slate-50 px-6 py-4 sm:flex-row sm:justify-end">
           <button
-            onClick={declineCookies}
-            className="flex-1 px-4 py-2.5 text-sm font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-xl transition-all duration-200 border border-gray-200"
+            type="button"
+            onClick={handleEssentialOnly}
+            className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            Decline
+            Essential Only
           </button>
+
           <button
-            onClick={acceptCookies}
-            className="flex-1 px-4 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg"
+            type="button"
+            onClick={handleSave}
+            className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Save Preferences
+          </button>
+
+          <button
+            type="button"
+            onClick={handleAcceptAll}
+            className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Accept All
           </button>
         </div>
-
-        <button
-          onClick={declineCookies}
-          className="absolute -top-2 -right-2 w-7 h-7 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:bg-gray-50 transition-colors shadow-md"
-        >
-          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
       </div>
+    </div>
+  );
+}
+
+function PreferenceRow({
+  title,
+  description,
+  checked,
+  onChange,
+  disabled = false,
+  badge,
+}) {
+  return (
+    <div className="flex items-start justify-between rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <div className="pr-4">
+        <div className="flex items-center gap-3">
+          <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
+          {badge ? (
+            <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700 ring-1 ring-emerald-200">
+              {badge}
+            </span>
+          ) : null}
+        </div>
+        <p className="mt-1 text-sm leading-6 text-slate-600">{description}</p>
+      </div>
+
+      <label className="relative inline-flex cursor-pointer items-center">
+        <input
+          type="checkbox"
+          className="peer sr-only"
+          checked={checked}
+          onChange={(e) => onChange(e.target.checked)}
+          disabled={disabled}
+        />
+        <div className="peer h-6 w-11 rounded-full bg-slate-300 transition after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-5 peer-focus:ring-2 peer-focus:ring-blue-500 peer-disabled:cursor-not-allowed peer-disabled:opacity-70" />
+      </label>
     </div>
   );
 }
