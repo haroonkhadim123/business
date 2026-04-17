@@ -16,8 +16,9 @@ export default function CookiePreferencesModal() {
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) {
-      setOpen(true);
-      return;
+      // Small delay for smooth appearance on first visit
+      const timer = setTimeout(() => setOpen(true), 800);
+      return () => clearTimeout(timer);
     }
 
     try {
@@ -33,12 +34,13 @@ export default function CookiePreferencesModal() {
   }, []);
 
   const savePreferences = (values) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    const normalized = {
       essential: true,
       analytics: values.analytics,
       marketing: values.marketing,
-    }));
-    setPreferences({ essential: true, analytics: values.analytics, marketing: values.marketing });
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized));
+    setPreferences(normalized);
     setOpen(false);
   };
 
@@ -55,31 +57,32 @@ export default function CookiePreferencesModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4">
+      {/* Main Modal with Smooth Animation */}
       <div
         role="dialog"
         aria-modal="true"
-        className="w-full max-w-[340px] bg-white rounded-3xl shadow-xl overflow-hidden"
+        className="w-full max-w-[350px] bg-white rounded-3xl shadow-2xl overflow-hidden 
+                   animate-in slide-in-from-bottom-8 duration-300 ease-out"
       >
-        {/* Header - Very Compact */}
-        <div className="flex items-center justify-between px-5 py-4 border-b">
-          <h2 className="text-base font-semibold text-slate-900">Cookie Settings</h2>
-          
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
+          <h2 className="text-lg font-semibold text-slate-900">Cookie Settings</h2>
           <button
             onClick={handleEssentialOnly}
-            className="text-2xl text-slate-400 hover:text-slate-600"
+            className="text-3xl text-slate-400 hover:text-slate-500 transition-all active:scale-90"
             aria-label="Close"
           >
             ×
           </button>
         </div>
 
-        {/* Content - Much Smaller */}
-        <div className="p-5 space-y-4 text-sm">
-          <p className="text-xs text-slate-600 leading-snug">
-            We use cookies to improve your experience.
+        {/* Content */}
+        <div className="p-6 space-y-5">
+          <p className="text-xs leading-relaxed text-slate-600">
+            We use cookies to improve your browsing experience.
           </p>
 
-          <div className="space-y-3.5">
+          <div className="space-y-3">
             <PreferenceRow
               title="Essential"
               description="Always active"
@@ -104,32 +107,35 @@ export default function CookiePreferencesModal() {
 
           <Link
             href="/privacy"
-            className="text-blue-600 text-xs block hover:underline mt-1"
+            className="text-blue-600 text-xs font-medium hover:underline block pt-1"
           >
             Privacy Policy →
           </Link>
         </div>
 
-        {/* Buttons - Compact */}
-        <div className="p-4 pt-2 flex flex-col gap-2.5 border-t bg-slate-50">
+        {/* Buttons */}
+        <div className="border-t border-slate-100 bg-slate-50 px-6 py-5 flex flex-col gap-3">
           <button
             onClick={handleEssentialOnly}
-            className="w-full py-2.5 text-xs font-medium rounded-2xl border border-slate-300 text-slate-700 active:bg-slate-100"
+            className="w-full py-3 text-sm font-medium rounded-2xl border border-slate-300 
+                       text-slate-700 hover:bg-slate-100 active:bg-slate-200 transition-all active:scale-[0.985]"
           >
             Essential Only
           </button>
 
-          <div className="flex gap-2.5">
+          <div className="grid grid-cols-2 gap-3">
             <button
               onClick={handleSave}
-              className="flex-1 py-2.5 text-xs font-medium rounded-2xl border border-slate-300 text-slate-700 active:bg-slate-100"
+              className="py-3 text-sm font-medium rounded-2xl border border-slate-300 
+                         text-slate-700 hover:bg-slate-100 active:bg-slate-200 transition-all active:scale-[0.985]"
             >
               Save
             </button>
 
             <button
               onClick={handleAcceptAll}
-              className="flex-1 py-2.5 text-xs font-semibold rounded-2xl bg-blue-600 text-white active:bg-blue-700"
+              className="py-3 text-sm font-semibold rounded-2xl bg-blue-600 text-white 
+                         hover:bg-blue-700 active:bg-blue-800 transition-all active:scale-[0.985] shadow-sm"
             >
               Accept All
             </button>
@@ -140,13 +146,13 @@ export default function CookiePreferencesModal() {
   );
 }
 
-// Super Compact Preference Row
+// Smooth Toggle Row
 function PreferenceRow({ title, description, checked, onChange, disabled = false }) {
   return (
-    <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3">
+    <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 transition-all hover:bg-slate-100">
       <div>
-        <p className="font-medium text-slate-900 text-[14.5px]">{title}</p>
-        <p className="text-[11px] text-slate-500 mt-0.5">{description}</p>
+        <p className="font-medium text-slate-900 text-[15px]">{title}</p>
+        <p className="text-[11.5px] text-slate-500 mt-0.5">{description}</p>
       </div>
 
       <label className="relative cursor-pointer">
@@ -157,9 +163,13 @@ function PreferenceRow({ title, description, checked, onChange, disabled = false
           onChange={(e) => onChange?.(e.target.checked)}
           disabled={disabled}
         />
-        <div className="h-5 w-9 rounded-full bg-slate-300 peer-checked:bg-blue-600 transition-all 
-                        after:absolute after:left-0.5 after:top-0.5 after:h-4 after:w-4 
-                        after:rounded-full after:bg-white after:transition-all peer-checked:after:translate-x-4" />
+        <div 
+          className="h-6 w-11 rounded-full bg-slate-300 transition-all duration-300 
+                     peer-checked:bg-blue-600
+                     after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 
+                     after:rounded-full after:bg-white after:shadow after:transition-all after:duration-300
+                     peer-checked:after:translate-x-5 peer-disabled:opacity-60" 
+        />
       </label>
     </div>
   );
