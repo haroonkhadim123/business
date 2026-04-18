@@ -18,7 +18,7 @@ export default function WholesaleRetailSolutions() {
           className="absolute inset-0"
         >
           <Image
-            src="/business-hero.jpg"
+            src="/wholesale-supply.jpg"
             alt="Wholesale & Retail Solutions"
             fill
             priority

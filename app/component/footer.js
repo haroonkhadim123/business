@@ -7,7 +7,7 @@ import {
   AiFillInstagram,
   AiFillLinkedin,
   AiFillTwitterCircle,
- 
+
 } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
@@ -26,7 +26,7 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-white text-gray-800 py-16 overflow-hidden border-t border-gray-200">
-      
+
       {/* 🔥 Soft Brand Glow */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#00e6ff]/10 via-[#139aff]/10 to-transparent blur-2xl"></div>
 
@@ -117,16 +117,16 @@ export default function Footer() {
               <AiFillTwitterCircle size={20} />
             </motion.a>
           </div>
-            {/* Company Registration */}
-<div className="mt-4 pt-3 border-t border-gray-200">
-  <p className="text-xs text-gray-600 leading-relaxed">
-    <span className="font-semibold text-gray-800">
-      HOORAB GROUP OF <span className="text-[#139aff]">COMPANIES LTD</span>
-    </span>
-    <br />
-    <span className="text-gray-500">Registered in England and Wales | Company No: 15800546</span>
-  </p>
-</div>
+          {/* Company Registration */}
+          <div className="mt-4 pt-3 border-t border-gray-200">
+            <p className="text-xs text-gray-600 leading-relaxed">
+              <span className="font-semibold text-gray-800">
+                HOORAB GROUP OF <span className="text-[#139aff]">COMPANIES LTD</span>
+              </span>
+              <br />
+              <span className="text-gray-500">Registered in England and Wales | Company No: 15800546</span>
+            </p>
+          </div>
         </motion.div>
 
         {/* ================= Quick Links ================= */}
@@ -179,43 +179,43 @@ export default function Footer() {
             )}
             {session && (
               <Link href={'/admin'}>
-                <span  className="hover:text-[#00e6ff] cursor-pointer transition">
-               Dashboard
+                <span className="hover:text-[#00e6ff] cursor-pointer transition">
+                  Dashboard
                 </span>
               </Link>
             )}
           </ul>
         </motion.div>
 
-  {/* ================= Contact & Admin Section ================= */}
-<motion.div variants={fadeUp} className="space-y-4">
-  <h3 className="text-xl font-semibold mb-4 text-[#139aff]">
-    Contact Us
-  </h3>
+        {/* ================= Contact & Admin Section ================= */}
+        <motion.div variants={fadeUp} className="space-y-4">
+          <h3 className="text-xl font-semibold mb-4 text-[#139aff]">
+            Contact Us
+          </h3>
 
-  <p className="text-gray-600">
-    <strong>Headquarters:</strong> London, United Kingdom
-  </p>
+          <p className="text-gray-600">
+            <strong>Headquarters:</strong> London, United Kingdom
+          </p>
 
-  <p className="text-gray-600">
-    <strong>Email: </strong>
-    <span className="text-[#00e6ff] font-medium">
-      info@hoorabgroup.com
-    </span>
-  </p>
-  
-  <iframe
-    className="w-full h-40 rounded-lg border border-gray-200 shadow-sm mt-2"
-    src="https://www.google.com/maps?q=London,United+Kingdom&output=embed"
-    loading="lazy"
-    style={{ border: 0 }}
-  ></iframe>
+          <p className="text-gray-600">
+            <strong>Email: </strong>
+            <span className="text-[#00e6ff] font-medium">
+              info@hoorabgroup.com
+            </span>
+          </p>
+
+          <iframe
+            className="w-full h-40 rounded-lg border border-gray-200 shadow-sm mt-2"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19800.840501!2d-0.1277583!3d51.5073509!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b3333fffff%3A0xabcdef1234567890!2sLondon%2C%20United%20Kingdom!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+            loading="lazy"
+            style={{ border: 0 }}
+          ></iframe>
 
 
-</motion.div>
+        </motion.div>
       </motion.div>
 
-     
+
 
       {/* ================= Bottom Copyright ================= */}
       <motion.div

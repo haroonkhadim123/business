@@ -18,7 +18,7 @@ export default function SourcingTradingSolutions() {
           className="absolute inset-0"
         >
           <Image
-            src="/coporate-hero.jpg"
+            src="/sourcing-trading.jpg"
             alt="Sourcing & Trading Solutions"
             fill
             priority
