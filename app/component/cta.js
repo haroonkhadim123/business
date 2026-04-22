@@ -180,29 +180,13 @@ export default function CareerCTA() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <p className="text-gray-500 text-sm mb-6">Trusted by industry leaders</p>
-          <div className="flex flex-wrap items-center justify-center gap-8">
-            {[
-              { name: "Saudi Aramco", gradient: "from-gray-700 to-gray-900" },
-              { name: "SABIC", gradient: "from-blue-600 to-blue-800" },
-              { name: "STC", gradient: "from-purple-600 to-purple-800" },
-              { name: "NEOM", gradient: "from-emerald-600 to-emerald-800" },
-              { name: "KAUST", gradient: "from-amber-600 to-amber-800" }
-            ].map((company, idx) => (
-              <span 
-                key={idx} 
-                className="text-gray-500 text-sm font-medium hover:text-[#139aff] transition-colors duration-300 cursor-pointer"
-              >
-                {company.name}
-              </span>
-            ))}
-          </div>
+        
         </motion.div>
 
         {/* Bottom Decorative Line */}
         <div className="mt-16 pt-8 text-center">
           <div className="inline-flex items-center gap-2 text-xs text-gray-400">
-            <span>© 2024 HOORAB GROUP</span>
+            <span>© 2026 HOORAB GROUP</span>
             <span>•</span>
             <span>Equal Opportunity Employer</span>
           </div>

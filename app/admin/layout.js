@@ -26,11 +26,12 @@ export default function AdminLayout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeSidebar = () => setIsOpen(false);
-  
-  useEffect(() => {
+    useEffect(() => {
     if(status==='loading') return;
     if (!session || session.user.role !== 'admin') router.push("/");
   }, [session, status, router]);
+  
+
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900/40 antialiased">

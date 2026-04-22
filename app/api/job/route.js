@@ -10,54 +10,89 @@ export async function POST(req) {
     await dbConnect();
     const body = await req.json();
 
-    const { jobtitle,joblocation,jobtype,jobdescription,status = "Open" } = body;
-
-
-
- const alreadyexist = await Job.findOne({
-  jobtitle: jobtitle,
-  jobtype: jobtype,
-});
-
-if (alreadyexist) {
-  return NextResponse.json(
-    {
-      error: true,
-      success: false,
-      message: "Job with same title and type already exists",
-    },
-    { status: 400 }
-  );
-}
-
-
-    // Save in MongoDB
-    const createJob = await Job.create({
+    const {
       jobtitle,
       joblocation,
       jobtype,
       jobdescription,
-  status: status || "Open",
-    });
+      companyName,
+      department,
+      workplaceType,
+      employmentType,
+      jobSummary,
+      requiredQualifications,
+      applicationDeadline,
+      salary,
+      experience,
+      aboutCompany,
+      aboutRole,
+      keyResponsibilities,
+      preferredQualifications,
+   
+      status = "Open"
+    } = body;
 
+    // Prepare job data - ONLY include fields that exist in schema
+    const jobData = {
+      // Required fields
+      jobtitle: jobtitle,
+      joblocation: joblocation,
+      jobtype: employmentType || jobtype,
+      jobdescription: jobdescription,
+      companyName: companyName || "Our Company",
+      location: joblocation,
+      employmentType: employmentType || jobtype,
+      workplaceType: workplaceType,
+      jobSummary: jobSummary,
+      requiredQualifications: requiredQualifications || ["Not specified"],
+      applicationDeadline: applicationDeadline,
+      
+      // Optional fields
+      status: status,
+      department: department || "Other",
+      experience: experience || "Not specified",
+      aboutCompany: aboutCompany || "",
+      aboutRole: aboutRole || "",
+      keyResponsibilities: keyResponsibilities || [],
+      preferredQualifications: preferredQualifications || [],
+ 
+    };
 
+    // Remove salary if it's causing issues (or handle properly)
+    if (salary && (salary.min || salary.max)) {
+      jobData.salary = salary;
+    }
+
+    // Check for existing job
+    const alreadyexist = await Job.findOne({ jobtitle: jobtitle });
+    
+    if (alreadyexist) {
+      return NextResponse.json(
+        { error: true, success: false, message: "Job already exists" },
+        { status: 400 }
+      );
+    }
+
+    // Save in MongoDB
+    const createJob = await Job.create(jobData);
 
     return NextResponse.json(
       {
         error: false,
         success: true,
-        message: "Your job has been posted successfully",
+        message: "Job posted successfully",
         createJob,
       },
       { status: 200 }
     );
+    
   } catch (error) {
-    console.log(error);
+    console.log("Error:", error);
     return NextResponse.json(
       {
         error: true,
         success: false,
-        message: "Something went wrong while posting your job",
+        message: error.message || "Something went wrong",
       },
       { status: 500 }
     );
