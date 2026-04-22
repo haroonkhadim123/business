@@ -17,7 +17,7 @@ export default function Page() {
         backgroundColor: "#fff", // Solid background
       }}
     >
-      <h1>🚧 Website Under Construction</h1>
+      <h1>🚧 Website Under Construction.</h1>
       <p>We are working on it. Coming soon!</p>
     </div>
   );
