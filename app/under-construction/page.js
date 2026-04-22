@@ -13,8 +13,9 @@ export default function Page() {
         textAlign: "center",
         marginTop: "100px",
         padding: "20px",
-        minHeight: "100vh", // Full viewport height
-        backgroundColor: "#fff", // Solid background
+        minHeight: "100vh",
+        backgroundColor: "#fff",
+        color: "#000",
       }}
     >
       <h1>🚧 Website Under Construction.</h1>
