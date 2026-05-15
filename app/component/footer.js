@@ -11,7 +11,7 @@ import {
 } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
-import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function Footer() {
   const { data: session, status } = useSession();
@@ -44,27 +44,14 @@ export default function Footer() {
         >
           <Link href="/" className="flex items-center gap-3">
             {/* Logo */}
-            <svg width="40" height="40" viewBox="0 0 128 100">
-              <path
-                d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-                fill="url(#brandGradient)"
-              />
-              <defs>
-                <linearGradient id="brandGradient" x1="0" y1="0" x2="1" y2="1">
-                  <stop stopColor="#00e6ff" />
-                  <stop offset="1" stopColor="#139aff" />
-                </linearGradient>
-              </defs>
-            </svg>
-
-            <div className="flex flex-col leading-tight">
-              <span className="text-2xl font-black tracking-tight text-gray-900">
-                HOORAB
-              </span>
-              <span className="text-xs font-semibold text-gray-500 mt-1">
-                Business Cooperative Solutions
-              </span>
-            </div>
+                 <Image
+           src="/logo.png"
+           alt="Hoorab Logo"
+           width={56}
+           height={56}
+           priority
+           className="h-14 w-auto object-contain md:h-18"
+         />
           </Link>
 
           <p className="text-gray-500 leading-relaxed text-sm">

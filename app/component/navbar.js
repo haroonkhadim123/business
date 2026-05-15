@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 
+
 import { HiMenu, HiX } from "react-icons/hi";
 import {
   AiOutlineHome,
@@ -14,6 +15,7 @@ import {
   AiOutlineMail,
   AiOutlineLink,
 } from "react-icons/ai";
+import Image from "next/image";
 
 
 export default function Navbar() {
@@ -51,35 +53,16 @@ export default function Navbar() {
       <div className="py-4 mx-auto px-5 sm:px-6 lg:px-10 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center flex-shrink-0 gap-2 md:gap-4">
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 128 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="flex-shrink-0 md:w-12 md:h-12"
-          >
-            <path
-              d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-              fill="#000000"
-              stroke="#000000"
-              strokeWidth="4"
-            />
-            <path
-              d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
-              fill="#00e6ff"
-              opacity="0.18"
-            />
-          </svg>
+        <Image
+  src="/logo.png"
+  alt="Hoorab Logo"
+  width={56}
+  height={56}
+  priority
+  className="h-14 w-auto object-contain md:h-18"
+/>
 
-          <div className="flex flex-col leading-tight">
-            <span className="text-2xl md:text-3xl font-black tracking-[-1px] text-black">
-              HOORAB
-            </span>
-            <span className="text-xs md:text-sm font-semibold tracking-wide mt-1 text-[#139aff]">
-              Business Cooperative Solutions
-            </span>
-          </div>
+        
         </Link>
 
         {/* Desktop Menu */}
@@ -144,35 +127,15 @@ export default function Navbar() {
             href="/"
             className="flex items-center flex-shrink-0 gap-2 md:gap-4"
           >
-            <svg
-              width="36"
-              height="36"
-              viewBox="0 0 128 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="flex-shrink-0 md:w-12 md:h-12"
-            >
-              <path
-                d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-                fill="#000000"
-                stroke="#000000"
-                strokeWidth="4"
-              />
-              <path
-                d="M20 16 H44 V84 H20 V16 Z M84 16 H108 V84 H84 V16 Z M52 44 H76 V56 H52 V44 Z"
-                fill="#00e6ff"
-                opacity="0.18"
-              />
-            </svg>
+           <Image
+  src="/logo.png"
+  alt="Hoorab Logo"
+  width={52}
+  height={52}
+  priority
+  className="h-24 w-auto object-contain"
+/>
 
-            <div className="flex flex-col leading-tight">
-              <span className="text-2xl md:text-3xl font-black tracking-[-1px] text-black">
-                HOORAB
-              </span>
-              <span className="text-xs md:text-sm font-semibold tracking-wide mt-1 text-[#139aff]">
-                Business Cooperative Solutions
-              </span>
-            </div>
           </Link>
         </div>
 
