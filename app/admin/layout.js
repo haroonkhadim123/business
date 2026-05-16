@@ -111,7 +111,7 @@ export default function AdminLayout({ children }) {
   width={56}
   height={56}
   priority
-     className="h-20 w-auto object-contain md:24"
+    className="h-20 w-auto object-contain md:h-24"
 />
                  
                     </Link>
