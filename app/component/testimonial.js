@@ -89,7 +89,7 @@ export default function Testimonials() {
                 className="flex flex-col md:flex-row items-center gap-8 md:gap-12 bg-gray-800 rounded-2xl p-8 md:p-12 shadow-2xl border border-[#00e6ff]/30"
               >
                 {/* Image */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 hidden">
                   <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#139aff] shadow-lg">
                     <Image
                       src={reviews[currentIndex].image}

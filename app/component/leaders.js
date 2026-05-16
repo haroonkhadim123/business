@@ -36,7 +36,7 @@ export default function LeadershipSection() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative hidden "
             >
            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
   <Image
@@ -44,7 +44,7 @@ export default function LeadershipSection() {
     alt="CEO of HOORAB GROUP"
     width={600}
     height={700}
-    className="object-cover"  // ✅ Remove w-full h-[500px] from here
+    className="object-cover "  // ✅ Remove w-full h-[500px] from here
     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
     quality={85}  // ✅ Better quality for important image
     priority={true}  // ✅ CEO image is important - load early
@@ -111,7 +111,7 @@ export default function LeadershipSection() {
       </section>
 
       {/* LEADERSHIP TEAM SECTION */}
-      <section className="py-24 bg-white text-gray-900">
+      <section className="py-24 bg-white hidden text-gray-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}

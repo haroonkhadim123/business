@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Loading() {
   return (
@@ -19,18 +20,14 @@ export default function Loading() {
           }}
           className="w-20 h-20 mx-auto mb-6"
         >
-          <svg width="80" height="80" viewBox="0 0 128 100">
-            <path
-              d="M16 12 H48 V88 H16 V12 Z M80 12 H112 V88 H80 V12 Z M48 40 H80 V60 H48 V40 Z"
-              fill="url(#brandGradient)"
-            />
-            <defs>
-              <linearGradient id="brandGradient" x1="0" y1="0" x2="1" y2="1">
-                <stop stopColor="#00e6ff" />
-                <stop offset="1" stopColor="#139aff" />
-              </linearGradient>
-            </defs>
-          </svg>
+         <Image
+           src="/loader.png"
+           alt="Hoorab Logo"
+           width={80}
+           height={80}
+           priority
+           className="h-20 w-auto object-contain"
+         />
         </motion.div>
 
         {/* Animated Dots */}
