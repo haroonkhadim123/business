@@ -59,7 +59,7 @@ export default function Navbar() {
   width={56}
   height={56}
   priority
-  className="h-14 w-auto object-contain md:h-22"
+  className="h-18 w-auto object-contain md:20"
 />
 
         
@@ -133,7 +133,7 @@ export default function Navbar() {
   width={52}
   height={52}
   priority
-  className="h-22 w-auto object-contain "
+  className="h-18 w-auto object-contain md:20 "
 />
 
           </Link>
