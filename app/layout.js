@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import SessionWrapper from "./component/SessionWrapper";
 import NetworkLoader from "./component/NetworkLoader";
 import CookiePreferencesModal from "./component/cookieconsent";
+import Script from "next/script";
 
 /* ================= PREMIUM CORPORATE FONTS ================= */
 const poppins = Poppins({
@@ -139,6 +140,22 @@ export default function RootLayout({ children }) {
       className="scroll-smooth"
     >
       <head>
+          {/*<!-- Google tag (gtag.js) -->*/}
+<Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-S08L9CKXV2"
+  strategy="afterInteractive"
+/>
+
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S08L9CKXV2');
+  `}
+</Script>
+          
+          
         {/* ✅ Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
