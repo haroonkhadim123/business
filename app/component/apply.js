@@ -140,11 +140,9 @@ const handleCVUpload = async (e) => {
   const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 
   return (
-    <motion.section variants={pageFade} initial="hidden" animate="visible" className="min-h-screen bg-gray-50 py-20 px-4 md:px-6 overflow-hidden">
+    <motion.section variants={pageFade} initial="hidden" animate="visible" className="min-h-screen bg-gray-50 py-32 px-4 md:px-6 overflow-hidden">
       <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="max-w-3xl mt-5 mx-auto mb-10">
-        <Link href="/career" className="text-[#139aff] text-sm font-medium hover:underline">
-          ← Back to Careers
-        </Link>
+        
       </motion.div>
 
       <motion.div variants={cardAnimation} initial="hidden" animate="visible" className="max-w-3xl mx-auto bg-white p-4 md:p-10 rounded-3xl shadow-xl">
